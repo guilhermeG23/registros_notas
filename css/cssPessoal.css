@@ -1,0 +1,261 @@
+/*Customizando o navbar com css proprio*/
+/*Arrumando a cor do navbar*/
+.bg-light {
+	background-color: #DCDCDC !important;
+}
+/*Arrumando o background dos botoes do navbar*/
+.btn-background-arrumar {
+	background: #DCDCDC !important;
+}
+/*Fixando o navbar no local e aumentando sua proporcao*/
+.navbar {
+	position: fixed;
+	width: 100%;
+}
+@media screen and (max-width: 600px) {
+	.navbar-brand {
+		padding-left: 10px;
+		padding-bottom: 10px;
+	}
+}
+/**Btn sem padding*/
+.btn-sem-padding {
+	padding: 0px !important;
+}
+/*Alterar campo input*/
+.custom-file-label::after {
+	content: "Nota Fiscal PDF";
+}
+/*Sobrepor qualquer um, deixar ele como a primeira coisa apresentavel na tela*/
+.nav-arrumando-index-sobrepoe {
+	z-index: 1;
+}
+/*Colocando o border no navbar*/
+.arrumando-border {
+	border-bottom: 1px solid black;
+}
+/*Arrumando borda de tabela*/
+.borda-cinza {
+	border-bottom: 1px solid #DCDCDC; 
+}
+/*Definindo o tamanho geral das imagens na folha*/
+.min-imagem-menu {
+	width: 32px;
+}
+/*Definindo o tamanho geral das imagens na tabela*/
+.min-imagem-tabela {
+	width: 16px;
+}
+/*Arrumando o menu de registros entre outros*/
+.form-inline .form-control {
+	width: 400px;
+}
+@media screen and (max-width: 1000px) {
+	.form-inline .form-control {
+		width: auto;
+	}
+}
+@media screen and (max-width: 991px) {
+	.padding-drop {
+		padding: .375rem .75rem;
+	}
+}
+/*Aumentando o tamanho do container para as tabelas*/
+@media screen and (min-width: 1400px) {
+	.container {
+		max-width: 90%;
+	}
+}
+/*Abaixa o container para nao afetar a tabela*/
+.abaixar-container {
+	padding-top: 100px;
+	padding-bottom: 20px;
+}
+/*Ajustando o padding*/
+.modal-header {
+	padding: 5px 10px 5px 10px;
+}
+/*Colocando cor ao botao*/
+.modal-header > button {
+	color: red;
+}
+/*Ajuste de modal no corpo e no footer */
+.modal-body, .modal-footer {
+	padding: 5px; 
+}
+.modal-footer {
+	padding-top: 10px;
+}
+/*Arrumando o center do modal de meses e anos*/
+.modal-center-botoes {
+	text-align: center;
+}
+/*Arrumando os footers dos modais*/
+.modal-footer {
+	padding-top: 10px;
+}
+/*Arrumando a direcao dos botoes*/
+.ajuste-botao-modal-direita, .btn-right-modal {
+	text-align: right;
+}
+/*Escondendo o menu de mais opcoes*/
+.mais_opcoes {
+	display: none;
+} 
+/*ajuste no jumbo*/
+.alinhamento-centro {
+	text-align: center;
+}
+.jumbotron {
+	text-align: center;
+	padding: 10px;
+}
+.display-4 {
+	font-size: 32px;
+}
+.mb-4, .my-4 {
+	margin-bottom: 0px !important; 
+	margin-top: 0px !important; 
+}
+/*Ajustando o align da tabela*/
+.tabela-visita {
+	text-align: center;
+}
+/*Ocultando botoes*/
+.esconder, .esconder_botoes_ano {
+	display: none;
+}
+.nesconde {
+	display: inline-block;
+}
+.tabela-visita-coluna {
+	display: none;
+}
+/*Botoes dos meses do modal de anos para pesquisar*/
+.btn-menu-anos {
+	/*width: 100%;
+	z-index: 0;*/
+}
+/*Ajuste dos botoes para procurar ano e mes*/
+.botoes-dimensao-opcao-oculto-ano-modal {
+	padding: 2px 0px 2px 0px;
+	display: inline-block;
+}
+/*Ajustar botoes sem bordas*/
+/*Zerando todos os border e decorations para nao aparecer a linha em volta*/
+.btn:not(:disabled):not(.disabled) {
+	cursor: pointer;
+}
+.btn.focus, .btn:focus {
+	outline: none;
+	box-shadow: none;
+}
+.btn:focus, .btn:hover {
+	text-decoration: none;
+}
+[type="reset"], [type="submit"], button, html [type="button"] {
+	-webkit-appearance: button;
+}
+button:focus {
+	outline: 0px transparent;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+/*Arrumando o H1 que aparece nas procuraras*/
+.titulo-tabela {
+	text-align: center;
+	padding: 20px 0 20px 0;
+	font-size: 24px;
+}
+/*Ajustando a tabela, dos tamanhos de fontes as colunas que ficam none para caber na tela*/
+.tabela-visita-head th {
+	font-weight: bold;
+}
+/*Ajustando o botao de sair da tabela*/
+.btn-tabela-dng {
+	width: 100%;
+	padding: 0px;
+}
+@media screen and (min-width: 1400px) {
+	.btn-tabela-dng, .tabela-visita th {
+		font-size: 16px;
+	}
+	.tabela-visita th {
+		padding: 1rem;
+	}
+	.tabela-visita-head th {
+		padding: 0.5rem;
+	}	
+}
+@media screen and (max-width: 1400px) {
+	.btn-tabela-dng, .tabela-visita th {
+		font-size: 14px;
+	}
+	.tabela-visita th {
+		padding: 1rem;
+	}
+	.tabela-visita-head th {
+		padding: 0.5rem;
+	}	
+}
+/*
+@media screen and (max-width: 1200px) {
+	.tabela-visita th:nth-child(5) {
+		display: none;
+	}
+}
+*/
+@media screen and (max-width: 1000px) {
+	.btn-tabela-dng, .tabela-visita th {
+		font-size: 12px;
+	}
+	.tabela-visita th {
+		padding: 1rem;
+	}
+	.tabela-visita-head th {
+		padding: 0.5rem;
+	}
+	.navbar-brand {
+		padding: .375rem .75rem;
+	}
+}
+@media screen and (max-width: 800px) {
+	.btn-tabela-dng, .tabela-visita th {
+		font-size: 10px;
+	}
+	.tabela-visita th {
+		padding: 0.8rem;
+	}
+	.tabela-visita-head th {
+		padding: 0.5rem;
+	}
+	.tabela-visita th:nth-child(3) {
+		display: none;
+	}
+}
+@media screen and (max-width: 600px) {
+	.btn-tabela-dng, .tabela-visita th {
+		font-size: 8px;
+	}
+	.tabela-visita th {
+		padding: 0.5rem;
+	}
+	.tabela-visita-head th {
+		padding: 0.5rem;
+	}
+	.tabela-visita th:nth-child(2) {
+		display: none;
+	}
+}
+@media screen and (max-width: 480px) {
+	.btn-tabela-dng, .tabela-visita th {
+		font-size: 8px;
+	}
+	.tabela-visita th {
+		padding: 0.2rem;
+		padding-top: 0.4rem;
+		padding-bottom: 0.4rem;
+	}
+	.tabela-visita-head th {
+		padding: 0.4rem;
+	}
+}
