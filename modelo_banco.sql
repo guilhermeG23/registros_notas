@@ -4,6 +4,7 @@ use Maquinas_Ramenzoni;
 
 create table if not exists Nota_Fiscal(
 	Nota_Fiscal varchar(44) not null primary key,
+	Chave_Acesso varchar(44) not null,
 	Emissao date not null,
 	Empresa varchar(100) not null,
 	Nota_Nome varchar(50) not null default 'NULL',
@@ -19,42 +20,30 @@ create table if not exists Funcionario (
 	Chapa int not null primary key,
 	Nome varchar(100) not null,
 	Setor_ID_Externo int not null,
-	foreign key (Setor_ID_Externo) references Setor(Setor_ID) on delete cascade
+	foreign key (Setor_ID_Externo) references Setor(Setor_ID)
 );
 
 create table if not exists Maquina (
 	Maquina_Serial varchar(44) not null primary key,
-	Nota_Fiscal_Ex varchar(44) not null,
 	Marca varchar(100) not null,
 	Modelo varchar(100) not null,
-	ID_setor_ex int not null,
-	Chapa_func int not null,
-	foreign key (ID_setor_ex) references Setor(Setor_ID),
-	foreign key (Chapa_func) references Funcionario(Chapa),
-	foreign key (Nota_Fiscal_Ex) references Nota_Fiscal(Nota_Fiscal) on delete cascade
+	Chave_Acesso_Ex varchar(44) not null,
+	ID_Setor_Ex int not null,
+	Chapa_Func_Ex int not null,
+	foreign key (Chave_Acesso_Ex) references Nota_Fiscal(Chave_Acesso),
+	foreign key (ID_Setor_Ex) references Setor(Setor_ID),
+	foreign key (Chapa_Func_Ex) references Funcionario(Chapa)
 );
 
-create table if not exists Windows(
-	Nota_Fiscal varchar(44) not null,
-	Serial_W varchar(25) not null default "0000000000000000000000000",
+create table if not exists Software_Microsoft (
+	Serial_O varchar(25),
 	Versao varchar(100) not null,
-	ID_setor_ex int not null,
-	Chapa_func int not null,
-	foreign key (ID_setor_ex) references Setor(Setor_ID),
-	foreign key (Chapa_func) references Funcionario(Chapa),
-	foreign key (Nota_Fiscal) references Nota_Fiscal(Nota_Fiscal)
-);
-
-create table if not exists Office(
-	Nota_Fiscal varchar(44) not null,
-	Serial_O varchar(25) not null default "0000000000000000000000000",
-	Versao varchar(100) not null,
-	Ano int(4) not null,
-	ID_setor_ex int not null,
-	Chapa_func int not null,
-	foreign key (ID_setor_ex) references Setor(Setor_ID),
-	foreign key (Chapa_func) references Funcionario(Chapa),
-	foreign key (Nota_Fiscal) references Nota_Fiscal(Nota_Fiscal)
+	Chave_acesso_Ex varchar(44) not null,
+	ID_Setor_Ex int not null,
+	Chapa_Func_Ex int not null,
+	foreign key (Chave_Acesso_Ex) references Nota_Fiscal(Nota_Fiscal),
+	foreign key (ID_Setor_Ex) references Setor(Setor_ID),
+	foreign key (Chapa_Func_Ex) references Funcionario(Chapa)
 );
 
 insert into Setor values (default, "Diretoria"),
@@ -101,3 +90,8 @@ create user "maquinas"@"localhost" identified by "rr";
 grant all privileges on Maquinas_Ramenzoni . * to "maquinas"@"%";
 grant all privileges on Maquinas_Ramenzoni . * to "maquinas"@"localhost";
 flush privileges;
+
+
+123er123er123er123er123er
+
+select Windows.Nota_Fiscal_Ex, Windows.Versao from Windows, Nota_Fiscal where Windows.Nota_Fiscal_Ex = Nota_Fiscal.Nota_Fiscal and Windows.Nota_Fiscal_Ex not in (select Maquina.Nota_Fiscal_Ex from Maquina);
