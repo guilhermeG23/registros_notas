@@ -18,6 +18,14 @@
 		padding-bottom: 10px;
 	}
 }
+/*Tirar as setas dos campos input number*/
+input[type=number]::-webkit-inner-spin-button { 
+-webkit-appearance: none;
+}
+input[type=number] { 
+-moz-appearance: textfield;
+appearance: textfield;
+}
 /**Btn sem padding*/
 .btn-sem-padding {
 	padding: 0px !important;

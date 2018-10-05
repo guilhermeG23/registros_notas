@@ -7,22 +7,14 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item active">
-				<button type="button" class="btn btn-background-arrumar" data-toggle="modal" data-target="#registrar_computador"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
-			</li>
-<?php
-/*
-			<li class="nav-item active">
-				<button type="button" class="btn btn-background-arrumar" data-toggle="modal" data-target="#registrar_windows"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
-			</li>
-			<li class="nav-item active">
-				<button type="button" class="btn btn-background-arrumar" data-toggle="modal" data-target="#registrar_office"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
-			</li>
- */?>
-			<li class="nav-item active">
-				<button type="button" class="btn btn-background-arrumar" data-toggle="modal" data-target="#pesquisar"><img class="min-imagem-menu" src="../imagens/lupa.png"></button>
-			</li>
-			<li class="nav-item active">
-				<button type="button" class="btn btn-background-arrumar" data-toggle="modal" data-target="#ajuda"><img class="min-imagem-menu" src="../imagens/ajuda.png"></button>
+				<div class="dropdown">
+					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_computador"><img class="min-imagem-menu" src="../imagens/registro.png">Computador</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_windows"><img class="min-imagem-menu" src="../imagens/registro.png">Windows</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_office"><img class="min-imagem-menu" src="../imagens/registro.png">Office</button>
+					</div>
+				</div>
 			</li>
 		</ul>
 	</div>
