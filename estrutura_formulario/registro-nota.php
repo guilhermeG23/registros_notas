@@ -3,6 +3,10 @@
 	<td><input type="number" class="form-control" onkeyup="limitarInput(this,44)"  value="" id="nota" name="nota" maxlength="44" placeholder="EX: N Nota" autocomplete="off" required></td>
 </tr>
 <tr>
+	<td><label class="col-form-label">Chave</label></td>
+	<td><input type="number" class="form-control" onkeyup="limitarInput(this,15)"  value="" id="chave" name="chave" maxlength="15" placeholder="EX: Chave" autocomplete="off" required></td>
+</tr>
+<tr>
 	<td><label class="col-form-label">Emissao: </label></td>
 	<td><input type="text" class="form-control data" onkeyup="limitarInput(this,10)" value="" id="data_entrada" name="data_entrada" maxlength="10" placeholder="EX: dd/mm/yyyy" autocomplete="off"></td>
 </tr>
