@@ -5,7 +5,7 @@ function limpar_entrada_numero($valor) {
 }
 
 function tratamento_serial($serial) {
-	return strtoupper(preg_replace('/[^A-Za-z0-9+]s/', '', $serial));
+	return strtoupper(preg_replace('/[^A-Za-z0-9]\s/', '', $serial));
 }
 
 function tratamento_entrada_data($data) {
@@ -13,5 +13,9 @@ function tratamento_entrada_data($data) {
 }
 
 function tratamento_entrada_palavra($pesquisa) {
-	return preg_replace('/[^A-Za-z0-9+]\s/', '', $pesquisa);
+	return preg_replace('/[^A-Za-z0-9]\s/', '', $pesquisa);
+}
+
+function tratamento_nome($pesquisa) {
+	return ucfirst(preg_replace('/[^A-Za-z]\s/', '', $pesquisa));
 }

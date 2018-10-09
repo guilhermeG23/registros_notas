@@ -16,6 +16,16 @@ function cadastrar_software_microsoft($conexao_banco, $serial, $versao, $chave, 
 	mysqli_query($conexao_banco, $query);
 }
 
+function cadastrar_funcionario($conexao_banco, $chapa, $nome, $setor) {
+	$query = "insert into Funcionario values ('{$chapa}', '{$nome}', '{$setor}')";
+	mysqli_query($conexao_banco, $query);
+}
+
+function cadastrar_setor($conexao_banco, $setor) {
+	$query = "insert into Setor values (default, '{$setor}')";
+	mysqli_query($conexao_banco, $query);
+}
+
 function serial_windows_office($serial) {
 	if (isset($serial) && strlen($serial) >= 1 && strlen($serial) < 25) {
 		$_SESSION["erro_serial"] = true;
@@ -28,7 +38,7 @@ function confirma_serial_windows_office($serial) {
 	if(isset($serial) && strlen($serial) == 25) {
 		return $serial;
 	} else {
-		return '0000000000000000000000000';
+		return 'NULL';
 	}
 }
 
@@ -48,15 +58,15 @@ function confirma_serial_microsoft($serial) {
 	}
 }
 
-function confirma_nota($nota) {
-	if(isset($nota) && strlen($nota) > 8 && strlen($nota) <= 15) {
+function confirma_nota_chave($nota) {
+	if(isset($nota) && strlen($nota) > 8 && strlen($nota) < 16) {
 		return true;
 	} else {
 		return false;
 	}
 }
 
-function confirma_nota_chave($nota) {
+function confirma_nota($nota) {
 	if(isset($nota) && strlen($nota) == 44) {
 		return true;
 	} else {
@@ -66,6 +76,36 @@ function confirma_nota_chave($nota) {
 
 function confirma_serial_maquina($serial) {
 	if(isset($serial) && strlen($serial) > 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function entrada_chapa($chapa) {
+	if(isset($chapa) && strlen($chapa) == 9) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function confirma_setor_existe($conexao_banco, $setor) {
+	$query = "select Setor from Setor where Setor = '{$setor}';";
+	$procura = mysqli_query($conexao_banco, $query);
+	$valor = mysqli_num_rows($procura);
+	if($valor == 0) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function confirma_usuario_existe($conexao_banco, $setor, $chapa) {
+	$query = "select Chapa from Funcionario where Chapa = '{$chapa}' and Setor_ID_Externo = '{$setor}';";
+	$procura = mysqli_query($conexao_banco, $query);
+	$valor = mysqli_num_rows($procura);
+	if($valor == 0) {
 		return true;
 	} else {
 		return false;

@@ -18,20 +18,32 @@
 	<td><label class="col-form-label">Setor: </label></td>
 	<td><select class="form-control" name="setor" id="setor">
 		<option value="" select>...</option>
-	<?php
-	$query = "select * from Setor";
-	$setores = mysqli_query($conexao_banco, $query);
-	while($chamada=mysqli_fetch_array($setores)) {
-	?>
+		<?php
+		$query = "select * from Setor";
+		$setores = mysqli_query($conexao_banco, $query);
+		while($chamada=mysqli_fetch_array($setores)) {
+		?>
 		<option value="<?=$chamada['Setor_ID'];?>"><?=$chamada['Setor'];?></option>
-	<?php
-	}
-	?>
+		<?php
+		}
+		?>
 	</select></td>
 </tr>
 <tr>	
 	<td><label class="col-form-label">Usuario: </label></td>
-	<td><input type="text" class="form-control" value="" id="usuario" name="usuario" maxlength="44" placeholder="EX: 000000000" autocomplete="off" required></td>
+	<td><select class="form-control" name="funcionario" id="funcionario">
+		<option value="" select>...</option>
+		<?php
+		$query = "select * from Funcionario";
+		$setores = mysqli_query($conexao_banco, $query);
+		while($chamada=mysqli_fetch_array($setores)) {
+		?>
+		<option value="<?=$chamada['Chapa'];?>"><?=$chamada['Nome'];?></option>
+		<?php
+		}
+		?>
+	</select></td>
+
 </tr>
 <tr>
 	<td colspan="4">

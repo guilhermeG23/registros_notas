@@ -11,8 +11,9 @@
 					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_computador"><img class="min-imagem-menu" src="../imagens/registro.png">Computador</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_windows"><img class="min-imagem-menu" src="../imagens/registro.png">Windows</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_office"><img class="min-imagem-menu" src="../imagens/registro.png">Office</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_software"><img class="min-imagem-menu" src="../imagens/registro.png">Software Microsoft</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_funcionario"><img class="min-imagem-menu" src="../imagens/registro.png">Funcionario</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_setor"><img class="min-imagem-menu" src="../imagens/registro.png">Setor</button>
 					</div>
 				</div>
 			</li>
