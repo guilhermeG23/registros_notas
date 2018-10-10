@@ -5,14 +5,13 @@ function cadastrar_nota($conexao_banco, $nota, $chave, $data, $empresa, $nome, $
 	mysqli_query($conexao_banco, $query);
 }
 
-function cadastrar_maquina($conexao_banco, $serial, $marca, $modelo, $chave, $setor, $usuario) {
-	$query = "insert into Maquina values('{$serial}', '{$marca}', '{$modelo}', '{$chave}', '{$setor}', '{$usuario}');";
+function cadastrar_maquina($conexao_banco, $serial, $marca, $modelo, $nota, $setor, $funcionario) {
+	$query = "insert into Maquina values('{$serial}', '{$marca}', '{$modelo}', '{$nota}', $setor, $funcionario);";
 	mysqli_query($conexao_banco, $query);
 }
 
-function cadastrar_software_microsoft($conexao_banco, $serial, $versao, $chave, $setor, $usuario) {
-	$serial = confirma_serial_windows_office($serial);
-	$query = "insert into Software_Microsoft values('{$serial}', '{$versao}', '{$chave}','{$setor}', '{$usuario}');";
+function cadastrar_software_microsoft($conexao_banco, $serial, $versao, $chave, $setor, $funcionario) {
+	$query = "insert into Software_Microsoft values('{$serial}', '{$versao}', '{$chave}','{$setor}', '{$funcionario}');";
 	mysqli_query($conexao_banco, $query);
 }
 
@@ -26,22 +25,6 @@ function cadastrar_setor($conexao_banco, $setor) {
 	mysqli_query($conexao_banco, $query);
 }
 
-function serial_windows_office($serial) {
-	if (isset($serial) && strlen($serial) >= 1 && strlen($serial) < 25) {
-		$_SESSION["erro_serial"] = true;
-		header("Location: index.php");
-		die();
-	} 
-}
-
-function confirma_serial_windows_office($serial) {
-	if(isset($serial) && strlen($serial) == 25) {
-		return $serial;
-	} else {
-		return 'NULL';
-	}
-}
-
 function confirma_existe_valor($modelo) {
 	if(strlen($modelo) > 0) {
 		return true;
@@ -52,7 +35,14 @@ function confirma_existe_valor($modelo) {
 
 function confirma_serial_microsoft($serial) {
 	if(isset($serial) && strlen($serial) == 25) {
-		return true;
+		$query = "select Serial_S from Software_Microsoft where Serial_S = '{$serial}';";
+		$procura = mysqli_query($conexao_banco, $query);
+		$valores = mysqli_num_rows($procura);
+		if($valores == 0) {
+			return true;
+		} else {
+			return false;
+		}	
 	} else {
 		return false;
 	}
@@ -74,9 +64,16 @@ function confirma_nota($nota) {
 	}
 }
 
-function confirma_serial_maquina($serial) {
+function confirma_serial_maquina($conexao_banco, $serial) {
 	if(isset($serial) && strlen($serial) > 0) {
-		return true;
+		$query = "select Maquina_Serial from Maquina where Maquina_Serial = '{$serial}';";
+		$procura = mysqli_query($conexao_banco, $query);
+		$valores = mysqli_num_rows($procura);
+		if($valores == 0) {
+			return true;
+		} else {
+			return false;
+		}
 	} else {
 		return false;
 	}

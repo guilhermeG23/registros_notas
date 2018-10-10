@@ -1,7 +1,7 @@
 <?php
 
 function limpar_entrada_numero($valor) {
-	return preg_replace('/[^0-9]/', '', $valor);
+	return preg_replace('/[^0-9+]/', '', $valor);
 }
 
 function tratamento_serial($serial) {

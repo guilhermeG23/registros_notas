@@ -8,7 +8,7 @@
 </tr>
 <tr>
 	<td><label class="col-form-label">Emissao: </label></td>
-	<td><input type="text" class="form-control data" onkeyup="limitarInput(this,10)" value="" id="data_entrada" name="data_entrada" maxlength="10" placeholder="EX: dd/mm/yyyy" autocomplete="off"></td>
+	<td><input type="text" class="form-control data" onkeyup="limitarInput(this,10)" value="" id="data_entrada" name="data_entrada" maxlength="10" placeholder="EX: dd/mm/yyyy" autocomplete="off" required></td>
 </tr>
 <tr>
 	<td><label class="col-form-label">Empresa: </label></td>
@@ -48,7 +48,7 @@
 <tr>
 	<td colspan="4">
 		<div class="custom-file">
-			<input type="file" accept="application/pdf" class="form-control-file custom-file-input" id="arq" name="arq">
+			<input type="file" accept="application/pdf" class="form-control-file custom-file-input" id="arq" name="arq" required>
 			<label class="custom-file-label" for="inputGroupFile01" id="name-pdf-nota">Entre com a nota fiscal...</label>
 		</div>
 	</td>

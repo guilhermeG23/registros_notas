@@ -26,28 +26,35 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		$setor = limpar_entrada_numero($_POST['setor']);
 		$funcionario = limpar_entrada_numero($_POST['funcionario']);
 		
-	/*	
 		$serial = limpar_entrada_numero($_POST['sn']);
 		$marca = tratamento_entrada_palavra($_POST['marca']);
 		$modelo = tratamento_entrada_palavra($_POST['modelo']);
 
-		$serialW = limpar_entrada_numero()
-		$modeloW
-		$serialO
-		$modeloO
-	 */
+		$serialW = tratamento_entrada_palavra($_POST['serialW']);
+	 	$versaoW = limpar_entrada_numero($_POST['versaoW']); 
+
+		$serialO = tratamento_entrada_palavra($_POST['serialO']);
+	 	$versaoO = limpar_entrada_numero($_POST['versaoO']);
+
+		$key = tratamento_entrada_palavra($_POST['serial_comum']);
+		$versao = limpar_entrada_numero($_POST['versao']);
+		
 		cadastrar_nota($conexao_banco, $nota, $chave, $data, $empresa, $nome, $arquivo);
-	/*	
-		if(confirma_serial_maquina($serial)) {
-			cadastrar_maquina($conexao_banco, $serial, $marca, $modelo, $chave, $setor, 1111111111);
+	
+		if(confirma_serial_maquina($conexao_banco, $serial)) {
+			cadastrar_maquina($conexao_banco, $serial, $marca, $modelo, $nota, $setor, $funcionario);
 		}
+
 		if(confirma_serial_microsoft($serialW) || confirma_existe_valor($versaoW)) {
-			cadastrar_software_microsoft($conexao_banco, $serialW, $versaoW, $chave, $setor, 1111111111);
+			cadastrar_software_microsoft($conexao_banco, $serialW, $versaoW, $nota, $setor, $funcionario);
 		}
+
 		if(confirma_serial_microsoft($serialO) || confirma_existe_valor($versaoO)) {
-			cadastrar_software_microsoft($conexao_banco, $serialO, $versaoO, $chave, $setor, 1111111111);
-		}	
-	*/
+			cadastrar_software_microsoft($conexao_banco, $serialO, $versaoO, $nota, $setor, $funcionario);
+		}
+		if(confirma_serial_microsoft($key) || confirma_existe_valor($versao)) {
+			cadastrar_software_microsoft($conexao_banco, $key, $versao, $nota, $setor, $funcionario);
+		}
 	}
 }
 
