@@ -33,21 +33,6 @@ function confirma_existe_valor($modelo) {
 	}
 }
 
-function confirma_serial_microsoft($serial) {
-	if(isset($serial) && strlen($serial) == 25) {
-		$query = "select Serial_S from Software_Microsoft where Serial_S = '{$serial}';";
-		$procura = mysqli_query($conexao_banco, $query);
-		$valores = mysqli_num_rows($procura);
-		if($valores == 0) {
-			return true;
-		} else {
-			return false;
-		}	
-	} else {
-		return false;
-	}
-}
-
 function confirma_nota_chave($nota) {
 	if(isset($nota) && strlen($nota) > 8 && strlen($nota) < 16) {
 		return true;
@@ -64,6 +49,46 @@ function confirma_nota($nota) {
 	}
 }
 
+function entrada_chapa($chapa) {
+	if(isset($chapa) && strlen($chapa) == 9) {
+		return true;
+	} else {
+		return false;
+	}
+}
+
+function confirma_existe_nota($conexao_banco, $nota) {
+	if(isset($serial) && strlen($nota) == 44) {
+		$query = "select Nota_Fiscal from Nota_Fiscal where Nota_Fiscal = '{$nota}';";
+		$procura = mysqli_query($conexao_banco, $query);
+		$valores = mysqli_num_rows($procura);
+		if($valores == 0) {
+			return true;
+		} else {
+			return false;
+		}	
+	}else {
+		return false;
+	}
+}
+
+function confirma_serial_microsoft($conexao_banco, $serial) {
+	if(isset($serial) && strlen($serial) == 25) {
+		$query = "select Serial_S from Software_Microsoft where Serial_S = '{$serial}';";
+		$procura = mysqli_query($conexao_banco, $query);
+		$valores = mysqli_num_rows($procura);
+		if($valores == 0) {
+			return true;
+		} else {
+			return false;
+		}	
+	} else if(strlen($serial) == 0) {
+		return true;
+	}else {
+		return false;
+	}
+}
+
 function confirma_serial_maquina($conexao_banco, $serial) {
 	if(isset($serial) && strlen($serial) > 0) {
 		$query = "select Maquina_Serial from Maquina where Maquina_Serial = '{$serial}';";
@@ -74,14 +99,6 @@ function confirma_serial_maquina($conexao_banco, $serial) {
 		} else {
 			return false;
 		}
-	} else {
-		return false;
-	}
-}
-
-function entrada_chapa($chapa) {
-	if(isset($chapa) && strlen($chapa) == 9) {
-		return true;
 	} else {
 		return false;
 	}

@@ -8,7 +8,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="cadastrar-setor.php" method="POST" enctype="multipart/form-data">
+				<form action="cadastrar.php" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<table class="table table-borderless tabela-registro">
 							<?php include('../estrutura_formulario/registro-setor.php');?>

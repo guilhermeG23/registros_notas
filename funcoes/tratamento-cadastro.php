@@ -19,3 +19,4 @@ function tratamento_entrada_palavra($pesquisa) {
 function tratamento_nome($pesquisa) {
 	return ucfirst(preg_replace('/[^A-Za-z]\s/', '', $pesquisa));
 }
+
