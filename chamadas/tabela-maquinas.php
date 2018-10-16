@@ -1,60 +1,105 @@
 <?php
-$query = 'select * from Maquina inner join Nota_Fiscal on Maquina.Nota_Fiscal_Ex = Nota_Fiscal.Nota_Fiscal;';
-$valor = mysqli_query($conexao_banco, $query);
-?>
-<h1 class="titulo-tabela">Tabela Maquinas</h1>
-<table class="table tabela-visita table-bordered">
-	<thead class="thead-light tabela-visita-head">
-		<tr>
-			<th>Maquina_Serial</th>
-			<th>Nota_Fiscal_Ex</th>
-			<th>Download</th>
-		</tr>
-	</thead>
-	<tbody>
-<?php
-	$valor = mysqli_query($conexao_banco, $query);
-	while($chamada=mysqli_fetch_array($valor)) {
-		header("Content-type: pdf");
-?>
-	<tr>
-		<th><?=$chamada["Maquina_Serial"];?></th>
-		<th><?=$chamada["Nota_Fiscal_Ex"];?></th>
-		<th><a href="data:application/pdf;base64,<?php echo base64_encode($chamada["Nota_PDF"]);?>" download><?=$chamada["Nota_Nome"];?></a></th>
-	</tr>
-<?php
-	}
-?>
-	</tbody>
-</table>
 
-<?php
-$query = 'select * from vw_software';
-$valor = mysqli_query($conexao_banco, $query);
-?>
-<h1 class="titulo-tabela">Tabela Windows / Office</h1>
-<table class="table tabela-visita table-bordered">
-	<thead class="thead-light tabela-visita-head">
-		<tr>
-			<th>Nota</th>
-			<th>Versao</th>
-			<th>Setor</th>
-		</tr>
-	</thead>
-	<tbody>
-<?php
-	$valor = mysqli_query($conexao_banco, $query);
-	while($chamada=mysqli_fetch_array($valor)) {
-?>
-	<tr>
-		<th><?=$chamada["Nota"];?></th>
-		<th><?=$chamada["Versao"];?></th>
-		<th><?=$chamada["Tipo"];?></th>
-	</tr>
-<?php
-	}
-?>
-	</tbody>
-</table>
+include('../funcoes/tratamento-tabela.php');
 
+
+$query = 'select Nota_Fiscal from Nota_Fiscal limit 1;';
+
+
+$existe = mysqli_query($conexao_banco, $query);
+$quatidade = mysqli_num_Rows($existe);
+if($quatidade > 0) {
+?>
+	<table class="table tabela-visita table-bordered">
+		<thead class="thead-light tabela-visita-head">
+			<tr>
+				<th>Nota</th>
+				<th>Chave</th>
+				<th>Data</th>
+				<th>Setor</th>
+				<th>Modelo</th>
+				<th>Descricao</th>
+				<th>View</th>
+				<th class="tabela-visita-coluna" id="sumir_alt">Alterar</th>
+				<th class="tabela-visita-coluna" id="sumir_del">Deletar</th>
+			</tr>
+		</thead>
+		<tbody>
 <?php
+		mysqli_data_seek($query, 0);
+		$query = "select * from vw_maquina;";
+		$registros = mysqli_query($conexao_banco, $query);
+		while($chamada=mysqli_fetch_array($registros)) {
+?>
+		<tr>
+			<th><?=tratamento_nota($chamada["Nota"]);?></th>
+			<th><?=$chamada["Chave"];?></th>
+			<th><?=tratamento_data($chamada["Data"]);?></th>
+			<th><?=$chamada["Setor"];?></th>
+			<th><?=$chamada["Modelo"];?></th>
+			<th><?=$chamada["Descricao"];?></th>
+			<th>
+				<form action="#" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="view">
+					<button type="submit" class="btn btn-info btn-tabela-dng">View</button>
+				</form>
+			</th>
+			<th class="tabela-visita-coluna" name="alt">
+				<form action="#" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>">
+					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
+				</form>
+			</th>
+			<th class="tabela-visita-coluna" name="del">
+				<form action="#" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>">
+					<button type="submit" class="btn btn-danger btn-tabela-dng">Deletar</button>
+				</form>
+			</th>
+		</tr>
+<?php
+		}
+		
+		mysqli_data_seek($query, 0);
+		$query = 'select * from vw_software;';
+		$registros = mysqli_query($conexao_banco, $query);
+		while($chamada=mysqli_fetch_array($registros)) {
+?>
+		<tr>
+			<th><?=tratamento_nota($chamada["Nota"]);?></th>
+			<th><?=$chamada["Chave"];?></th>
+			<th><?=tratamento_data($chamada["Data"]);?></th>
+			<th><?=$chamada["Setor"];?></th>
+			<th><?=$chamada["Modelo"];?></th>
+			<th><?=$chamada["Descricao"];?></th>
+			<th>
+				<form action="#" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="">
+					<button type="submit" class="btn btn-info btn-tabela-dng">View</button>
+				</form>
+			</th>
+			<th class="tabela-visita-coluna" name="alt">
+				<form action="#" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="">
+					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
+				</form>
+			</th>
+			<th class="tabela-visita-coluna" name="del">
+				<form action="#" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="">
+					<button type="submit" class="btn btn-danger btn-tabela-dng">Deletar</button>
+				</form>
+			</th>
+		</tr>
+<?php
+		}
+?>
+		</tbody>
+	</table>
+<?php
+} else {
+?>
+	<h1>Nada Registrodo</h1>
+<?php
+}
+?>

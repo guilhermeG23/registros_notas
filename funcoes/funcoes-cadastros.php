@@ -11,7 +11,10 @@ function cadastrar_maquina($conexao_banco, $serial, $marca, $modelo, $nota, $set
 }
 
 function cadastrar_software_microsoft($conexao_banco, $serial, $versao, $chave, $setor, $funcionario) {
-	$query = "insert into Software_Microsoft values('{$serial}', '{$versao}', '{$chave}','{$setor}', '{$funcionario}');";
+	if(strlen($serial) == 0) {
+		$serial = "";
+	}
+	$query = "insert into Software_Microsoft values(default, '{$serial}', '{$versao}', '{$chave}','{$setor}', '{$funcionario}');";
 	mysqli_query($conexao_banco, $query);
 }
 
@@ -58,7 +61,7 @@ function entrada_chapa($chapa) {
 }
 
 function confirma_existe_nota($conexao_banco, $nota) {
-	if(isset($serial) && strlen($nota) == 44) {
+	if(confirma_nota($nota)) {
 		$query = "select Nota_Fiscal from Nota_Fiscal where Nota_Fiscal = '{$nota}';";
 		$procura = mysqli_query($conexao_banco, $query);
 		$valores = mysqli_num_rows($procura);

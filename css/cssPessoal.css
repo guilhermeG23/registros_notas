@@ -49,6 +49,7 @@ appearance: textfield;
 /*Definindo o tamanho geral das imagens na folha*/
 .min-imagem-menu {
 	width: 32px;
+	margin-right: 10px;
 }
 /*Definindo o tamanho geral das imagens na tabela*/
 .min-imagem-tabela {

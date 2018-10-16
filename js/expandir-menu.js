@@ -11,3 +11,26 @@ function descer_menu(aparecer) {
 		document.getElementById(aparecer).style.display = 'block';
 	}
 }
+
+function mostrar_coluna(nome, altera) {
+	//variaveis
+	var display = document.getElementById(nome).style.display;
+	var contador = document.getElementsByName(altera);
+	var i = 0;
+	//Confirma se ta visivel
+	if(display == "table-cell") {
+		//Sumir
+		document.getElementById(nome).style.display = 'none';
+		//laco 
+		for(i; i < contador.length; i++) {
+			contador[i].style.display = 'none';
+		}
+	} else {
+		//aparecer
+		document.getElementById(nome).style.display = 'table-cell';
+		//laco
+		for(i; i < contador.length; i++) {
+			contador[i].style.display = 'table-cell';
+		}
+	}
+}

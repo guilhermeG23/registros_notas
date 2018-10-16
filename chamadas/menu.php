@@ -11,10 +11,32 @@
 					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_computador"><img class="min-imagem-menu" src="../imagens/registro.png">Nota</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_funcionario"><img class="min-imagem-menu" src="../imagens/registro.png">Funcionario</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_setor"><img class="min-imagem-menu" src="../imagens/registro.png">Setor</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_funcionario"><img class="min-imagem-menu" src="../imagens/funcionario.png">Funcionario</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_setor"><img class="min-imagem-menu" src="../imagens/setor.png">Setor</button>
 					</div>
 				</div>
+			</li>
+			<li class="nav-item active">
+				<div class="dropdown">
+					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/alterar.png"></button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_alt', 'alt');"><img class="min-imagem-menu" src="../imagens/alterar.png">Alterar</button>
+						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_del', 'del');"><img class="min-imagem-menu" src="../imagens/alterar.png">Deletar</button>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item active">
+				<div class="dropdown">
+					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/lupa.png"></button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_geral"><img class="min-imagem-menu" src="../imagens/lupa.png">Pesquisa</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_por"><img class="min-imagem-menu" src="../imagens/lupa.png">Modelo</button>
+						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_setor"><img class="min-imagem-menu" src="../imagens/setor.png">Setor</button>
+					</div>
+				</div>
+			</li>
+			<li class="nav-item active">
+				<button type="button" class="btn btn-background-arrumar" data-toggle="modal" data-target="#ajuda"><img class="min-imagem-menu" src="../imagens/ajuda.png"></button>
 			</li>
 		</ul>
 	</div>
