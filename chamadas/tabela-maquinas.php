@@ -2,9 +2,7 @@
 
 include('../funcoes/tratamento-tabela.php');
 
-
 $query = 'select Nota_Fiscal from Nota_Fiscal limit 1;';
-
 
 $existe = mysqli_query($conexao_banco, $query);
 $quatidade = mysqli_num_Rows($existe);
@@ -39,20 +37,20 @@ if($quatidade > 0) {
 			<th><?=$chamada["Modelo"];?></th>
 			<th><?=$chamada["Descricao"];?></th>
 			<th>
-				<form action="#" method="POST">
-					<input type="hidden" value="<?=$chamada["Nota"];?>" name="view">
+				<form action="view.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="visualizar" id="visualizar">
 					<button type="submit" class="btn btn-info btn-tabela-dng">View</button>
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="alt">
-				<form action="#" method="POST">
-					<input type="hidden" value="<?=$chamada["Nota"];?>">
+				<form action="alterar.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="alterar" id="alterar">
 					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="del">
-				<form action="#" method="POST">
-					<input type="hidden" value="<?=$chamada["Nota"];?>">
+				<form action="deletar.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="deletar" id="deletar">
 					<button type="submit" class="btn btn-danger btn-tabela-dng">Deletar</button>
 				</form>
 			</th>
@@ -73,20 +71,20 @@ if($quatidade > 0) {
 			<th><?=$chamada["Modelo"];?></th>
 			<th><?=$chamada["Descricao"];?></th>
 			<th>
-				<form action="#" method="POST">
-					<input type="hidden" value="<?=$chamada["Nota"];?>" name="">
+				<form action="view.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="visualizar" id="visualizar">
 					<button type="submit" class="btn btn-info btn-tabela-dng">View</button>
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="alt">
-				<form action="#" method="POST">
-					<input type="hidden" value="<?=$chamada["Nota"];?>" name="">
+				<form action="alterar.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="alterar" id="alterar">
 					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="del">
-				<form action="#" method="POST">
-					<input type="hidden" value="<?=$chamada["Nota"];?>" name="">
+				<form action="deletar.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="deletar" id="deletar">
 					<button type="submit" class="btn btn-danger btn-tabela-dng">Deletar</button>
 				</form>
 			</th>

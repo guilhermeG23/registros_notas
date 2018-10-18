@@ -10,6 +10,7 @@
 				<div class="dropdown">
 					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a href="registrar.php">Nota</a>
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_computador"><img class="min-imagem-menu" src="../imagens/registro.png">Nota</button>
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_funcionario"><img class="min-imagem-menu" src="../imagens/funcionario.png">Funcionario</button>
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_setor"><img class="min-imagem-menu" src="../imagens/setor.png">Setor</button>
