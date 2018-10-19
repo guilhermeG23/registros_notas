@@ -5,6 +5,7 @@ include("../funcoes/tratamento-cadastro.php");
 include("../funcoes/funcoes-cadastros.php");
 
 $setor = tratamento_entrada_palavra($_POST["setor"]);
+$contador = limpar_entrada_numero($_POST["contador"]);
 
 if(confirma_setor_existe($conexao_banco, $setor)) {
 	cadastrar_setor($conexao_banco, $setor);	
@@ -35,7 +36,6 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 
 	$data = tratamento_entrada_data(limpar_entrada_numero($_POST["data_entrada"]));
 	$empresa = tratamento_entrada_palavra($_POST["empresa"]);
-	
 	$setor = limpar_entrada_numero($_POST["setor"]);
 	$funcionario = limpar_entrada_numero($_POST["funcionario"]);
 
@@ -54,46 +54,29 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		cadastrar_nota($conexao_banco, $nota, $chave, $data, $empresa, $nome, $arquivo);
 	}
 
-	$serial = limpar_entrada_numero($_POST["sn"]);
-	$marca = tratamento_entrada_palavra($_POST["marca"]);
-	$modelo = tratamento_entrada_palavra($_POST["modelo"]);
 
-	if(confirma_serial_maquina($conexao_banco, $serial)) {
-		cadastrar_maquina($conexao_banco, $serial, $marca, $modelo, $nota, $setor, $funcionario);
-	}
+	if($contador > 0) {
+	
+		$equipamento = array();
+		$marca = array();
+		$descricao = array();
+		$serial = array();
+		$localatual = array();	
+	
+		$suporte = $contador;
+		$crescer = 0;
 
-	if(isset($_POST["serialW"])) {	
-		$serialW = tratamento_entrada_palavra($_POST["serialW"]);
-	} else {
-		$serialW = "";
-	}
-			
-	if(isset($_POST["versaoW"])) {
-		$versaoW = limpar_entrada_numero($_POST["versaoW"]); 
-
-		if(confirma_serial_microsoft($conexao_banco, $serialW)) {
-			if(confirma_existe_valor($versaoW)) {
-				cadastrar_software_microsoft($conexao_banco, $serialW, $versaoW, $nota, $setor, $funcionario);
-			}
+		while($contador != -1) {
+			$x = $contador;
+			$equipamento = limpar_entrada_numero($_POST["Equipamento[" + $x + "]"]);
+			$marca = limpar_entrada_numero($_POST["Marca[" + $x + "]"]);
+			$descricao = limpar_entrada_numero($_POST["Descricao[" + $x + "]"]);
+			$serial = limpar_entrada_numero($_POST["Serial[" + $x + "]"]);
+			$localatual = limpar_entrada_numero($_POST["Localatual[" + $x + "]"]);	
+			$contador--;
 		}
+
 	}
-
-	if(isset($_POST["serialO"])) {
-		$serialO = tratamento_entrada_palavra($_POST["serialO"]);
-	} else {
-		$serialO = "";
-	}
-
-	if(isset($_POST["versaoO"])) {
-		$versaoO = limpar_entrada_numero($_POST["versaoO"]);
-
-		if(confirma_serial_microsoft($conexao_banco, $serialO)) {
-			if(confirma_existe_valor($versaoO)) {
-				cadastrar_software_microsoft($conexao_banco, $serialO, $versaoO, $nota, $setor, $funcionario);
-			}
-		}
-	}
-
 }
 
 header("Location: index.php");

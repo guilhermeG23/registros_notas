@@ -18,6 +18,13 @@
 		padding-bottom: 10px;
 	}
 }
+/*Altura da distacia dio titulo ao registro da nota*/
+.regular-altura {
+	margin-top: 20px;
+}
+.alinhar-direita {
+	text-align: right;
+}
 /*Tirar as setas dos campos input number*/
 input[type=number]::-webkit-inner-spin-button { 
 -webkit-appearance: none;
@@ -102,6 +109,17 @@ appearance: textfield;
 /*Arrumando os footers dos modais*/
 .modal-footer {
 	padding-top: 10px;
+}
+/*Aumentando o maximo do modal*/
+@media screen and (min-width: 1368px) {
+	.modal-lg {
+		max-width: 1200px;
+	}
+}
+@media screen and (max-width: 1200px) {
+	.modal-lg {
+		max-width: 90%;
+	}
 }
 /*Arrumando a direcao dos botoes*/
 .ajuste-botao-modal-direita, .btn-right-modal {

@@ -65,6 +65,29 @@ LOCK TABLES `Marcas` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Modelos`
+--
+
+DROP TABLE IF EXISTS `Modelos`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Modelos` (
+  `ID_Modelo` int(11) NOT NULL AUTO_INCREMENT,
+  `Tipo` varchar(40) NOT NULL,
+  PRIMARY KEY (`ID_Modelo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Modelos`
+--
+
+LOCK TABLES `Modelos` WRITE;
+/*!40000 ALTER TABLE `Modelos` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Modelos` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Nota_Fiscal`
 --
 
@@ -76,7 +99,7 @@ CREATE TABLE `Nota_Fiscal` (
   `Chave_Acesso` varchar(44) NOT NULL,
   `Emissao` date NOT NULL,
   `Empresa` varchar(140) NOT NULL,
-  `Nota_Nome` varchar(20) NOT NULL DEFAULT 'NULL',
+  `Nota_Nome` varchar(20) NOT NULL,
   `Nota_PDF` mediumblob,
   PRIMARY KEY (`Nota_Fiscal`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -100,22 +123,27 @@ DROP TABLE IF EXISTS `Produto`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Produto` (
   `ID_Produto` int(11) NOT NULL AUTO_INCREMENT,
-  `Tipo` varchar(100) NOT NULL,
+  `ID_Nota` varchar(44) NOT NULL,
+  `ID_Ex_Modelo` int(11) NOT NULL,
   `ID_Ex_Marca` int(11) NOT NULL,
   `Descricao` varchar(100) NOT NULL,
-  `Key_Serial` varchar(50) DEFAULT 'NULL',
+  `Key_Serial` varchar(50) DEFAULT NULL,
   `Setor_Destino` varchar(6) NOT NULL,
   `Setor_Atual` varchar(6) NOT NULL,
   `ID_Ex_Funcionario` int(11) NOT NULL,
   PRIMARY KEY (`ID_Produto`),
+  KEY `ID_Nota` (`ID_Nota`),
+  KEY `ID_Ex_Modelo` (`ID_Ex_Modelo`),
   KEY `ID_Ex_Marca` (`ID_Ex_Marca`),
   KEY `Setor_Destino` (`Setor_Destino`),
   KEY `Setor_Atual` (`Setor_Atual`),
   KEY `ID_Ex_Funcionario` (`ID_Ex_Funcionario`),
-  CONSTRAINT `Produto_ibfk_1` FOREIGN KEY (`ID_Ex_Marca`) REFERENCES `Marcas` (`ID_Marca`),
-  CONSTRAINT `Produto_ibfk_2` FOREIGN KEY (`Setor_Destino`) REFERENCES `Setor` (`Centro_custo`),
-  CONSTRAINT `Produto_ibfk_3` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
-  CONSTRAINT `Produto_ibfk_4` FOREIGN KEY (`ID_Ex_Funcionario`) REFERENCES `Funcionario` (`ID_Funcionario`)
+  CONSTRAINT `Produto_ibfk_1` FOREIGN KEY (`ID_Nota`) REFERENCES `Nota_Fiscal` (`Nota_Fiscal`),
+  CONSTRAINT `Produto_ibfk_2` FOREIGN KEY (`ID_Ex_Modelo`) REFERENCES `Modelos` (`ID_Modelo`),
+  CONSTRAINT `Produto_ibfk_3` FOREIGN KEY (`ID_Ex_Marca`) REFERENCES `Marcas` (`ID_Marca`),
+  CONSTRAINT `Produto_ibfk_4` FOREIGN KEY (`Setor_Destino`) REFERENCES `Setor` (`Centro_custo`),
+  CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
+  CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`ID_Ex_Funcionario`) REFERENCES `Funcionario` (`ID_Funcionario`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -160,4 +188,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-18 13:02:41
+-- Dump completed on 2018-10-19 13:00:19

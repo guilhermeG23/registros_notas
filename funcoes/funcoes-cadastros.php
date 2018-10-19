@@ -45,7 +45,7 @@ function confirma_nota_chave($nota) {
 }
 
 function confirma_nota($nota) {
-	if(isset($nota) && strlen($nota) == 44) {
+	if(isset($nota) && strlen($nota) == 9) {
 		return true;
 	} else {
 		return false;
