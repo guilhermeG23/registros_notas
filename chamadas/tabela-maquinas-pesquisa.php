@@ -2,7 +2,25 @@
 
 include('../funcoes/tratamento-tabela.php');
 
-$query = 'select Nota_Fiscal from Nota_Fiscal limit 1;';
+if(isset($_POST['pesquisar'])) {
+	$variavel = $_POST['pesquisar'];
+}
+if(isset($_POST['data'])) {
+	$variavel = $_POST['data'];
+}
+if(isset($_post['modelo'])) {
+	$variavel = $_POST['modelo'];
+}
+if(isset($_post['marca'])) {
+	$variavel = $_POST['marca'];
+}
+if(isset($_POST['setor_destino'])) {
+	$variavel = $_POST['setor_destino'];
+}	
+if(isset($_POST['setor_atual'])) {
+	$variavel = $_POST['setor_atual'];
+	$query = "select * from vw_tabela_produtos where SA = '{$variavel}';";
+}
 
 $existe = mysqli_query($conexao_banco, $query);
 $quatidade = mysqli_num_Rows($existe);
@@ -26,7 +44,6 @@ if($quatidade > 0) {
 		<tbody>
 <?php
 		mysqli_data_seek($query, 0);
-		$query = "select * from vw_notas;";
 		$registros = mysqli_query($conexao_banco, $query);
 		while($chamada=mysqli_fetch_array($registros)) {
 ?>
@@ -87,7 +104,6 @@ if($quatidade > 0) {
 <?php
 
 	mysqli_data_seek($query, 0);
-	$query = "select Nota from vw_notas;";
 	$registros = mysqli_query($conexao_banco, $query);
 	while($chamada=mysqli_fetch_array($registros)) {
 ?>

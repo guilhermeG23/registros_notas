@@ -8,16 +8,45 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="#" method="POST" enctype="multipart/form-data">
+				<form action="pesquisar.php" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<table class="table table-borderless tabela-registro">
-							<?php include("../estrutura_formulario/selecao-setor.php"); ?>
+							<tr>
+								<td><label class="col-form-label">Setor destino: </label></td>
+								<td><select class="form-control" name="setor_destino" id="setor_destino"> 
+									<option value="" select>...</option>
+									<?php
+									$query = "select * from Setor";
+									$resultado = mysqli_query($conexao_banco, $query);
+									while($chamada=mysqli_fetch_array($resultado)) {
+									?>
+									<option value="<?=$chamada['Centro_custo'];?>"><?=$chamada['Setor'];?></option>
+									<?php
+									}
+									?>
+								</select></td>
+							</tr>
+							<tr>
+								<td><label class="col-form-label">Setor atual: </label></td>
+								<td><select class="form-control" name="setor_atual" id="setor_atual"> 
+									<option value="" select>...</option>
+									<?php
+									$query = "select * from Setor";
+									$resultado = mysqli_query($conexao_banco, $query);
+									while($chamada=mysqli_fetch_array($resultado)) {
+									?>
+									<option value="<?=$chamada['Centro_custo'];?>"><?=$chamada['Setor'];?></option>
+									<?php
+									}
+									?>
+								</select></td>
+							</tr>		
 						</table>	
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 						<button type="reset" class="btn btn-warning">Limpar</button>
-						<button type="submit" class="btn btn-success">Registrar</button>
+						<button type="submit" class="btn btn-success">Pesquisar</button>
 					</div>
 				</form>
 			</div>

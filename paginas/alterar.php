@@ -13,10 +13,9 @@ include ('../chamadas/ajuda.php');
 include ('../chamadas/barra-pesquisa.php');
 include ('../chamadas/pagina-corpo.php');
 ?>
-
 <div class="jumbotron" style="text-align: left;">
 <?php
-$nota = $_POST["visualizar"];
+$nota = $_POST["alterar"];
 $query = "select * from Nota_Fiscal where Nota_Fiscal = '{$nota}';";
 $registros = mysqli_query($conexao_banco, $query);
 while($chamada=mysqli_fetch_array($registros)) {
@@ -36,9 +35,10 @@ while($chamada=mysqli_fetch_array($registros)) {
 			<th>Modelo</th>
 			<th>Marca</th>
 			<th>Descricao</th>
+			<th>Apagar produto</th>
 		</tr>
 	</thead>
-<tbody>
+	<tbody>
 <?php
 		$query = "select * from vw_tabela_produtos where Nota = '{$nota}';";
 		$registros = mysqli_query($conexao_banco, $query);
@@ -49,14 +49,48 @@ while($chamada=mysqli_fetch_array($registros)) {
 		<th><?=$chamada["Modelo"];?></th>
 		<th><?=$chamada["Marca"];?></th>
 		<th><?=$chamada["Descricao"];?></th>
+		<th>
+			<button type="button" class="btn btn-danger btn-tabela-dng" data-toggle="modal" data-target="#modal<?=$chamada["ID_Produto"];?>">Deletar</button>
+		</th>
 	</tr>
 <?php
 }
 ?>
-
 </tbody>
 </table>
 <?php
+	mysqli_data_seek($query, 0);
+	$query = "select * from vw_tabela_produtos where Nota = '{$nota}';";
+	$registros = mysqli_query($conexao_banco, $query);
+	while($chamada=mysqli_fetch_array($registros)) {
+?>
+		<div class="modal fade bd-example-modal-lg" id="modal<?=$chamada["ID_Produto"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Deletar</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				</div>
+				<form action="deletar_produto.php" method="POST" enctype="multipart/form-data">
+				<div class="modal-body">
+					<div class="container regular-altura">
+						<div class="form-group">
+							<input type="hidden" value="<?=$chamada["ID_Produto"];?>" name="deletar" id="deletar">
+							<p>Tem certeza que quer deletar esta nota e todos os equipamentos registrados dela?</p>
+							<p>Descrição: <?=$chamada["Descricao"];?></p>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
+						<button type="submit" class="btn btn-success">Sim</button>
+					</div>
+				</div>
+				</form>	
+			</div>
+		</div>
+		</div>
+<?php	
+}
 $query = "select Nota_PDF from Nota_Fiscal where Nota_Fiscal = '{$nota}';";
 $valor = mysqli_query($conexao_banco, $query);
 while($chamada=mysqli_fetch_array($valor)) {
@@ -65,6 +99,7 @@ while($chamada=mysqli_fetch_array($valor)) {
 <?php
 	}
 ?>
+</div>
 </div>
 
 <?php

@@ -58,6 +58,10 @@ appearance: textfield;
 	width: 32px;
 	margin-right: 10px;
 }
+.min-imagem-menu-tabela {
+	width: 32px;
+	margin-right: 10px;
+}
 /*Definindo o tamanho geral das imagens na tabela*/
 .min-imagem-tabela {
 	width: 16px;
@@ -271,6 +275,10 @@ button:focus {
 	}
 	.tabela-visita th:nth-child(1) {
 		display: none;
+	}
+	.min-imagem-menu-tabela {
+		width: 16px;
+		margin-right: 10px;
 	}
 }
 @media screen and (max-width: 480px) {

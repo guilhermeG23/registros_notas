@@ -18,6 +18,7 @@
 				<div class="dropdown">
 					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/alterar.png"></button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_down', 'down');"><img class="min-imagem-menu" src="../imagens/alterar.png">Download</button>
 						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_alt', 'alt');"><img class="min-imagem-menu" src="../imagens/alterar.png">Alterar</button>
 						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_del', 'del');"><img class="min-imagem-menu" src="../imagens/alterar.png">Deletar</button>
 					</div>
@@ -30,7 +31,7 @@
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_geral"><img class="min-imagem-menu" src="../imagens/lupa.png">Pesquisa</button>
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_por"><img class="min-imagem-menu" src="../imagens/lupa.png">Modelo</button>
 						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_setor"><img class="min-imagem-menu" src="../imagens/setor.png">Setor</button>
-					</div>
+						</div>
 				</div>
 			</li>
 			<li class="nav-item active">
