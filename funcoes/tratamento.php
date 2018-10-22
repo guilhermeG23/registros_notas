@@ -4,7 +4,7 @@ function limpar_entrada_numero($valor) {
 	return preg_replace('/[^0-9]/', '', $valor);
 }
 
-function tratamento_serial($serial) {
+function tratamento_uppercase($serial) {
 	return strtoupper(preg_replace('/[^A-Za-z0-9]\s/', '', $serial));
 }
 
@@ -20,3 +20,6 @@ function tratamento_nome($pesquisa) {
 	return ucfirst(preg_replace('/[^A-Za-z]\s/', '', $pesquisa));
 }
 
+function tratamento_data($data) {
+	return substr($data,8,2) . "/" . substr($data,5,2) . "/" .  substr($data,0,4);
+}

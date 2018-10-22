@@ -1,8 +1,26 @@
 <?php
 
-include('../funcoes/tratamento-tabela.php');
+include('../funcoes/tratamento.php');
 
-$query = 'select Nota_Fiscal from Nota_Fiscal limit 1;';
+if(isset($_POST['pesquisar'])) {
+	$variavel = $_POST['pesquisar'];
+	$query = "select * from vw_tabela_produtos where nota like '%{$variavel}%' or Empresa like '%{$variavel}%' or Chave like '%{$variavel}%';";
+} elseif(isset($_POST['data'])) {
+	$variavel = $_POST['data'];
+} elseif(isset($_post['modelo'])) {
+	$variavel = $_POST['modelo'];
+	$query = "select Modelos.Modelo from vw_tabela_produtos inner join Modelos on vw_tabela_produtos.Modelo = Modelos.Modelo where Modelos.ID_Modelo = '{$variavel}';";
+} elseif(isset($_post['marca'])) {
+	$variavel = $_POST['marca'];
+} elseif(isset($_POST['setor_destino']) and strlen($_POST['setor_destino']) > 0) {
+	$variavel = $_POST['setor_destino'];
+	$query = "select * from vw_tabela_produtos where SD = '{$variavel}';";
+} elseif(isset($_POST['setor_atual']) and strlen($_POST['setor_atual']) > 0) {
+	$variavel = $_POST['setor_atual'];
+	$query = "select * from vw_tabela_produtos where SA = '{$variavel}';";
+} else {
+	$query = 'select * from vw_tabela_produtos;';
+}
 
 $existe = mysqli_query($conexao_banco, $query);
 $quatidade = mysqli_num_Rows($existe);
@@ -26,13 +44,12 @@ if($quatidade > 0) {
 		<tbody>
 <?php
 		mysqli_data_seek($query, 0);
-		$query = "select * from vw_notas;";
 		$registros = mysqli_query($conexao_banco, $query);
 		while($chamada=mysqli_fetch_array($registros)) {
 ?>
 		<tr>
 			<th><?=$chamada["Nota"];?></th>
-			<th><?=$chamada["Chave"];?></th>
+			<th><?=substr($chamada["Chave"], 28, 16);?></th>
 			<th><?=$chamada["Empresa"];?></th>
 			<th><?=tratamento_data($chamada["Data"]);?></th>
 			<th><?=$chamada["Setor"];?></th>
@@ -79,18 +96,6 @@ if($quatidade > 0) {
 			</th>
 		</tr>
 
-<?php
-		}
-?>
-		</tbody>
-	</table>
-<?php
-
-	mysqli_data_seek($query, 0);
-	$query = "select Nota from vw_notas;";
-	$registros = mysqli_query($conexao_banco, $query);
-	while($chamada=mysqli_fetch_array($registros)) {
-?>
 		<div class="modal fade bd-example-modal-lg" id="modal<?=$chamada["Nota"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
@@ -116,8 +121,13 @@ if($quatidade > 0) {
 				</div>
 			</div>
 		</div>
-<?php	
-	}
+
+<?php
+		}
+?>
+		</tbody>
+	</table>
+<?php
 } else {
 ?>
 	<h1>Nada Registrado</h1>

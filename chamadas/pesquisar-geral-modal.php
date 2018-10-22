@@ -8,11 +8,11 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="#" method="POST" enctype="multipart/form-data">
+				<form action="index.php" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<table class="table table-borderless tabela-registro">
 							<tr>
-								<td><label class="col-form-label">Empresa: </label></td>
+								<td><label class="col-form-label">Geral: </label></td>
 								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="pesquisar" name="pesquisar" maxlength="100" placeholder="EX: Empresa, nota, chave ..." autocomplete="off">		
 							</tr>
 							<tr>

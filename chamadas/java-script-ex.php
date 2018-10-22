@@ -4,6 +4,6 @@
 <script type="text/javascript" src="../js/expandir-menu.js"></script>
 <script type="text/javascript" src="../js/bootstrap.min.js"></script>
 <script type="text/javascript" src="../js/popper.min.js"></script>
-<script type="text/javascript" src="../js/limitar_input.js"></script>	
+<script type="text/javascript" src="../js/limitar-input.js"></script>	
 <script type="text/javascript" src="../js/jquery-ui.js"></script>	
 <script type="text/javascript" src="../js/clonar-campos.js"></script>	

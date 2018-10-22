@@ -17,7 +17,7 @@
 							</tr>
 							<tr>
 								<td><label class="col-form-label">Chave: </label></td>
-								<td colspan="6"><input type="number" class="form-control" onkeyup="limitarInput(this,15)"  value="" id="chave" name="chave" maxlength="15" placeholder="EX: Chave" autocomplete="off" required></td>
+								<td colspan="6"><input type="number" class="form-control" onkeyup="limitarInput(this,54)"  value="" id="chave" name="chave" maxlength="15" placeholder="EX: Chave" autocomplete="off" required></td>
 							</tr>
 							<tr>
 								<td><label class="col-form-label">Emissao: </label></td>
@@ -36,13 +36,13 @@
 								<td colspan="6"><select class="form-control" id="setor" name="setor" required>
 										<option value="">...</option>
 										<?php
-											$query = "select * from Setor";
-											$setores = mysqli_query($conexao_banco, $query);
-											while($chamada = mysqli_fetch_array($setores)) {
+										$query = "select * from Setor";
+										$setores = mysqli_query($conexao_banco, $query);
+										while($chamada = mysqli_fetch_array($setores)) {
 										?>
 										<option value="<?=$chamada['Centro_custo']?>"><?=$chamada['Setor'];?></option>
 										<?php
-											}
+										}
 										?>
 								</select></td>
 							</tr>
@@ -51,7 +51,8 @@
 								<td colspan="6"><input type="text" class="form-control" onkeyup="limitarInput(this, 100)" maxlength="100" value="" id="funcionario" name="funcionario" placeholder="Ex: Nome" autocomplete="off"></td>
 							</tr>
 							<tr>
-								<td colspan="6" class="alinhar-direita">
+								<td><label class="col-form-label">Campos para registro: </label></td>
+								<td colspan="5" class="alinhar-direita">
 									<button type="button" class="btn" style="cursor: pointer;" onclick="duplicarCampos();">Add</button>
 									<button type="button" class="btn" style="cursor: pointer;" onclick="removerCampos();">Remove</button>
 								</td>
@@ -69,7 +70,7 @@
 						<table style="display: none;">
 							<tr id="clonar">
 								<td colspan="1"><select class="form-control" id="Equipamento" name="Equipamento">
-									<option value="">...</option>
+									<option value="" selected>...</option>
 									<?php
 									$query = "select * from Modelos";
 									$setores = mysqli_query($conexao_banco, $query);
@@ -81,7 +82,7 @@
 									?>
 									</select></td>	
 								<td colspan="1"><select class="form-control" id="Marca" name="Marca" autocomplete="off">
-									<option value="">...</option>
+									<option value="" selected>...</option>
 									<?php
 									$query = "select * from Marcas";
 									$setores = mysqli_query($conexao_banco, $query);
@@ -92,10 +93,10 @@
 									}
 									?>
 									</select></td>
-								<td colspan="1"><input type="text" class="form-control" value="" id="Descricao" name="Descricao" maxlength="100" placeholder="" autocomplete="off"></td>
-								<td colspan="1"><input type="text" class="form-control" value="" id="Serial" name="Serial" autocomplete="off"></td>
+								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 100)" value="" id="Descricao" name="Descricao" maxlength="100" placeholder="Ex: descricao" autocomplete="off"></td>
+								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 54)" value="" id="Serial" name="Serial" maxlength="54" placeholder="Ex: Serial" autocomplete="off"></td>
 								<td colspan="1"><select class="form-control" id="Localatual" name="Localatual" autocomplete="off">
-									<option value="">...</option>
+									<option value="" selected>...</option>
 									<?php
 									$query = "select * from Setor";
 									$setores = mysqli_query($conexao_banco, $query);

@@ -8,7 +8,7 @@
 				</button>
 			</div>
 			<div class="modal-body">
-				<form action="pesquisar.php" method="POST" enctype="multipart/form-data">
+				<form action="index.php" method="POST" enctype="multipart/form-data">
 					<div class="form-group">
 						<table class="table table-borderless tabela-registro">
 							<tr>
