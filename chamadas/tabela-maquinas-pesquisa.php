@@ -1,7 +1,7 @@
 <?php
 
 include('../funcoes/tratamento-tabela.php');
-
+/*
 if(isset($_POST['pesquisar'])) {
 	$variavel = $_POST['pesquisar'];
 }
@@ -14,10 +14,12 @@ if(isset($_post['modelo'])) {
 if(isset($_post['marca'])) {
 	$variavel = $_POST['marca'];
 }
-if(isset($_POST['setor_destino'])) {
+*/
+if(isset($_POST['setor_destino']) and strlen($_POST['setor_destino']) > 0) {
 	$variavel = $_POST['setor_destino'];
+	$query = "select * from vw_tabela_produtos where SD = '{$variavel}';";
 }	
-if(isset($_POST['setor_atual'])) {
+if(isset($_POST['setor_atual']) and strlen($_POST['setor_atual']) > 0) {
 	$variavel = $_POST['setor_atual'];
 	$query = "select * from vw_tabela_produtos where SA = '{$variavel}';";
 }
