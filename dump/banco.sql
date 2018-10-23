@@ -40,7 +40,9 @@ create table if not exists Nota_Fiscal(
 						ID_Ex_Marca int not null,
 						Descricao varchar(100) not null,
 						Key_Serial varchar(50) default NULL,
+						Relacao_Destino int(11) not null,
 						Setor_Destino varchar(6) not null,
+						Relacao_Atual int(11) not null,
 						Setor_Atual varchar(6) not null,
 						ID_Ex_Funcionario int not null,
 						foreign key (ID_Nota) references Nota_Fiscal(Nota_Fiscal),
@@ -48,6 +50,8 @@ create table if not exists Nota_Fiscal(
 						foreign key (ID_Ex_Marca) references Marcas(ID_Marca),
 						foreign key (Setor_Destino) references Setor(Centro_custo),
 						foreign key (Setor_Atual) references Setor(Centro_custo),
+						foreign key (Relacao_Destino) references Relacao_Setor(ID_Relacao),
+						foreign key (Relacao_Atual) references Relacao_Setor(ID_Relacao),
 						foreign key (ID_Ex_Funcionario) references Funcionario(ID_Funcionario)
 						);
 

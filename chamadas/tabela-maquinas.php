@@ -1,27 +1,4 @@
 <?php
-
-include('../funcoes/tratamento.php');
-
-if(isset($_POST['pesquisar'])) {
-	$variavel = $_POST['pesquisar'];
-	$query = "select * from vw_tabela_produtos where nota like '%{$variavel}%' or Empresa like '%{$variavel}%' or Chave like '%{$variavel}%';";
-} elseif(isset($_POST['data'])) {
-	$variavel = $_POST['data'];
-} elseif(isset($_post['modelo'])) {
-	$variavel = $_POST['modelo'];
-	$query = "select Modelos.Modelo from vw_tabela_produtos inner join Modelos on vw_tabela_produtos.Modelo = Modelos.Modelo where Modelos.ID_Modelo = '{$variavel}';";
-} elseif(isset($_post['marca'])) {
-	$variavel = $_POST['marca'];
-} elseif(isset($_POST['setor_destino']) and strlen($_POST['setor_destino']) > 0) {
-	$variavel = $_POST['setor_destino'];
-	$query = "select * from vw_tabela_produtos where SD = '{$variavel}';";
-} elseif(isset($_POST['setor_atual']) and strlen($_POST['setor_atual']) > 0) {
-	$variavel = $_POST['setor_atual'];
-	$query = "select * from vw_tabela_produtos where SA = '{$variavel}';";
-} else {
-	$query = 'select * from vw_tabela_produtos;';
-}
-
 $existe = mysqli_query($conexao_banco, $query);
 $quatidade = mysqli_num_Rows($existe);
 if($quatidade > 0) {
@@ -30,10 +7,11 @@ if($quatidade > 0) {
 		<thead class="thead-light tabela-visita-head">
 			<tr>
 				<th>Nota</th>
-				<th>Chave</th>
+				<th id="sumir-campo-cabecalho">Chave</th>
+				<th class="tabela-visita-coluna" id="sumir_chave">Chave</th>
 				<th>Empresa</th>
 				<th>Data</th>
-				<th>Setor</th>
+				<th>Setor destino</th>
 				<th>Registrados</th>
 				<th>View</th>
 				<th class="tabela-visita-coluna" id="sumir_down">Download Nota</th>
@@ -49,7 +27,10 @@ if($quatidade > 0) {
 ?>
 		<tr>
 			<th><?=$chamada["Nota"];?></th>
-			<th><?=substr($chamada["Chave"], 28, 16);?></th>
+			<th name="sumir-campo-tabela"><?=substr($chamada["Chave"], 28, 16);?></th>
+			<th class="tabela-visita-coluna" name="key">
+				<?=$chamada["Chave"];?>
+			</th>
 			<th><?=$chamada["Empresa"];?></th>
 			<th><?=tratamento_data($chamada["Data"]);?></th>
 			<th><?=$chamada["Setor"];?></th>
@@ -58,21 +39,7 @@ if($quatidade > 0) {
 				$produtos = "select Modelos.Modelo as 'Modelo' from Produto inner join Modelos on Produto.ID_Ex_Modelo = Modelos.ID_Modelo where Produto.ID_Nota = '{$chamada["Nota"]}';";
 				$produtos = mysqli_query($conexao_banco, $produtos);
 				while($produto=mysqli_fetch_array($produtos)) {
-					if($produto["Modelo"] == "Software") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/software.png'>";
-					} elseif($produto["Modelo"] == "Desktop") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/computer.png'>";
-					} elseif($produto["Modelo"] == "Perifericos") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/teclado.png'>";
-					} elseif($produto["Modelo"] == "Monitor") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/monitor.png'>";
-					} elseif($produto["Modelo"] == "Impressora") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/impressora.png'>";
-					} elseif($produto["Modelo"] == "Server") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/server.png'>";
-					} elseif($produto["Modelo"] == "Notebook") {
-						echo "<img  class='min-imagem-menu-tabela' src='../imagens/note.png'>";
-					}
+					echo modelo_img($produto["Modelo"]);
 				}
 			?>
 			</th>

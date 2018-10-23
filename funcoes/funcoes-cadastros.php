@@ -5,8 +5,8 @@ function cadastrar_nota($conexao_banco, $nota, $chave, $data, $empresa, $nome, $
 	mysqli_query($conexao_banco, $query);
 }
 
-function cadastrar_produto_nota($conexao_banco, $nota, $equipamento, $marca, $descricao, $serial, $setorD, $setorA, $funcionario) {
-	$query = "insert into Produto values (default, '{$nota}', '{$equipamento}', '{$marca}', '{$descricao}', '{$serial}', '{$setorD}', '{$setorA}', '{$funcionario}');";
+function cadastrar_produto_nota($conexao_banco, $nota, $equipamento, $marca, $descricao, $serial, $relacao, $setorD, $relacaoatual, $setorA, $funcionario) {
+	$query = "insert into Produto values (default, '{$nota}', '{$equipamento}', '{$marca}', '{$descricao}', '{$serial}', '{$relacao}', '{$setorD}', '{$relacaoatual}', '{$setorA}', '{$funcionario}');";
 	mysqli_query($conexao_banco, $query);
 }
 
@@ -58,22 +58,3 @@ function confirma_existe_nota($conexao_banco, $nota) {
 		return false;
 	}
 }
-
-//Cadastrar setor
-/*
-if(isset($_POST['custo_setor']) && isset($_POST['nome_setor'])) {
-	$centro_custo = tratamento_uppercase($_POST['custo_setor']);
-	$nome_setor = tratamento_entrada_palavra($_POST['nome_setor']);
-	if(strlen($centro_custo) > 0 && strlen($nome_setor)) {
-		$query = "select Centro_custo from Setor where Centro_custo = '{$centro_custo}';";
-		$confirmar = mysqli_query($conexao_banco, $query);
-		$confirma = mysqli_num_rows($confirmar);
-		if($confirma == 0) {
-			$query = "insert into Setor values ('{$centro_custo}', '{$nome_setor}');";
-			mysqli_query($conexao_banco, $query);
-		}	
-	}
-	header('Location: index.php');
-	die();
-}
- */

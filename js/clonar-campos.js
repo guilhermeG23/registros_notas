@@ -9,11 +9,13 @@ function duplicarCampos(){
 	document.getElementById('Marca').id = "Marca" + incrementador + "";
 	document.getElementById('Descricao').id = "Descricao" + incrementador + "";
 	document.getElementById('Serial').id = "Serial" + incrementador + "";
+	document.getElementById('relacaoAtual').id = "relacaoAtual" + incrementador + "";
 	document.getElementById('Localatual').id = "Localatual" + incrementador + "";
 	document.getElementById("Equipamento" + incrementador + "").name = "Equipamento" + incrementador + "";
 	document.getElementById("Marca" + incrementador + "").name = "Marca" + incrementador + "";
 	document.getElementById("Descricao" + incrementador + "").name = "Descricao" + incrementador + "";
 	document.getElementById("Serial" + incrementador + "").name = "Serial" + incrementador + "";
+	document.getElementById("relacaoAtual" + incrementador + "").name = "relacaoAtual" + incrementador + "";
 	document.getElementById("Localatual" + incrementador + "").name = "Localatual" + incrementador + "";
 	incrementador++;
 	mandarcontador();

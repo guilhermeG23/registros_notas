@@ -1,22 +1,33 @@
-//Menu do registro de visitas
-function descer_menu(aparecer) {
-	//Pega o valor se ele ta visivel ou nao
-	var display = document.getElementById(aparecer).style.display;
-	//Decisao, inverte o display e troca o texto
-	if(display == "block") {
-		document.getElementById("texto-mostrar-mais-" + aparecer).innerHTML = aparecer;
-		document.getElementById(aparecer).style.display = 'none';
-	} else {
-		document.getElementById("texto-mostrar-mais-" + aparecer).innerHTML = "Ocultar registro do " + aparecer;
-		document.getElementById(aparecer).style.display = 'block';
-	}
-}
-
 function mostrar_coluna(nome, altera) {
 	//variaveis
 	var display = document.getElementById(nome).style.display;
 	var contador = document.getElementsByName(altera);
+	
 	var i = 0;
+
+	//Sumindo campo chave reversa com chave completa
+	//chave completa some com essa coluna
+	if(altera == 'key') {
+		var display_coluna = document.getElementById('sumir-campo-cabecalho').style.display;
+		if(display_coluna == "none") {
+			document.getElementById('sumir-campo-cabecalho').style.display = 'table-cell';
+			var cont = document.getElementsByName('sumir-campo-tabela');
+			i = 0;
+			for(i; i < cont.length; i++) {
+				cont[i].style.display = 'table-cell';
+			}
+		} else {
+			document.getElementById('sumir-campo-cabecalho').style.display = 'none';
+			var cont = document.getElementsByName('sumir-campo-tabela');
+			i = 0;
+			for(i; i < cont.length; i++) {
+				cont[i].style.display = 'none';
+			}
+		}
+	}
+
+	i = 0;	
+	
 	//Confirma se ta visivel
 	if(display == "table-cell") {
 		//Sumir

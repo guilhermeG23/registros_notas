@@ -148,6 +148,10 @@ appearance: textfield;
 	margin-bottom: 0px !important; 
 	margin-top: 0px !important; 
 }
+/*Ajuste div left*/
+.left-div {
+	text-align: right;
+}
 /*Ajustando o align da tabela*/
 .tabela-visita {
 	text-align: center;
@@ -171,6 +175,10 @@ appearance: textfield;
 .botoes-dimensao-opcao-oculto-ano-modal {
 	padding: 2px 0px 2px 0px;
 	display: inline-block;
+}
+/*Criando espaco entre o buttom e a tabela*/
+.btn-margin-bottom {
+	margin-bottom: 10px;
 }
 /*Ajustar botoes sem bordas*/
 /*Zerando todos os border e decorations para nao aparecer a linha em volta*/

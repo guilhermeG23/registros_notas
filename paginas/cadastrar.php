@@ -6,13 +6,14 @@ include("../funcoes/funcoes-cadastros.php");
 
 $nota = limpar_entrada_numero($_POST["nota"]);
 $chave = limpar_entrada_numero($_POST["chave"]);
-$contador = limpar_entrada_numero($_POST["contador"]);
 
 if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 
+	$contador = limpar_entrada_numero($_POST["contador"]);
 	$data = tratamento_entrada_data(limpar_entrada_numero($_POST["data_entrada"]));
 	$empresa = tratamento_entrada_palavra($_POST["empresa"]);
 	$funcionario = tratamento_entrada_palavra($_POST['funcionario']);
+	$relacao = $_POST['relacao'];
 	$setor = tratamento_uppercase($_POST['setor']);
 
 	if(confirma_existe_nota($conexao_banco, $nota)) {
@@ -24,7 +25,7 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		die();
 	}
 
-	$equipamento = $marca = $descricao = $serial = $localatual = array();
+	$equipamento = $marca = $descricao = $serial = $localatual = $relacaoAtual = array();
 
 	$crescer = 0;
 
@@ -34,15 +35,16 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		$marca[$crescer] = $_POST["Marca" . $crescer]; 
 		$descricao[$crescer] = $_POST["Descricao" . $crescer]; 
 		$serial[$crescer] = $_POST["Serial" . $crescer]; 
+		$relacaoAtual[$crescer] = $_POST["relacaoAtual" . $crescer]; 
 		$localatual[$crescer] = $_POST["Localatual" . $crescer]; 
-		
+
 		$crescer++;
 	}
-
+	
 	$crescer = 0;
 
 	while($crescer < $contador) {
-		cadastrar_produto_nota($conexao_banco, $nota, $equipamento[$crescer], $marca[$crescer], $descricao[$crescer], $serial[$crescer], $setor, $localatual[$crescer], $funcionario);
+		cadastrar_produto_nota($conexao_banco, $nota, $equipamento[$crescer], $marca[$crescer], $descricao[$crescer], $serial[$crescer], $relacao, $setor, $relacaoAtual[$crescer], $localatual[$crescer], $funcionario);
 		$crescer++;
 	}
 

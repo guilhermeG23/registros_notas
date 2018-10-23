@@ -32,6 +32,21 @@
 								<td colspan="6"><input type="file" accept="application/pdf" class="btn" id="arq" name="arq" required></td>
 							</tr>
 							<tr>
+								<td><label class="col-form-label">Relacao: </label></td>
+								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
+										<option value="">...</option>
+										<?php
+										$query = "select * from Relacao_Setor";
+										$setores = mysqli_query($conexao_banco, $query);
+										while($chamada = mysqli_fetch_array($setores)) {
+										?>
+										<option value="<?=$chamada['ID_Relacao']?>"><?=$chamada['Relacao'];?></option>
+										<?php
+										}
+										?>
+								</select></td>
+							</tr>
+							<tr>
 								<td><label class="col-form-label">Setor: </label></td>
 								<td colspan="6"><select class="form-control" id="setor" name="setor" required>
 										<option value="">...</option>
@@ -58,12 +73,13 @@
 								</td>
 							</tr>
 						</table>
-						<table id="destino" class="table">
+						<table id="destino" class="table table-borderless">
 							<tr>
 								<td><label class="col-form-label">Equipamento: </label></td>
 								<td><label class="col-form-label">Marca: </label></td>
 								<td><label class="col-form-label">Descricao: </label></td>
 								<td><label class="col-form-label">Serial: </label></td>
+								<td><label class="col-form-label">Relacao: </label></td>
 								<td><label class="col-form-label">Atual: </label></td>
 							</tr>
 						</table>
@@ -80,7 +96,7 @@
 									<?php
 									}
 									?>
-									</select></td>	
+								</select></td>	
 								<td colspan="1"><select class="form-control" id="Marca" name="Marca" autocomplete="off">
 									<option value="" selected>...</option>
 									<?php
@@ -95,6 +111,18 @@
 									</select></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 100)" value="" id="Descricao" name="Descricao" maxlength="100" placeholder="Ex: descricao" autocomplete="off"></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 54)" value="" id="Serial" name="Serial" maxlength="54" placeholder="Ex: Serial" autocomplete="off"></td>
+								<td colspan="1"><select class="form-control" id="relacaoAtual" name="relacaoAtual">
+										<option value="">...</option>
+										<?php
+										$query = "select * from Relacao_Setor";
+										$setores = mysqli_query($conexao_banco, $query);
+										while($chamada = mysqli_fetch_array($setores)) {
+										?>
+										<option value="<?=$chamada['ID_Relacao']?>"><?=$chamada['Relacao'];?></option>
+										<?php
+										}
+										?>
+								</select></td>
 								<td colspan="1"><select class="form-control" id="Localatual" name="Localatual" autocomplete="off">
 									<option value="" selected>...</option>
 									<?php
@@ -106,7 +134,7 @@
 									<?php
 									}
 									?>
-									</select></td>
+								</select></td>
 							</tr>
 						</table>
 					</div>

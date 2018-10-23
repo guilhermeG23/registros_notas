@@ -12,6 +12,21 @@
 					<div class="form-group">
 						<table class="table table-borderless tabela-registro">
 							<tr>
+								<td><label class="col-form-label">Relacao destino: </label></td>
+								<td><select class="form-control" name="relacao_destino" id="relacao_destino"> 
+									<option value="" select>...</option>
+									<?php
+									$query = "select * from Relacao_Setor";
+									$resultado = mysqli_query($conexao_banco, $query);
+									while($chamada=mysqli_fetch_array($resultado)) {
+									?>
+									<option value="<?=$chamada['ID_Relacao'];?>"><?=$chamada['Relacao'];?></option>
+									<?php
+									}
+									?>
+								</select></td>
+							</tr>
+							<tr>
 								<td><label class="col-form-label">Setor destino: </label></td>
 								<td><select class="form-control" name="setor_destino" id="setor_destino"> 
 									<option value="" select>...</option>
@@ -21,6 +36,23 @@
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>
 									<option value="<?=$chamada['Centro_custo'];?>"><?=$chamada['Setor'];?></option>
+									<?php
+									}
+									?>
+								</select></td>
+							</tr>
+							<tr>
+								<td colspan="6"><hr></td>
+							</tr>
+								<td><label class="col-form-label">Relacao atual: </label></td>
+								<td><select class="form-control" name="relacao_atual" id="relacao_atual"> 
+									<option value="" select>...</option>
+									<?php
+									$query = "select * from Relacao_Setor";
+									$resultado = mysqli_query($conexao_banco, $query);
+									while($chamada=mysqli_fetch_array($resultado)) {
+									?>
+									<option value="<?=$chamada['ID_Relacao'];?>"><?=$chamada['Relacao'];?></option>
 									<?php
 									}
 									?>
