@@ -1,4 +1,4 @@
-<div class="jumbotron" style="text-align: left;">
+<div class="jumbotron text-esquerda">
 <?php
 $nota = $_POST["visualizar"];
 $query = "select Nota, Chave, Data, Empresa, Setor, Relacao_Setor.Relacao as 'RD_Nome' from vw_tabela_produtos inner join Relacao_Setor on vw_tabela_produtos.RD = Relacao_Setor.ID_Relacao where Nota = '{$nota}';";
@@ -25,6 +25,7 @@ while($chamada=mysqli_fetch_array($registros)) {
 <table class="table tabela-visita table-bordered">
 	<thead class="thead-light tabela-visita-head">
 		<tr>
+			<th>Relacao Atual</th>
 			<th>Setor Atual</th>
 			<th>Modelo</th>
 			<th>Marca</th>
@@ -35,11 +36,12 @@ while($chamada=mysqli_fetch_array($registros)) {
 <tbody>
 <?php
 		mysqli_data_seek($query, 0);
-		$query = "select * from vw_tabela_view where NV = '{$nota}';";
+		$query = "select Relacao, Setor, Modelo, Marca, Descricao, vw_tabela_view.Key from vw_tabela_view inner join Relacao_Setor on vw_tabela_view.RA = Relacao_Setor.ID_Relacao where NV = '{$nota}';";
 		$registros = mysqli_query($conexao_banco, $query);
 		while($chamada=mysqli_fetch_array($registros)) {
 ?>
 		<tr>
+			<th><?=$chamada["Relacao"];?></th>
 			<th><?=$chamada["Setor"];?></th>
 			<th>
 				<?=modelo_img($chamada["Modelo"]);?>

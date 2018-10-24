@@ -152,6 +152,10 @@ appearance: textfield;
 .left-div {
 	text-align: right;
 }
+/*Arruma jumbotron*/
+.text-esquerda {
+	text-align: left;
+}
 /*Ajustando o align da tabela*/
 .tabela-visita {
 	text-align: center;

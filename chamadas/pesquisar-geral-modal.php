@@ -15,16 +15,20 @@
 								<td><label class="col-form-label">Geral: </label></td>
 								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="pesquisar" name="pesquisar" maxlength="100" placeholder="EX: Empresa, nota, chave ..." autocomplete="off">		
 							</tr>
+							<?php
+/*
 							<tr>
 								<td><label class="col-form-label">Emissao: </label></td>
 								<td><input type="text" class="form-control data" onkeyup="limitarInput(this,10)" value="" id="data" name="data" maxlength="10" placeholder="EX: dd/mm/yyyy" autocomplete="off"></td>
 							</tr>
+ */
+							?>
 						</table>	
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
 						<button type="reset" class="btn btn-warning">Limpar</button>
-						<button type="submit" class="btn btn-success">Registrar</button>
+						<button type="submit" class="btn btn-success">Pesquisar</button>
 					</div>
 				</form>
 			</div>

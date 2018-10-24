@@ -24,8 +24,11 @@
 								<td colspan="6"><input type="text" class="form-control data" onkeyup="limitarInput(this,10)" value="" id="data_entrada" name="data_entrada" maxlength="10" placeholder="EX: dd/mm/yyyy" autocomplete="off" required></td>
 							</tr>
 							<tr>
+								<td><label class="col-form-label">CNPJ: </label></td>
+								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,18)" value="" id="cnpj_empresa" name="cnpj_empresa" maxlength="18" placeholder="EX: Empresa da nota" autocomplete="off" required>		
+							
 								<td><label class="col-form-label">Empresa: </label></td>
-								<td colspan="6"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required>		
+								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required>		
 							</tr>
 							<tr>
 								<td><label class="col-form-label">Arquivo: </label></td>

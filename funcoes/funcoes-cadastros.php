@@ -10,6 +10,26 @@ function cadastrar_produto_nota($conexao_banco, $nota, $equipamento, $marca, $de
 	mysqli_query($conexao_banco, $query);
 }
 
+function cadastrar_cnpj($conexao_banco, $cnpj, $empresa) {
+	$query = "insert into Empresa_Nota values ('{$cnpj}', '{$empresa}');";
+	mysqli_query($conexao_banco, $query);
+}
+
+function confirma_cnpj($conexao_banco, $cnpj) {
+	if(strlen($cnpj) == 14) {
+		$query = "select CNPJ from Empresa_Nota where CNPJ = '{$cnpj}';";
+		$procura = mysqli_query($conexao_banco, $query);
+		$valores = mysqli_num_rows($procura);
+		if($valores == 0) {
+			return true;
+		} else {
+			return false;
+		}	
+	} else {
+		return false;
+	}
+}
+
 function registro_pdf($size, $temp) {
 	if($_FILES["arq"]["size"] > 0) {
 		$fp = fopen($_FILES["arq"]["tmp_name"], "rb");

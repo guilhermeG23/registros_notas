@@ -16,6 +16,55 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `Empresa_Nota`
+--
+
+DROP TABLE IF EXISTS `Empresa_Nota`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Empresa_Nota` (
+  `CNPJ` varchar(14) NOT NULL,
+  `Empresa` varchar(100) NOT NULL,
+  PRIMARY KEY (`CNPJ`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Empresa_Nota`
+--
+
+LOCK TABLES `Empresa_Nota` WRITE;
+/*!40000 ALTER TABLE `Empresa_Nota` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Empresa_Nota` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Funcionario`
+--
+
+DROP TABLE IF EXISTS `Funcionario`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Funcionario` (
+  `ID_Funcionario` int(11) NOT NULL,
+  `Nome` varchar(100) NOT NULL,
+  `Ex_Centro_custo` varchar(6) NOT NULL,
+  PRIMARY KEY (`ID_Funcionario`),
+  KEY `Ex_Centro_custo` (`Ex_Centro_custo`),
+  CONSTRAINT `Funcionario_ibfk_1` FOREIGN KEY (`Ex_Centro_custo`) REFERENCES `Setor` (`Centro_custo`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Funcionario`
+--
+
+LOCK TABLES `Funcionario` WRITE;
+/*!40000 ALTER TABLE `Funcionario` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Funcionario` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Marcas`
 --
 
@@ -26,7 +75,7 @@ CREATE TABLE `Marcas` (
   `ID_Marca` int(11) NOT NULL AUTO_INCREMENT,
   `Marca` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_Marca`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -35,7 +84,7 @@ CREATE TABLE `Marcas` (
 
 LOCK TABLES `Marcas` WRITE;
 /*!40000 ALTER TABLE `Marcas` DISABLE KEYS */;
-INSERT INTO `Marcas` VALUES (1,'Lenovo');
+INSERT INTO `Marcas` VALUES (1,'Lenovo'),(2,'Dell');
 /*!40000 ALTER TABLE `Marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -74,10 +123,12 @@ CREATE TABLE `Nota_Fiscal` (
   `Nota_Fiscal` varchar(9) NOT NULL,
   `Chave_Acesso` varchar(44) NOT NULL,
   `Emissao` date NOT NULL,
-  `Empresa` varchar(140) NOT NULL,
+  `CNPJ_Empresa` varchar(14) NOT NULL,
   `Nota_Nome` varchar(20) NOT NULL,
   `Nota_PDF` mediumblob,
-  PRIMARY KEY (`Nota_Fiscal`)
+  PRIMARY KEY (`Nota_Fiscal`),
+  KEY `CNPJ_Empresa` (`CNPJ_Empresa`),
+  CONSTRAINT `Nota_Fiscal_ibfk_1` FOREIGN KEY (`CNPJ_Empresa`) REFERENCES `Empresa_Nota` (`CNPJ`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -104,7 +155,9 @@ CREATE TABLE `Produto` (
   `ID_Ex_Marca` int(11) NOT NULL,
   `Descricao` varchar(100) NOT NULL,
   `Key_Serial` varchar(50) DEFAULT NULL,
+  `Relacao_Destino` int(11) NOT NULL,
   `Setor_Destino` varchar(6) NOT NULL,
+  `Relacao_Atual` int(11) NOT NULL,
   `Setor_Atual` varchar(6) NOT NULL,
   `Funcionario` varchar(100) DEFAULT NULL,
   PRIMARY KEY (`ID_Produto`),
@@ -112,13 +165,17 @@ CREATE TABLE `Produto` (
   KEY `ID_Ex_Modelo` (`ID_Ex_Modelo`),
   KEY `ID_Ex_Marca` (`ID_Ex_Marca`),
   KEY `Setor_Destino` (`Setor_Destino`),
+  KEY `Relacao_Destino` (`Relacao_Destino`),
   KEY `Setor_Atual` (`Setor_Atual`),
+  KEY `Relacao_Atual` (`Relacao_Atual`),
   CONSTRAINT `Produto_ibfk_1` FOREIGN KEY (`ID_Nota`) REFERENCES `Nota_Fiscal` (`Nota_Fiscal`),
   CONSTRAINT `Produto_ibfk_2` FOREIGN KEY (`ID_Ex_Modelo`) REFERENCES `Modelos` (`ID_Modelo`),
   CONSTRAINT `Produto_ibfk_3` FOREIGN KEY (`ID_Ex_Marca`) REFERENCES `Marcas` (`ID_Marca`),
   CONSTRAINT `Produto_ibfk_4` FOREIGN KEY (`Setor_Destino`) REFERENCES `Setor` (`Centro_custo`),
-  CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8mb4;
+  CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
+  CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
+  CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -127,8 +184,31 @@ CREATE TABLE `Produto` (
 
 LOCK TABLES `Produto` WRITE;
 /*!40000 ALTER TABLE `Produto` DISABLE KEYS */;
-INSERT INTO `Produto` VALUES (15,'123123173',1,1,'teste','','a4100','a4100','teste'),(16,'123123173',2,1,'teste','','a4100','a4100','teste'),(22,'899808888',6,1,'teste','','a4100','a4100','teste'),(23,'123454322',1,1,'teste','','t1111','t1111','teste');
 /*!40000 ALTER TABLE `Produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `Relacao_Setor`
+--
+
+DROP TABLE IF EXISTS `Relacao_Setor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Relacao_Setor` (
+  `ID_Relacao` int(11) NOT NULL AUTO_INCREMENT,
+  `Relacao` varchar(40) NOT NULL,
+  PRIMARY KEY (`ID_Relacao`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Relacao_Setor`
+--
+
+LOCK TABLES `Relacao_Setor` WRITE;
+/*!40000 ALTER TABLE `Relacao_Setor` DISABLE KEYS */;
+INSERT INTO `Relacao_Setor` VALUES (1,'Administrativo'),(2,'Comercial'),(3,'Indireto'),(4,'Rateio'),(5,'Maquina 1'),(6,'Maquina 2'),(7,'Maquina 3'),(8,'Maquina 4');
+/*!40000 ALTER TABLE `Relacao_Setor` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -140,6 +220,7 @@ DROP TABLE IF EXISTS `Setor`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `Setor` (
   `Centro_custo` varchar(6) NOT NULL,
+  `ID_Relacao` int(11) NOT NULL,
   `Setor` varchar(40) NOT NULL,
   PRIMARY KEY (`Centro_custo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -151,27 +232,9 @@ CREATE TABLE `Setor` (
 
 LOCK TABLES `Setor` WRITE;
 /*!40000 ALTER TABLE `Setor` DISABLE KEYS */;
-INSERT INTO `Setor` VALUES ('a4100','CPD'),('t1111','contabilidade');
+INSERT INTO `Setor` VALUES ('0001',1,'Presidncia / Assessoria'),('0010',1,'Assessoria Judiciaria'),('1110',1,'Departamento Financeiro'),('2210',1,'Custos e Orcamentos'),('3100',1,'Contabilidade geral'),('3120',1,'Faturamento'),('4100',1,'C.P.D'),('5100',1,'Departamento de Recursos Humanos / Admin'),('5120',1,'Servicos ao Pessoal'),('5130',1,'Treinamento'),('5150',1,'Seguranca / Portaria'),('5160',1,'Servico de segunranca e medias de tranpo'),('6100',2,'Departamento Comercial / Administracao d'),('6110',2,'Vendedores e Representantes'),('6200',2,'Frete s/ Vendas'),('7100',1,'Suprimentos / Compras'),('7120',3,'Almoxarifado Geral'),('7130',1,'Fazenda'),('7200',3,'Compras Aparas'),('7220',3,'Almoxarifado de materia prima'),('9100',3,'Producao'),('9110',4,'Producao'),('9111A',5,'Preparacao de Massa'),('9111B',5,'Maquina Continua'),('9111C',5,'Coating'),('9112A',6,'Preparacao de Massa'),('9112B',6,'Maquina Continua'),('9112C',6,'Coating'),('9113A',7,'Preparacao de Massa'),('9113B',7,'Maquina Continua'),('9113C',7,'Coating'),('9113D',7,'Size Press'),('9114A',8,'Preparacao de Massa'),('9114B',8,'Maquina Continua'),('9114C',8,'Coating'),('9114D',8,'Size Press');
 /*!40000 ALTER TABLE `Setor` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Temporary table structure for view `vw_notas`
---
-
-DROP TABLE IF EXISTS `vw_notas`;
-/*!50001 DROP VIEW IF EXISTS `vw_notas`*/;
-SET @saved_cs_client     = @@character_set_client;
-SET character_set_client = utf8;
-/*!50001 CREATE TABLE `vw_notas` (
-  `Nota` tinyint NOT NULL,
-  `Chave` tinyint NOT NULL,
-  `Empresa` tinyint NOT NULL,
-  `Data` tinyint NOT NULL,
-  `Setor` tinyint NOT NULL,
-  `PDF` tinyint NOT NULL
-) ENGINE=MyISAM */;
-SET character_set_client = @saved_cs_client;
 
 --
 -- Temporary table structure for view `vw_tabela_produtos`
@@ -191,29 +254,31 @@ SET character_set_client = utf8;
   `Modelo` tinyint NOT NULL,
   `Marca` tinyint NOT NULL,
   `Descricao` tinyint NOT NULL,
+  `RD` tinyint NOT NULL,
   `SD` tinyint NOT NULL,
+  `RA` tinyint NOT NULL,
   `SA` tinyint NOT NULL
 ) ENGINE=MyISAM */;
 SET character_set_client = @saved_cs_client;
 
 --
--- Final view structure for view `vw_notas`
+-- Temporary table structure for view `vw_tabela_view`
 --
 
-/*!50001 DROP TABLE IF EXISTS `vw_notas`*/;
-/*!50001 DROP VIEW IF EXISTS `vw_notas`*/;
-/*!50001 SET @saved_cs_client          = @@character_set_client */;
-/*!50001 SET @saved_cs_results         = @@character_set_results */;
-/*!50001 SET @saved_col_connection     = @@collation_connection */;
-/*!50001 SET character_set_client      = utf8mb4 */;
-/*!50001 SET character_set_results     = utf8mb4 */;
-/*!50001 SET collation_connection      = utf8mb4_general_ci */;
-/*!50001 CREATE ALGORITHM=UNDEFINED */
-/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_notas` AS select distinct `Nota_Fiscal`.`Nota_Fiscal` AS `Nota`,`Nota_Fiscal`.`Chave_Acesso` AS `Chave`,`Nota_Fiscal`.`Empresa` AS `Empresa`,`Nota_Fiscal`.`Emissao` AS `Data`,`Setor`.`Setor` AS `Setor`,`Nota_Fiscal`.`Nota_PDF` AS `PDF` from ((`Nota_Fiscal` join `Produto` on((`Nota_Fiscal`.`Nota_Fiscal` = `Produto`.`ID_Nota`))) join `Setor` on((`Produto`.`Setor_Atual` = `Setor`.`Centro_custo`))) */;
-/*!50001 SET character_set_client      = @saved_cs_client */;
-/*!50001 SET character_set_results     = @saved_cs_results */;
-/*!50001 SET collation_connection      = @saved_col_connection */;
+DROP TABLE IF EXISTS `vw_tabela_view`;
+/*!50001 DROP VIEW IF EXISTS `vw_tabela_view`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_tabela_view` (
+  `NV` tinyint NOT NULL,
+  `Setor` tinyint NOT NULL,
+  `Modelo` tinyint NOT NULL,
+  `Marca` tinyint NOT NULL,
+  `Descricao` tinyint NOT NULL,
+  `RA` tinyint NOT NULL,
+  `Key` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Final view structure for view `vw_tabela_produtos`
@@ -229,7 +294,26 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `vw_tabela_produtos` AS select `Produto`.`ID_Produto` AS `ID_Produto`,`Produto`.`ID_Nota` AS `Nota`,`Nota_Fiscal`.`Emissao` AS `Data`,`Nota_Fiscal`.`Chave_Acesso` AS `Chave`,`Nota_Fiscal`.`Empresa` AS `Empresa`,`Setor`.`Setor` AS `Setor`,`Modelos`.`Modelo` AS `Modelo`,`Marcas`.`Marca` AS `Marca`,`Produto`.`Descricao` AS `Descricao`,`Produto`.`Setor_Destino` AS `SD`,`Produto`.`Setor_Atual` AS `SA` from ((((`Produto` join `Modelos` on((`Produto`.`ID_Ex_Modelo` = `Modelos`.`ID_Modelo`))) join `Marcas` on((`Produto`.`ID_Ex_Marca` = `Marcas`.`ID_Marca`))) join `Setor` on((`Produto`.`Setor_Atual` = `Setor`.`Centro_custo`))) join `Nota_Fiscal` on((`Nota_Fiscal`.`Nota_Fiscal` = `Produto`.`ID_Nota`))) group by `Produto`.`ID_Nota` */;
+/*!50001 VIEW `vw_tabela_produtos` AS select `Produto`.`ID_Produto` AS `ID_Produto`,`Produto`.`ID_Nota` AS `Nota`,`Nota_Fiscal`.`Emissao` AS `Data`,`Nota_Fiscal`.`Chave_Acesso` AS `Chave`,`Nota_Fiscal`.`Empresa` AS `Empresa`,`Setor`.`Setor` AS `Setor`,`Modelos`.`Modelo` AS `Modelo`,`Marcas`.`Marca` AS `Marca`,`Produto`.`Descricao` AS `Descricao`,`Produto`.`Relacao_Destino` AS `RD`,`Produto`.`Setor_Destino` AS `SD`,`Produto`.`Relacao_Atual` AS `RA`,`Produto`.`Setor_Atual` AS `SA` from (((((`Produto` join `Modelos` on((`Produto`.`ID_Ex_Modelo` = `Modelos`.`ID_Modelo`))) join `Marcas` on((`Produto`.`ID_Ex_Marca` = `Marcas`.`ID_Marca`))) join `Setor` on((`Produto`.`Setor_Destino` = `Setor`.`Centro_custo`))) join `Nota_Fiscal` on((`Nota_Fiscal`.`Nota_Fiscal` = `Produto`.`ID_Nota`))) join `Relacao_Setor` on((`Produto`.`Relacao_Destino` = `Relacao_Setor`.`ID_Relacao`))) group by `Produto`.`ID_Nota` */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vw_tabela_view`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_tabela_view`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_tabela_view`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_tabela_view` AS select `Produto`.`ID_Nota` AS `NV`,`Setor`.`Setor` AS `Setor`,`Modelos`.`Modelo` AS `Modelo`,`Marcas`.`Marca` AS `Marca`,`Produto`.`Descricao` AS `Descricao`,`Produto`.`Relacao_Atual` AS `RA`,`Produto`.`Key_Serial` AS `Key` from (((((`Produto` join `Modelos` on((`Produto`.`ID_Ex_Modelo` = `Modelos`.`ID_Modelo`))) join `Marcas` on((`Produto`.`ID_Ex_Marca` = `Marcas`.`ID_Marca`))) join `Setor` on((`Produto`.`Setor_Atual` = `Setor`.`Centro_custo`))) join `Nota_Fiscal` on((`Nota_Fiscal`.`Nota_Fiscal` = `Produto`.`ID_Nota`))) join `Relacao_Setor` on((`Produto`.`Relacao_Destino` = `Relacao_Setor`.`ID_Relacao`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -243,4 +327,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-21 22:33:29
+-- Dump completed on 2018-10-24  7:01:27

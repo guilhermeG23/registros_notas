@@ -44,7 +44,3 @@ function modelo_img($modelo) {
 	}
 	return $v;
 }
-
-function tratamento_pesquisa() {
-
-}
