@@ -9,8 +9,10 @@ if($quatidade > 0) {
 				<th>Nota</th>
 				<th id="sumir-campo-cabecalho">Chave</th>
 				<th class="tabela-visita-coluna" id="sumir_chave">Chave</th>
+				<th class="tabela-visita-coluna" id="sumir_cnpj">CNPJ</th>
 				<th>Empresa</th>
 				<th>Data</th>
+				<th class="tabela-visita-coluna" id="sumir_relacao">Relacao Destino</th>
 				<th>Setor destino</th>
 				<th>Registrados</th>
 				<th>View</th>
@@ -26,13 +28,13 @@ if($quatidade > 0) {
 		while($chamada=mysqli_fetch_array($registros)) {
 ?>
 		<tr>
-			<th><?=$chamada["Nota"];?></th>
-			<th name="sumir-campo-tabela"><?=substr($chamada["Chave"], 28, 16);?></th>
-			<th class="tabela-visita-coluna" name="key">
-				<?=$chamada["Chave"];?>
-			</th>
+			<th><?=tratamento_nota($chamada["Nota"]);?></th>
+			<th name="sumir-campo-tabela"><?=tratamento_min_chave($chamada["Chave"]);?></th>
+			<th class="tabela-visita-coluna" name="key"><?=tratamento_chave($chamada["Chave"]);?></th>
+			<th class="tabela-visita-coluna" name="cnpj"><?=tratamento_cnpj($chamada["CNPJ"]);?></th>
 			<th><?=$chamada["Empresa"];?></th>
 			<th><?=tratamento_data($chamada["Data"]);?></th>
+			<th class="tabela-visita-coluna" name="relacao"><?=$chamada["Relacao"];?></th>
 			<th><?=$chamada["Setor"];?></th>
 			<th>
 			<?php
@@ -62,34 +64,8 @@ if($quatidade > 0) {
 				<button type="button" class="btn btn-danger btn-tabela-dng" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar</button>
 			</th>
 		</tr>
-
-		<div class="modal fade bd-example-modal-lg" id="modal<?=$chamada["Nota"];?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg" role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">Deletar</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-					</div>
-					<form action="deletar_nota.php" method="POST" enctype="multipart/form-data">
-					<div class="modal-body">
-						<div class="container regular-altura">
-							<div class="form-group">
-								<input type="hidden" value="<?=$chamada["Nota"];?>" name="deletar" id="deletar">
-								<p>Tem certeza que quer deletar esta nota e todos os equipamentos registrados dela?</p>
-								<p>Nota: <?=$chamada["Nota"];?></p>
-							</div>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-danger" data-dismiss="modal">Não</button>
-							<button type="submit" class="btn btn-success">Sim</button>
-						</div>
-					</div>
-					</form>	
-				</div>
-			</div>
-		</div>
-
 <?php
+		include('modal-deletar-nota.php');
 		}
 ?>
 		</tbody>

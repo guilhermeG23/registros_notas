@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['pesquisar']) && strlen($_POST['pesquisar']) > 0) {
 	$variavel = $_POST['pesquisar'];
-	$query = "select * from vw_tabela_produtos where nota like '%{$variavel}%' or Empresa like '%{$variavel}%' or Chave like '%{$variavel}%' order by ID_Produto desc;";
+	$query = "select * from vw_tabela_produto swhere nota like '%{$variavel}%' or CNPJ like '%{$variavel}%' or Empresa like '%{$variavel}%' or Chave like '%{$variavel}%' order by ID_Produto desc;";
 }
 /*elseif (isset($_POST['data']) && strlen($_POST['data']) > 0) {
 	$variavel = $_POST['data'];

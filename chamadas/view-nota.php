@@ -1,7 +1,7 @@
 <div class="jumbotron text-esquerda">
 <?php
 $nota = $_POST["visualizar"];
-$query = "select Nota, Chave, Data, Empresa, Setor, Relacao_Setor.Relacao as 'RD_Nome' from vw_tabela_produtos inner join Relacao_Setor on vw_tabela_produtos.RD = Relacao_Setor.ID_Relacao where Nota = '{$nota}';";
+$query = "select Nota, Chave, Data, CNPJ, Empresa, Setor, Relacao_Setor.Relacao as 'RD_Nome' from vw_tabela_produtos inner join Relacao_Setor on vw_tabela_produtos.RD = Relacao_Setor.ID_Relacao where Nota = '{$nota}';";
 $registros = mysqli_query($conexao_banco, $query);
 while($chamada=mysqli_fetch_array($registros)) {
 	$pdf = "select Nota_PDF from Nota_Fiscal where Nota_Fiscal = '{$nota}';";
@@ -13,13 +13,17 @@ while($chamada=mysqli_fetch_array($registros)) {
 	<p>Nota fiscal: <?=$chamada["Nota"];?></p>	
 	<p>Chave: <?=$chamada["Chave"];?></p>	
 	<p>Emissao: <?=tratamento_data($chamada["Data"]);?></p>	
+	<p>CNPJ: <?=$chamada["CNPJ"];?></p>	
 	<p>Empresa: <?=$chamada["Empresa"];?></p>	
 	<p>Relacao destino: <?=$chamada["RD_Nome"];?></p>
 	<p>Setor destino: <?=$chamada["Setor"];?></p>
+
 	<div class="left-div">	
-		<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?php echo base64_encode($nota_pdf);?>" download>Download</a>
+		<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?php echo base64_encode($nota_pdf);?>" download>Download da Nota</a>
+		<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
 	</div>
 <?php
+	include('modal-deletar-nota.php');
 }
 ?>
 <table class="table tabela-visita table-bordered">

@@ -32,7 +32,7 @@
 						</tr>
 						<tr>
 							<td><img class="min-imagem-menu" src="../imagens/alterar.png"></td>
-							<td>Abrir opcoes de alterar ou deletar notas</td>
+							<td>Abrir opcoes de visualizar + conteudos, alterar e/ou deletar notas</td>
 						</tr>
 						<tr>
 							<td><img class="min-imagem-menu" src="../imagens/lupa.png"></td>

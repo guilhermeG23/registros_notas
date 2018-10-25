@@ -11,21 +11,20 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 
 	$contador = limpar_entrada_numero($_POST["contador"]);
 	$data = tratamento_entrada_data(limpar_entrada_numero($_POST["data_entrada"]));
-	$funcionario = tratamento_entrada_palavra($_POST['funcionario']);
-	$relacao = limpar_entrada_numero($_POST['relacao']);
-	$cnjp = limpar_entrada_numero($_POST['cnpj_empresa']);
+	$funcionario = tratamento_entrada_palavra($_POST["funcionario"]);
+	$relacao = limpar_entrada_numero($_POST["relacao"]);
+	$valor_cnpj = limpar_entrada_numero($_POST["cnpj"]);
 	$empresa = tratamento_entrada_palavra($_POST["empresa"]);
-	$setor = tratamento_uppercase($_POST['setor']);
+	$setor = tratamento_uppercase($_POST["setor"]);
 
-	if(confirma_cnpj($conexao_banco, $cnpj)) {
-		cadastrar_cnpj($conexao_banco, $cnpj, $empresa);
+	if(confirma_cnpj($conexao_banco, $valor_cnpj)) {
+		cadastrar_cnpj($conexao_banco, $valor_cnpj, $empresa);
 	}
-
-	die();
+	
 	if(confirma_existe_nota($conexao_banco, $nota)) {
 		$arquivo = registro_pdf($_FILES["arq"]["size"], $_FILES["arq"]["tmp_name"]);
 		$nome = registro_pdf($_FILES["arq"]["name"]);
-		cadastrar_nota($conexao_banco, $nota, $chave, $data, $cnpj, $nome, $arquivo);
+		cadastrar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj, $nome, $arquivo);
 	} else {
 		header("Location: index.php");
 		die();

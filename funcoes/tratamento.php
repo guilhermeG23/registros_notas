@@ -24,6 +24,23 @@ function tratamento_data($data) {
 	return substr($data,8,2) . "/" . substr($data,5,2) . "/" .  substr($data,0,4);
 }
 
+function tratamento_nota($nota) {
+	return substr($nota,0,3) . "." . substr($nota,3,3) . "." .  substr($nota,6,3);
+}
+
+function tratamento_min_chave($chave) {
+	return substr($chave,28,4) . "." . substr($chave,32,4) . "." .  substr($chave,36,4) . "." .  substr($chave,40,4);
+}
+
+function tratamento_chave($chave) {
+	$chave = substr($chave,0,4) . "." . substr($chave,4,4) . "." .  substr($chave,8,4) . "." .  substr($chave,12,4) . "." . substr($chave,16,4) . "." . substr($chave,20,4) . "." .  substr($chave,24,4) . "." . substr($chave,28,4) . "." . substr($chave,32,4) . "." .  substr($chave,36,4) . "." .  substr($chave,40,4);
+	return $chave;
+}
+
+function tratamento_cnpj($cnpj) {
+	return substr($cnpj,0,2) . "." . substr($cnpj,2,3) . "." . substr($cnpj,5,3) . "/" . substr($cnpj,8,4) . "-" . substr($cnpj,12,2);
+}
+
 function modelo_img($modelo) {
 	if($modelo == "Software") {
 		$v = "<img class='min-imagem-menu-tabela' src='../imagens/software.png'>";

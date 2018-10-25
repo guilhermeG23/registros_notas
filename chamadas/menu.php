@@ -27,10 +27,12 @@
 				<div class="dropdown">
 					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/alterar.png"></button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_chave', 'key');"><img class="min-imagem-menu" src="../imagens/registro.png">Chave Completa</button>
-						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_down', 'down');"><img class="min-imagem-menu" src="../imagens/alterar.png">Download</button>
+						<button type="button" id="chave_alterar_js" class="dropdown-item" onclick="mostrar_coluna_chave('sumir_chave', 'key');"><img class="min-imagem-menu" src="../imagens/alterar.png">Chave Completa</button>
+						<button type="button" id="CNPJ" class="dropdown-item" onclick="mostrar_coluna('CNPJ', 'sumir_cnpj', 'cnpj');"><img class="min-imagem-menu" src="../imagens/alterar.png">CNPJ</button>
+						<button type="button" id="Relacao" class="dropdown-item" onclick="mostrar_coluna('Relacao', 'sumir_relacao', 'relacao');"><img class="min-imagem-menu" src="../imagens/alterar.png">Relacao</button>
+						<button type="button" id="Download" class="dropdown-item" onclick="mostrar_coluna('Download', 'sumir_down', 'down');"><img class="min-imagem-menu" src="../imagens/alterar.png">Download</button>
 						<!--<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_alt', 'alt');"><img class="min-imagem-menu" src="../imagens/alterar.png">Alterar</button>-->
-						<button type="button" class="dropdown-item" onclick="mostrar_coluna('sumir_del', 'del');"><img class="min-imagem-menu" src="../imagens/alterar.png">Deletar</button>
+						<button type="button" id="Deletar" class="dropdown-item" onclick="mostrar_coluna('Deletar', 'sumir_del', 'del');"><img class="min-imagem-menu" src="../imagens/alterar.png">Deletar</button>
 					</div>
 				</div>
 			</li>

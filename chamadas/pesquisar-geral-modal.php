@@ -13,7 +13,7 @@
 						<table class="table table-borderless tabela-registro">
 							<tr>
 								<td><label class="col-form-label">Geral: </label></td>
-								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="pesquisar" name="pesquisar" maxlength="100" placeholder="EX: Empresa, nota, chave ..." autocomplete="off">		
+								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="pesquisar" name="pesquisar" maxlength="100" placeholder="EX: CNPJ, empresa, nota, chave ..." autocomplete="off">		
 							</tr>
 							<?php
 /*

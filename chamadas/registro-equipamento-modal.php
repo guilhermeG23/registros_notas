@@ -25,8 +25,9 @@
 							</tr>
 							<tr>
 								<td><label class="col-form-label">CNPJ: </label></td>
-								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,18)" value="" id="cnpj_empresa" name="cnpj_empresa" maxlength="18" placeholder="EX: Empresa da nota" autocomplete="off" required>		
-							
+								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,18)" value="" id="cnpj" name="cnpj" maxlength="18" placeholder="EX: Empresa da nota" autocomplete="off" required>		
+							</tr>
+							<tr>
 								<td><label class="col-form-label">Empresa: </label></td>
 								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required>		
 							</tr>
