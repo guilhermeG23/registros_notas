@@ -1,3 +1,4 @@
+//Funcao principal de expandir
 function mostrar_coluna(alterar_menu, nome, altera) {
 	//variaveis
 	var display = document.getElementById(nome).style.display;
@@ -25,6 +26,7 @@ function mostrar_coluna(alterar_menu, nome, altera) {
 	}
 }
 
+//Funcao customizada para mostrar a chave
 function mostrar_coluna_chave(nome, altera) {
 	//variaveis
 	var display = document.getElementById(nome).style.display;

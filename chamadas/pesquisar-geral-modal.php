@@ -13,16 +13,23 @@
 						<table class="table table-borderless tabela-registro">
 							<tr>
 								<td><label class="col-form-label">Geral: </label></td>
-								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="pesquisar" name="pesquisar" maxlength="100" placeholder="EX: CNPJ, empresa, nota, chave ..." autocomplete="off">		
+								<td><input type="text" class="form-control" onkeyup="limitarInput(this,54)" value="" id="pesquisar" name="pesquisar" maxlength="54" placeholder="EX: CNPJ, nota, chave ..." autocomplete="off">		
 							</tr>
-							<?php
-/*
 							<tr>
-								<td><label class="col-form-label">Emissao: </label></td>
-								<td><input type="text" class="form-control data" onkeyup="limitarInput(this,10)" value="" id="data" name="data" maxlength="10" placeholder="EX: dd/mm/yyyy" autocomplete="off"></td>
+								<td><label class="col-form-label">Empresas: </label></td>
+								<td><select class="form-control" name="empresa_emite" id="empresa_emite"> 
+									<option value="" select>...</option>
+									<?php
+									$query = "select * from Empresa_Nota";
+									$resultado = mysqli_query($conexao_banco, $query);
+									while($chamada=mysqli_fetch_array($resultado)) {
+									?>
+									<option value="<?=$chamada['CNPJ'];?>"><?=$chamada['Empresa'];?></option>
+									<?php
+									}
+									?>
+								</select></td>
 							</tr>
- */
-							?>
 						</table>	
 					</div>
 					<div class="modal-footer">
