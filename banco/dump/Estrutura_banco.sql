@@ -175,7 +175,7 @@ CREATE TABLE `Produto` (
   CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
   CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
   CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=47 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=48 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -330,4 +330,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-10-26 13:02:39
+-- Dump completed on 2018-10-29 12:59:44

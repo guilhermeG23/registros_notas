@@ -6,3 +6,4 @@
 <script type="text/javascript" src="../js/jquery.mask.js"></script>	
 <script type="text/javascript" src="../js/jquery-ui.js"></script>	
 <script type="text/javascript" src="../js/js-geral.js"></script>
+<script type="text/javascript" src="../js/ajax.js"></script>

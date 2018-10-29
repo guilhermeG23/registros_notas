@@ -18,7 +18,7 @@
 				</div>
 			</li>
 			<?php
-			$query = "select Nota_Fiscal from Nota_Fiscal;";
+		//	$query = "select Nota_Fiscal from Nota_Fiscal;";
 			$contador = mysqli_query($conexao_banco, $query);
 			$contador = mysqli_num_rows($contador);
 			if($contador > 0) {

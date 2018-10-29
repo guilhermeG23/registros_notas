@@ -31,7 +31,7 @@ function tratamento_data($data) {
 
 #tratamento mostrar nota 
 function tratamento_nota($nota) {
-	return substr($nota,0,3) . " " . substr($nota,3,3) . " " .  substr($nota,6,3);
+	return substr($nota,0,3) . "." . substr($nota,3,3) . "." .  substr($nota,6,3);
 }
 
 #tratamento mostrar parte da chave

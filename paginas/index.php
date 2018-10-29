@@ -4,6 +4,7 @@ include ('../banco/banco.php');
 #incluir tratamentos
 include ('../funcoes/tratamento.php');
 #incluindo conteudo da pagina
+include ('../chamadas/entrada-pesquisa-tabela.php');
 include ('../chamadas/cabecalho.php');
 include ('../chamadas/menu.php');
 include ('../chamadas/registro-equipamento-modal.php');

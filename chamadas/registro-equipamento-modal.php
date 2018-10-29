@@ -13,7 +13,7 @@
 						<table class="table">			
 							<tr>
 								<td><label class="col-form-label">N.Nota: </label></td>
-								<td colspan="6"><input type="text" class="form-control" onkeyup="limitarInput(this,9)"  value="" id="nota" name="nota" maxlength="9" placeholder="EX: N Nota" autocomplete="off" required></td>
+								<td colspan="6"><input type="text" class="form-control" onkeyup="limitarInput(this,11)"  value="" id="nota" name="nota" maxlength="11" placeholder="EX: N Nota" autocomplete="off" required></td>
 							</tr>
 							<tr>
 								<td><label class="col-form-label">Chave: </label></td>
