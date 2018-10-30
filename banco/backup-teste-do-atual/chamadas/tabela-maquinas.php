@@ -7,8 +7,8 @@ if($quatidade > 0) {
 		<thead class="thead-light tabela-visita-head">
 			<tr>
 				<th>Nota</th>
-				<th id="sumir-campo-cabecalho">Chave (28-44)</th>
-				<th class="tabela-visita-coluna" id="sumir_chave">Chave completa</th>
+				<th id="sumir-campo-cabecalho">Chave</th>
+				<th class="tabela-visita-coluna" id="sumir_chave">Chave</th>
 				<th class="tabela-visita-coluna" id="sumir_cnpj">CNPJ</th>
 				<th>Empresa</th>
 				<th>Data</th>
