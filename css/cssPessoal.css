@@ -150,7 +150,8 @@ appearance: textfield;
 }
 /*Ajuste div left*/
 .left-div {
-	text-align: right;
+	display: ruby;
+	text-align: left;
 }
 /*Arruma jumbotron*/
 .text-esquerda {

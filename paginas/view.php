@@ -7,8 +7,6 @@ include ('../funcoes/tratamento.php');
 include ('../chamadas/cabecalho.php');
 include ('../chamadas/menu-view.php');
 include ('../chamadas/registro-equipamento-modal.php');
-include ('../chamadas/registro-funcionario-modal.php');
-include ('../chamadas/registro-setor-modal.php');
 include ('../chamadas/pesquisar-geral-modal.php');
 include ('../chamadas/pesquisar-setor-modal.php');
 include ('../chamadas/pesquisar-modelo-modal.php');

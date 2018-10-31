@@ -17,8 +17,11 @@ while($chamada=mysqli_fetch_array($registros)) {
 	<p>Empresa: <?=$chamada["Empresa"];?></p>	
 	<p>Relacao destino: <?=$chamada["RD_Nome"];?></p>
 	<p>Setor destino: <?=$chamada["Setor"];?></p>
-
-	<div class="left-div">	
+	<div class="left-div">
+		<form action="alterar.php" method="POST">
+			<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
+			<button type="submit" class="btn btn-warning btn-margin-bottom">Alterar Nota</button>
+		</form>	
 		<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?php echo base64_encode($nota_pdf);?>" download>Download da Nota</a>
 		<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
 	</div>

@@ -166,7 +166,7 @@
 									<?php
 									}
 									?>
-									</select></td>
+								</select></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 100)" value="" id="Descricao" name="Descricao" maxlength="100" placeholder="Ex: descricao" autocomplete="off"></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 54)" value="" id="Serial" name="Serial" maxlength="54" placeholder="Ex: Serial" autocomplete="off"></td>
 								<td colspan="1"><select class="form-control" id="relacaoAtual" name="relacaoAtual">

@@ -8,7 +8,6 @@ include ('../chamadas/entrada-pesquisa-tabela.php');
 include ('../chamadas/cabecalho.php');
 include ('../chamadas/menu.php');
 include ('../chamadas/registro-equipamento-modal.php');
-include ('../chamadas/modal-registrar-nota.php');
 include ('../chamadas/pesquisar-geral-modal.php');
 include ('../chamadas/pesquisar-modelo-modal.php');
 include ('../chamadas/pesquisar-setor-modal.php');

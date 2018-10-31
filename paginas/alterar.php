@@ -1,20 +1,19 @@
 <?php
-#incluindo o banco para fazer chamadas
+#incluir banco
 include ('../banco/banco.php');
-#tratamento de funcoes
+#incluir tratamentos
 include ('../funcoes/tratamento.php');
-#trazendo o que e preciso para montar a pagina
+#incluindo conteudo da pagina
+include ('../chamadas/entrada-pesquisa-tabela.php');
 include ('../chamadas/cabecalho.php');
-include ('../chamadas/menu-view.php');
-include ('../chamadas/registro-equipamento-modal.php');
-include ('../chamadas/registro-funcionario-modal.php');
-include ('../chamadas/registro-setor-modal.php');
+include ('../chamadas/menu-alterar.php');
+include ('../chamadas/modal-registrar-nota.php');
 include ('../chamadas/pesquisar-geral-modal.php');
-include ('../chamadas/pesquisar-setor-modal.php');
 include ('../chamadas/pesquisar-modelo-modal.php');
+include ('../chamadas/pesquisar-setor-modal.php');
 include ('../chamadas/ajuda.php');
 include ('../chamadas/barra-pesquisa.php');
 include ('../chamadas/pagina-corpo.php');
-include ('../chamadas/view-nota.php');
+include ('../chamadas/registro-equipamento-sem-modal.php');
 include ('../chamadas/pagina-fim-corpo.php');
 include ('../chamadas/java-script-ex.php');

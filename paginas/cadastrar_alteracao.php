@@ -29,27 +29,8 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		cadastrar_cnpj($conexao_banco, $valor_cnpj, $empresa);
 	}
 
-	#Cadastrar nota caso ela nao exista
-	if(confirma_existe_nota($conexao_banco, $nota)) {
-		$arquivo = registro_pdf($_FILES["arq"]["size"], $_FILES["arq"]["tmp_name"]);
-		$nome = registro_pdf($_FILES["arq"]["name"]);
-		cadastrar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj, $nome, $arquivo);
-	} else {
-		#caso exista manda para o index e mata a operacao
-		header("Location: index.php");
-		die();
-	}
-	
-	#variavel padrao para usar nos contadores
-	$crescer = 0;
-
-	#cadastrar produtos da nota
-	while($crescer < $contador) {
-		#cadastrar produtos
-		cadastrar_produto_nota($conexao_banco, $nota, $_POST["Equipamento" . $crescer], $_POST["Marca" . $crescer], $_POST["Descricao" . $crescer], $_POST["Serial" . $crescer], $relacao, $setor, $_POST["relacaoAtual" . $crescer], $_POST["Localatual" . $crescer], $funcionario);
-		#Crescer contador
-		$crescer++;
-	}
+	alterar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj);
+	alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $funcionario);
 }
 
 #redirecionar e matar a pagina

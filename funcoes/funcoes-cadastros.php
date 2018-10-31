@@ -21,6 +21,19 @@ function cadastrar_cnpj($conexao_banco, $cnpj, $empresa) {
 	mysqli_query($conexao_banco, $query);
 }
 
+
+//alterar a nota fiscal
+function alterar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj) {
+	$query = "update Nota_Fiscal set Chave_Acesso = '{$chave}', Emissao = '{$data}', CNPJ_Empresa = '{$valor_cnpj}' where Nota_Fiscal = '{$nota}';";
+	mysqli_query($conexao_banco, $query);
+}
+
+//Alterar produto do funcionario
+function alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $funcionario) {
+	$query = "update Produto set Relacao_Destino = '{$relacao}', Setor_Destino = '{$setor}', Funcionario = '{$funcionario}' where ID_Nota = '{$nota}';";
+	mysqli_query($conexao_banco, $query);
+}
+
 #deleta nota
 function deletar_nota($deletar) {
 	if(isset($deletar)) {
