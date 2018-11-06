@@ -1,6 +1,6 @@
 <?php
 $alterar = $_POST['alterar'];
-$query_nota = "select * from vw_preencher_tabela where Nota = '{$alterar}';";
+$query_nota = "select * from vw_preencher_tabela where Nota = '{$alterar}' group by Nota;";
 $pesquisar = mysqli_query($conexao_banco, $query_nota);
 while($preencher=mysqli_fetch_array($pesquisar)) {
 ?>

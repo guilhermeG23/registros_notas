@@ -35,7 +35,7 @@ CREATE TABLE `Empresa_Nota` (
 
 LOCK TABLES `Empresa_Nota` WRITE;
 /*!40000 ALTER TABLE `Empresa_Nota` DISABLE KEYS */;
-INSERT INTO `Empresa_Nota` VALUES ('12212121212121','teste'),('21212121212121','teste'),('55555555555555','guilherme');
+INSERT INTO `Empresa_Nota` VALUES ('12212121212121','teste'),('12312213123213','teste'),('12321313131313','teste empresa'),('21212121212121','teste'),('43432343423423','tttttttttt'),('44444443333333','teste'),('55555555555555','guilherme'),('89450934590439','teste');
 /*!40000 ALTER TABLE `Empresa_Nota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +150,7 @@ CREATE TABLE `Produto` (
   CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
   CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
   CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -210,6 +210,31 @@ LOCK TABLES `Setor` WRITE;
 INSERT INTO `Setor` VALUES ('0001',1,'Presidncia / Assessoria'),('0010',1,'Assessoria Judiciaria'),('1110',1,'Departamento Financeiro'),('2210',1,'Custos e Orcamentos'),('3100',1,'Contabilidade geral'),('3120',1,'Faturamento'),('4100',1,'C.P.D'),('5100',1,'Departamento de Recursos Humanos / Admin'),('5120',1,'Servicos ao Pessoal'),('5130',1,'Treinamento'),('5150',1,'Seguranca / Portaria'),('5160',1,'Servico de segunranca e medias de tranpo'),('6100',2,'Departamento Comercial / Administracao d'),('6110',2,'Vendedores e Representantes'),('6200',2,'Frete s/ Vendas'),('7100',1,'Suprimentos / Compras'),('7120',3,'Almoxarifado Geral'),('7130',1,'Fazenda'),('7200',3,'Compras Aparas'),('7220',3,'Almoxarifado de materia prima'),('9100',3,'Producao'),('9110',4,'Producao'),('9111A',5,'Preparacao de Massa'),('9111B',5,'Maquina Continua'),('9111C',5,'Coating'),('9112A',6,'Preparacao de Massa'),('9112B',6,'Maquina Continua'),('9112C',6,'Coating'),('9113A',7,'Preparacao de Massa'),('9113B',7,'Maquina Continua'),('9113C',7,'Coating'),('9113D',7,'Size Press'),('9114A',8,'Preparacao de Massa'),('9114B',8,'Maquina Continua'),('9114C',8,'Coating'),('9114D',8,'Size Press');
 /*!40000 ALTER TABLE `Setor` ENABLE KEYS */;
 UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `vw_preencher_produto`
+--
+
+DROP TABLE IF EXISTS `vw_preencher_produto`;
+/*!50001 DROP VIEW IF EXISTS `vw_preencher_produto`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vw_preencher_produto` (
+  `Nota` tinyint NOT NULL,
+  `ID` tinyint NOT NULL,
+  `ID_Modelo` tinyint NOT NULL,
+  `Modelo` tinyint NOT NULL,
+  `ID_Marca` tinyint NOT NULL,
+  `Marca` tinyint NOT NULL,
+  `Descricao` tinyint NOT NULL,
+  `Chave` tinyint NOT NULL,
+  `RA` tinyint NOT NULL,
+  `RelacaoAtual` tinyint NOT NULL,
+  `SA` tinyint NOT NULL,
+  `Setor` tinyint NOT NULL,
+  `Funcionario` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
 
 --
 -- Temporary table structure for view `vw_preencher_tabela`
@@ -282,6 +307,25 @@ SET character_set_client = utf8;
 SET character_set_client = @saved_cs_client;
 
 --
+-- Final view structure for view `vw_preencher_produto`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vw_preencher_produto`*/;
+/*!50001 DROP VIEW IF EXISTS `vw_preencher_produto`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vw_preencher_produto` AS select `Produto`.`ID_Nota` AS `Nota`,`Produto`.`ID_Produto` AS `ID`,`Produto`.`ID_Ex_Modelo` AS `ID_Modelo`,`Modelos`.`Modelo` AS `Modelo`,`Produto`.`ID_Ex_Marca` AS `ID_Marca`,`Marcas`.`Marca` AS `Marca`,`Produto`.`Descricao` AS `Descricao`,`Produto`.`Key_Serial` AS `Chave`,`Produto`.`Relacao_Atual` AS `RA`,`Relacao_Setor`.`Relacao` AS `RelacaoAtual`,`Produto`.`Setor_Atual` AS `SA`,`Setor`.`Setor` AS `Setor`,`Produto`.`Funcionario` AS `Funcionario` from ((((`Produto` join `Setor` on((`Produto`.`Setor_Atual` = `Setor`.`Centro_custo`))) join `Relacao_Setor` on((`Produto`.`Relacao_Atual` = `Relacao_Setor`.`ID_Relacao`))) join `Modelos` on((`Produto`.`ID_Ex_Modelo` = `Modelos`.`ID_Modelo`))) join `Marcas` on((`Produto`.`ID_Ex_Marca` = `Marcas`.`ID_Marca`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
 -- Final view structure for view `vw_preencher_tabela`
 --
 
@@ -347,4 +391,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-01 12:47:14
+-- Dump completed on 2018-11-06 11:15:39

@@ -34,12 +34,25 @@ function alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $f
 	mysqli_query($conexao_banco, $query);
 }
 
+#Alterar produto
+function alterar_produto($conexao_banco, $ID, $equipamento, $marca, $descricao, $serial, $relacao, $setor, $funcionario) {
+	$query = "update Produto set ID_Ex_Modelo = '{$equipamento}', ID_Ex_Marca = '{$marca}', Descricao = '{$descricao}', Key_Serial = '{$serial}',  Relacao_Atual = '{$relacao}', Setor_Atual = '{$setor}', Funcionario = '{$funcionario}' where ID_Produto = '{$ID}';";
+	mysqli_query($conexao_banco, $query);
+}
 #deleta nota
 function deletar_nota($conexao_banco, $deletar) {
 	if(isset($deletar)) {
 		$query = "delete from Produto where ID_Nota = '{$deletar}';";
 		mysqli_query($conexao_banco, $query);
 		$query = "delete from Nota_Fiscal where Nota_Fiscal = '{$deletar}';";
+		mysqli_query($conexao_banco, $query);
+	}
+}
+
+#deletar produto
+function deletar_produto($conexao_banco, $deletar) {
+	if(isset($deletar)) {
+		$query = "delete from Produto where ID_Produto = '{$deletar}';";
 		mysqli_query($conexao_banco, $query);
 	}
 }
@@ -58,6 +71,18 @@ function confirma_cnpj($conexao_banco, $cnpj) {
 	} else {
 		return false;
 	}
+}
+
+#Confirma produto
+function confirma_produto($conexao_banco, $id) {
+	$query = "select ID_Produto from Produto where ID_Produto = {$id};";
+	$procura = mysqli_query($conexao_banco, $query);
+	$valores = mysqli_num_rows($procura);
+	if($valores == 0) {
+		return true;
+	} else {
+		return false;
+	}	
 }
 
 #registra o pdf

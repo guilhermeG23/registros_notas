@@ -150,8 +150,9 @@ appearance: textfield;
 }
 /*Ajuste div left*/
 .left-div {
-	display: ruby;
-	text-align: left;
+	display: -webkit-inline-box;
+	text-align: right;
+	width: 100%;
 }
 @media screen and (max-width: 480px) {
 	.left-div {
@@ -178,6 +179,9 @@ appearance: textfield;
 }
 .tabela-visita-coluna {
 	display: none;
+}
+.btn-margin-left {
+	margin-right: 5px;
 }
 /*Botoes dos meses do modal de anos para pesquisar*/
 .btn-menu-anos {

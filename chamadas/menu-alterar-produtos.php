@@ -6,17 +6,12 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
-				<div class="dropdown">
-					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/registro.png"></button>
-						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#registrar_computador"><img class="min-imagem-menu" src="../imagens/registro.png">Nota</button>
-					</div>
-				</div>
-			</li>
 			<?php
 			if(!isset($query)) {
 				$query = "select Nota_Fiscal from Nota_Fiscal;";
+			} else {
+			
+			
 			}
 			$contador = mysqli_query($conexao_banco, $query);
 			$contador = mysqli_num_rows($contador);
@@ -26,13 +21,6 @@
 				<div class="dropdown">
 					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/alterar.png"></button>
 					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<button type="button" id="chave_alterar_js" class="dropdown-item" onclick="mostrar_coluna_chave('sumir_chave', 'key');"><img class="min-imagem-menu" src="../imagens/alterar.png">Chave Completa</button>
-						<button type="button" id="CNPJ" class="dropdown-item" onclick="mostrar_coluna('CNPJ', 'sumir_cnpj', 'cnpj');"><img class="min-imagem-menu" src="../imagens/alterar.png">CNPJ</button>
-						<button type="button" id="Alterar Notas" class="dropdown-item" onclick="mostrar_coluna('Alterar Notas', 'sumir_altN', 'altN');"><img class="min-imagem-menu" src="../imagens/alterar.png">Alterar Notas</button>
-						<button type="button" id="Alterar Itens" class="dropdown-item" onclick="mostrar_coluna('Alterar Itens', 'sumir_altP', 'altP');"><img class="min-imagem-menu" src="../imagens/alterar.png">Alterar Itens</button>
-						<button type="button" id="Relacao" class="dropdown-item" onclick="mostrar_coluna('Relacao', 'sumir_relacao', 'relacao');"><img class="min-imagem-menu" src="../imagens/alterar.png">Relacao</button>
-						<button type="button" id="Funcionario" class="dropdown-item" onclick="mostrar_coluna('Funcionario', 'sumir_funcionario', 'funcionario');"><img class="min-imagem-menu" src="../imagens/alterar.png">Funcionario</button>
-						<button type="button" id="Nota PDF" class="dropdown-item" onclick="mostrar_coluna('Nota PDF', 'sumir_down', 'down');"><img class="min-imagem-menu" src="../imagens/alterar.png">Nota PDF</button>
 						<button type="button" id="Deletar" class="dropdown-item" onclick="mostrar_coluna('Deletar', 'sumir_del', 'del');"><img class="min-imagem-menu" src="../imagens/alterar.png">Deletar</button>
 					</div>
 				</div>

@@ -17,8 +17,9 @@ if($quatidade > 0) {
 				<th class="tabela-visita-coluna" id="sumir_funcionario">Funcionario Destino</th>
 				<th>Registrados</th>
 				<th>View</th>
-				<th class="tabela-visita-coluna" id="sumir_down">Download Nota</th>
-				<th class="tabela-visita-coluna" id="sumir_alt">Alterar</th>
+				<th class="tabela-visita-coluna" id="sumir_down">Nota PDF</th>
+				<th class="tabela-visita-coluna" id="sumir_altN">Alterar Notas</th>
+				<th class="tabela-visita-coluna" id="sumir_altP">Alterar Itens</th>
 				<th class="tabela-visita-coluna" id="sumir_del">Deletar</th>
 			</tr>
 		</thead>
@@ -54,10 +55,16 @@ if($quatidade > 0) {
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="down">
-				<a class="btn btn-primary btn-tabela-dng" href="data:application/pdf;base64,<?php echo base64_encode($chamada["PDF"]);?>" download>Download</a>
+				<a class="btn btn-primary btn-tabela-dng" href="data:application/pdf;base64,<?=base64_encode($chamada["PDF"]);?>" target="_blank">Nota</a>
 			</th>
-			<th class="tabela-visita-coluna" name="alt">
+			<th class="tabela-visita-coluna" name="altN">
 				<form action="alterar.php" method="POST">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="alterar" id="alterar">
+					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
+				</form>
+			</th>
+			<th class="tabela-visita-coluna" name="altP">
+				<form action="alterar_produtos.php" method="POST">
 					<input type="hidden" value="<?=$chamada["Nota"];?>" name="alterar" id="alterar">
 					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
 				</form>

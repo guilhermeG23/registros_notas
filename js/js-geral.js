@@ -114,7 +114,7 @@ function mostrar_coluna(alterar_menu, nome, altera) {
 
 	//Confirma se ta visivel
 	if(display == "table-cell") {
-		document.getElementById(alterar_menu).innerHTML = '<img class="min-imagem-menu" src="../imagens/alterar.png"> ' + alterar_menu;
+		document.getElementById(alterar_menu).innerHTML = '<img class="min-imagem-menu" src="../imagens/alterar.png">' + alterar_menu;
 		//Sumir
 		document.getElementById(nome).style.display = 'none';
 		//laco 

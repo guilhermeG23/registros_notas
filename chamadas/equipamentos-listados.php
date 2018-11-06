@@ -1,0 +1,82 @@
+<?php
+$alterar = $_POST['alterar'];
+
+$query_nota = "select * from vw_preencher_tabela where Nota = '{$alterar}' group by Nota limit 1;";
+$query = "select * from vw_preencher_produto where Nota = '{$alterar}';";
+
+$pesquisar = mysqli_query($conexao_banco, $query_nota);
+$pode_deletar = mysqli_query($conexao_banco, $query);
+
+$contador_delete = mysqli_num_rows($pode_deletar);
+
+while($preencher=mysqli_fetch_array($pesquisar)) {
+?>
+<div class="modal-dialog modal-lg" role="document">
+	<div class="modal-content">
+		<div class="modal-header">
+			<h5 class="modal-title" id="exampleModalLabel">Alterar produtos da nota: <?=tratamento_nota($alterar);?></h5>
+		</div>
+			<div class="form-group" style="margin-bottom: 0px;">
+				<table class="table tabela-visita table-bordered" style="margin-bottom: 0px;">
+					<thead class="thead-light tabela-visita-head">
+						<tr>
+							<th>Relacao Atual</th>
+							<th>Setor Atual</th>
+							<th>Modelo</th>
+							<th>Marca</th>
+							<th>Descricao</th>
+							<th>Serial \ Key</th>
+							<th>Alterar</th>
+<?php
+							if($contador_delete > 1) {
+?>	
+							<th class="tabela-visita-coluna" id="sumir_del">Deletar</th>
+<?php
+							}
+?>
+						</tr>
+					</thead>
+					<tbody>
+<?php
+					$registros = mysqli_query($conexao_banco, $query);
+					while($chamada=mysqli_fetch_array($registros)) {
+?>
+					<tr>
+						<th><?=$chamada["RelacaoAtual"];?></th>
+						<th><?=$chamada["Setor"];?></th>
+						<th><?=modelo_img($chamada["Modelo"]);?><?=$chamada["Modelo"];?></th>
+						<th><?=$chamada["Marca"];?></th>
+						<th><?=$chamada["Descricao"];?></th>
+						<th><?=tratamento_chave_soft($chamada["Chave"]);?></th>
+						<th>
+							<form action="alterar_lista_produtos.php" method="POST">
+								<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["ID"];?>" required>
+								<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota btn-tabela-dng">Alterar</button>
+							</form>	
+						</th>
+<?php
+						if($contador_delete > 1) {
+?>	
+						<th class="tabela-visita-coluna" name="del">
+							<form action="deletar_produto.php" method="POST">
+								<input type="hidden" id="alterar" name="deletar_produto" value="<?=$chamada["ID"];?>" required>
+								<button type="submit" class="btn btn-danger btn-margin-bottom btn-alterar-nota btn-tabela-dng">Deletar</button>
+							</form>	
+						</tr>
+<?php
+						}						
+?>
+<?php
+					}
+?>
+					</tbody>	
+				</table>	
+			</div>
+		<div class="modal-footer">
+			<a href="javascript:history.back(1)" class="btn btn-danger">Retornar</a>
+		</div>
+	</div>
+</div>
+<?php
+}
+?>

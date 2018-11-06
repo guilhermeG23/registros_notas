@@ -10,22 +10,30 @@ while($chamada=mysqli_fetch_array($registros)) {
 		$nota_pdf = $pdf_resultado["Nota_PDF"];
 	}
 ?>
-	<p>Nota fiscal: <?=tratamento_nota($chamada["Nota"]);?></p>	
-	<p>Chave: <?=tratamento_chave($chamada["Chave"]);?></p>	
-	<p>Emissao: <?=tratamento_data($chamada["Data"]);?></p>	
-	<p>CNPJ: <?=tratamento_cnpj($chamada["CNPJ"]);?></p>	
-	<p>Empresa: <?=$chamada["Empresa"];?></p>	
-	<p>Relacao destino: <?=$chamada["RD_Nome"];?></p>
-	<p>Setor destino: <?=$chamada["Setor"];?></p>
-	<p>Funcionario destino: <?=$chamada["Funcionario"];?></p>
-	<div class="left-div">
-		<form action="alterar.php" method="POST">
-			<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
-			<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota">Alterar Nota</button>
-		</form>	
-		<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?php echo base64_encode($nota_pdf);?>" download>Download da Nota</a>
-		<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
-	</div>
+	<table>
+		<tr><th><p>Nota fiscal: <?=tratamento_nota($chamada["Nota"]);?></p></th></tr>
+		<tr><th><p>Chave: <?=tratamento_chave($chamada["Chave"]);?></p></th></tr>
+		<tr><th><p>Emissao: <?=tratamento_data($chamada["Data"]);?></p></th></tr>
+		<tr><th><p>CNPJ: <?=tratamento_cnpj($chamada["CNPJ"]);?></p></th></tr>
+		<tr><th><p>Empresa: <?=$chamada["Empresa"];?></p></th></tr>
+		<tr><th><p>Relacao destino: <?=$chamada["RD_Nome"];?></p></th></tr>
+		<tr><th><p>Setor destino: <?=$chamada["Setor"];?></p></th></tr>
+		<tr><th><p>Funcionario destino: <?=$chamada["Funcionario"];?></p></th></tr>
+		<tr><th><div class="left-div">
+			<form action="alterar.php" method="POST" style="margin-right: 5px;">
+				<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
+				<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota">Alterar Nota</button>
+			</form>	
+			<form action="alterar_produtos.php" method="POST" style="margin-right: 5px;">
+				<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
+				<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota">Alterar Produtos</button>
+			</form>
+			<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?=base64_encode($nota_pdf);?>" target="_blank">Visualizar Nota</a>
+			<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?=base64_encode($nota_pdf);?>" download>Download da Nota</a>
+			<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
+			</div>
+		</th></tr>
+	</table>
 <?php
 	include('modal-deletar-nota.php');
 }
