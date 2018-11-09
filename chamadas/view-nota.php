@@ -28,7 +28,10 @@ while($chamada=mysqli_fetch_array($registros)) {
 				<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
 				<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota">Alterar Produtos</button>
 			</form>
-			<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?=base64_encode($nota_pdf);?>" target="_blank">Visualizar Nota</a>
+			<form action="view_pdf.php" method="POST" target="_blank" style="margin-right: 5px;">
+				<input type="hidden" name="view" id="view" value="<?=$chamada["Nota"];?>" required>
+				<button type="submit" class="btn btn-primary btn-margin-bottom btn-alterar-nota">Visualizar Nota</button>
+			</form>
 			<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?=base64_encode($nota_pdf);?>" download>Download da Nota</a>
 			<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
 			</div>
@@ -72,4 +75,7 @@ while($chamada=mysqli_fetch_array($registros)) {
 ?>
 	</tbody>
 </table>
+<form action="index.php" method="POST" style="text-align: right;">
+	<button type="submit" class="btn btn-danger btn-alterar-nota">Retornar</button>
+</form>	
 </div>

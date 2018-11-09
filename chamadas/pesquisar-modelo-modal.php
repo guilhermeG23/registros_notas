@@ -40,7 +40,14 @@
 									}
 									?>
 								</select></td>
-							</tr>			
+							</tr>
+							<tr>
+								<td colspan="6"><hr></td>
+							</tr>				
+							<tr>
+								<td><label class="col-form-label">Descricao: </label></td>
+								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="descricao" name="descricao" maxlength="100" placeholder="EX: Descricao do produto registrado..." autocomplete="off">		
+							</tr>
 						</table>	
 					</div>
 					<div class="modal-footer">

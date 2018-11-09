@@ -44,6 +44,7 @@
 							<tr>
 								<td colspan="6"><hr></td>
 							</tr>
+							<tr>
 								<td><label class="col-form-label">Relacao atual: </label></td>
 								<td><select class="form-control" name="relacao_atual" id="relacao_atual"> 
 									<option value="" select>...</option>

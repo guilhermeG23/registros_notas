@@ -2,6 +2,13 @@
 $existe = mysqli_query($conexao_banco, $query);
 $quatidade = mysqli_num_Rows($existe);
 if($quatidade > 0) {
+
+	if($titulo_pesquisa) {
+?>
+	<h1 class="display-4 titulo-h1">Resultados da pesquisa...</h1>
+<?php
+	}
+
 ?>
 	<table class="table tabela-visita table-bordered">
 		<thead class="thead-light tabela-visita-head">
@@ -41,6 +48,7 @@ if($quatidade > 0) {
 			<th class="tabela-visita-coluna" name="funcionario"><?=$chamada["Funcionario"];?></th>
 			<th>
 			<?php
+				//<a class="btn btn-primary btn-tabela-dng" href="data:application/pdf;base64,<?=base64_encode($chamada["PDF"]);?/>" target="_blank">Nota</a>
 				$produtos = "select Modelos.Modelo as 'Modelo' from Produto inner join Modelos on Produto.ID_Ex_Modelo = Modelos.ID_Modelo where Produto.ID_Nota = '{$chamada["Nota"]}';";
 				$produtos = mysqli_query($conexao_banco, $produtos);
 				while($produto=mysqli_fetch_array($produtos)) {
@@ -55,7 +63,10 @@ if($quatidade > 0) {
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="down">
-				<a class="btn btn-primary btn-tabela-dng" href="data:application/pdf;base64,<?=base64_encode($chamada["PDF"]);?>" target="_blank">Nota</a>
+				<form action="view_pdf.php" method="POST" target="_blank">
+					<input type="hidden" value="<?=$chamada["Nota"];?>" name="view" id="view">
+					<button type="submit" class="btn btn-primary btn-tabela-dng">Nota</button>
+				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="altN">
 				<form action="alterar.php" method="POST">

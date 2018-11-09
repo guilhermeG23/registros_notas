@@ -222,6 +222,10 @@ button:focus {
 	padding: 20px 0 20px 0;
 	font-size: 24px;
 }
+/*Ajustando o h1*/
+.titulo-h1 {
+	margin-bottom: 20px;
+}
 /*Ajustando a tabela, dos tamanhos de fontes as colunas que ficam none para caber na tela*/
 .tabela-visita-head th {
 	font-weight: bold;

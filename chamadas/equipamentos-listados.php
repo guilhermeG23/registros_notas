@@ -11,7 +11,7 @@ $contador_delete = mysqli_num_rows($pode_deletar);
 
 while($preencher=mysqli_fetch_array($pesquisar)) {
 ?>
-<div class="modal-dialog modal-lg" role="document">
+<div class="" role="document">
 	<div class="modal-content">
 		<div class="modal-header">
 			<h5 class="modal-title" id="exampleModalLabel">Alterar produtos da nota: <?=tratamento_nota($alterar);?></h5>
@@ -58,15 +58,13 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 						if($contador_delete > 1) {
 ?>	
 						<th class="tabela-visita-coluna" name="del">
-							<form action="deletar_produto.php" method="POST">
-								<input type="hidden" id="alterar" name="deletar_produto" value="<?=$chamada["ID"];?>" required>
-								<button type="submit" class="btn btn-danger btn-margin-bottom btn-alterar-nota btn-tabela-dng">Deletar</button>
-							</form>	
+							<button type="button" class="btn btn-danger btn-tabela-dng" data-toggle="modal" data-target="#modal<?=$chamada["ID"];?>">Deletar</button>
 						</tr>
-<?php
+<?php						
 						}						
 ?>
-<?php
+<?php	
+					include('modal-deletar-produto.php');
 					}
 ?>
 					</tbody>	
@@ -74,6 +72,10 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 			</div>
 		<div class="modal-footer">
 			<a href="javascript:history.back(1)" class="btn btn-danger">Retornar</a>
+			<form action="adicionar_lista_produtos.php" method="POST" style="margin-right: 5px;">
+				<input type="hidden" id="adicionar" name="adicionar" value="<?=$alterar;?>" required>
+				<button type="submit" class="btn btn-warning">Adicionar Produtos</button>
+			</form>	
 		</div>
 	</div>
 </div>

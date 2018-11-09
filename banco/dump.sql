@@ -35,7 +35,6 @@ CREATE TABLE `Empresa_Nota` (
 
 LOCK TABLES `Empresa_Nota` WRITE;
 /*!40000 ALTER TABLE `Empresa_Nota` DISABLE KEYS */;
-INSERT INTO `Empresa_Nota` VALUES ('12212121212121','teste'),('12312213123213','teste'),('12321313131313','teste empresa'),('21212121212121','teste'),('43432343423423','tttttttttt'),('44444443333333','teste'),('55555555555555','guilherme'),('89450934590439','teste');
 /*!40000 ALTER TABLE `Empresa_Nota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -150,7 +149,7 @@ CREATE TABLE `Produto` (
   CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
   CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
   CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=58 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -391,4 +390,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-06 11:15:39
+-- Dump completed on 2018-11-09 10:24:28
