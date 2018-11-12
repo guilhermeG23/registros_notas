@@ -11,7 +11,7 @@
 					<div class="form-group">
 						<input type="hidden" value="<?=$chamada["Nota"];?>" name="deletar" id="deletar">
 						<p>Tem certeza que quer deletar esta nota e todos os equipamentos registrados dela?</p>
-						<p>Nota: <?=$chamada["Nota"];?></p>
+						<p>Nota: <?=tratamento_nota($chamada["Nota"]);?></p>
 					</div>
 				</div>
 			</div>

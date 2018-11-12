@@ -35,6 +35,7 @@ CREATE TABLE `Empresa_Nota` (
 
 LOCK TABLES `Empresa_Nota` WRITE;
 /*!40000 ALTER TABLE `Empresa_Nota` DISABLE KEYS */;
+INSERT INTO `Empresa_Nota` VALUES ('23422314123432','teste'),('74895897032789','testetesstesteste');
 /*!40000 ALTER TABLE `Empresa_Nota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -149,7 +150,7 @@ CREATE TABLE `Produto` (
   CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
   CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
   CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -390,4 +391,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-09 10:24:28
+-- Dump completed on 2018-11-12 11:03:07

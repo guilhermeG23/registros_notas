@@ -7,8 +7,7 @@ include("../funcoes/tratamento.php");
 include("../funcoes/funcoes-cadastros.php");
 
 #tratamento para a decisao
-$ID = $_POST["ID"];
-
+$ID = limpar_entrada_numero($_POST["ID"]);
 $equipamento = limpar_entrada_numero($_POST["equipamento"]);
 $descricao = tratamento_entrada_palavra($_POST["descricao"]);
 $marca = limpar_entrada_numero($_POST["marca"]);	
