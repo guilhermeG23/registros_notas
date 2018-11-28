@@ -46,7 +46,7 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 	#cadastrar produtos da nota
 	while($crescer < $contador) {
 		#cadastrar produtos
-		cadastrar_produto_nota($conexao_banco, $nota, $_POST["Equipamento" . $crescer], $_POST["Marca" . $crescer], $_POST["Descricao" . $crescer], $_POST["Serial" . $crescer], $relacao, $setor, $_POST["relacaoAtual" . $crescer], $_POST["Localatual" . $crescer], $funcionario);
+		cadastrar_produto_nota($conexao_banco, $nota, $_POST["Equipamento" . $crescer], $_POST["Marca" . $crescer], $_POST["Descricao" . $crescer], tratamento_uppercase($_POST["Serial" . $crescer]), $relacao, $setor, $_POST["relacaoAtual" . $crescer], $_POST["Localatual" . $crescer], $funcionario);
 		#Crescer contador
 		$crescer++;
 	}

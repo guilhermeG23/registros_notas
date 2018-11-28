@@ -16,6 +16,64 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `BK_Nota_Fiscal`
+--
+
+DROP TABLE IF EXISTS `BK_Nota_Fiscal`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `BK_Nota_Fiscal` (
+  `BK_Nota_Fiscal` varchar(9) NOT NULL,
+  `BK_Chave_Acesso` varchar(44) NOT NULL,
+  `BK_Emissao` date NOT NULL,
+  `BK_CNPJ_Empresa` varchar(14) DEFAULT NULL,
+  `BK_Nota_Nome` varchar(20) NOT NULL,
+  `BK_Nota_PDF` mediumblob NOT NULL,
+  PRIMARY KEY (`BK_Nota_Fiscal`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `BK_Nota_Fiscal`
+--
+
+LOCK TABLES `BK_Nota_Fiscal` WRITE;
+/*!40000 ALTER TABLE `BK_Nota_Fiscal` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BK_Nota_Fiscal` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `BK_Produto`
+--
+
+DROP TABLE IF EXISTS `BK_Produto`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `BK_Produto` (
+  `BK_Produto` int(11) NOT NULL,
+  `BK_Nota` int(9) NOT NULL,
+  `BK_Modelo` int(3) NOT NULL,
+  `BK_Marca` int(3) NOT NULL,
+  `BK_Descricao` varchar(255) NOT NULL,
+  `BK_Key` varchar(255) NOT NULL,
+  `BK_Relacao_Destino` int(2) NOT NULL,
+  `BK_Setor_Destino` varchar(6) NOT NULL,
+  `BK_Relacao_Atual` int(2) NOT NULL,
+  `BK_Setor_Atual` varchar(6) NOT NULL,
+  `BK_Funcionario` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `BK_Produto`
+--
+
+LOCK TABLES `BK_Produto` WRITE;
+/*!40000 ALTER TABLE `BK_Produto` DISABLE KEYS */;
+/*!40000 ALTER TABLE `BK_Produto` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Empresa_Nota`
 --
 
@@ -35,7 +93,6 @@ CREATE TABLE `Empresa_Nota` (
 
 LOCK TABLES `Empresa_Nota` WRITE;
 /*!40000 ALTER TABLE `Empresa_Nota` DISABLE KEYS */;
-INSERT INTO `Empresa_Nota` VALUES ('23422314123432','teste'),('74895897032789','testetesstesteste');
 /*!40000 ALTER TABLE `Empresa_Nota` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -115,6 +172,25 @@ LOCK TABLES `Nota_Fiscal` WRITE;
 /*!40000 ALTER TABLE `Nota_Fiscal` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Nota_Fiscal` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger tg_backup_nota before delete on Nota_Fiscal
+for each row
+begin
+insert into BK_Nota_Fiscal values (old.Nota_Fiscal, old.Chave_Acesso, old.Emissao, old.CNPJ_Empresa, old.Nota_Nome, old.Nota_PDF);
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `Produto`
@@ -150,7 +226,7 @@ CREATE TABLE `Produto` (
   CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
   CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
   CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=69 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -161,6 +237,25 @@ LOCK TABLES `Produto` WRITE;
 /*!40000 ALTER TABLE `Produto` DISABLE KEYS */;
 /*!40000 ALTER TABLE `Produto` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_CREATE_USER,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger tg_backup_produtos before delete on Produto
+for each row
+begin
+insert into BK_Produto values (old.ID_Produto, old.ID_Nota, old.ID_Ex_Modelo, old.ID_Ex_Marca, old.Descricao, old.Key_Serial, old.Relacao_Destino, old.Setor_Destino, old.Relacao_Atual, old.Setor_Atual, old.Funcionario);
+end */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `Relacao_Setor`
@@ -196,7 +291,7 @@ DROP TABLE IF EXISTS `Setor`;
 CREATE TABLE `Setor` (
   `Centro_custo` varchar(6) NOT NULL,
   `ID_Relacao` int(11) NOT NULL,
-  `Setor` varchar(40) NOT NULL,
+  `Setor` varchar(80) NOT NULL,
   PRIMARY KEY (`Centro_custo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -207,7 +302,7 @@ CREATE TABLE `Setor` (
 
 LOCK TABLES `Setor` WRITE;
 /*!40000 ALTER TABLE `Setor` DISABLE KEYS */;
-INSERT INTO `Setor` VALUES ('0001',1,'Presidncia / Assessoria'),('0010',1,'Assessoria Judiciaria'),('1110',1,'Departamento Financeiro'),('2210',1,'Custos e Orcamentos'),('3100',1,'Contabilidade geral'),('3120',1,'Faturamento'),('4100',1,'C.P.D'),('5100',1,'Departamento de Recursos Humanos / Admin'),('5120',1,'Servicos ao Pessoal'),('5130',1,'Treinamento'),('5150',1,'Seguranca / Portaria'),('5160',1,'Servico de segunranca e medias de tranpo'),('6100',2,'Departamento Comercial / Administracao d'),('6110',2,'Vendedores e Representantes'),('6200',2,'Frete s/ Vendas'),('7100',1,'Suprimentos / Compras'),('7120',3,'Almoxarifado Geral'),('7130',1,'Fazenda'),('7200',3,'Compras Aparas'),('7220',3,'Almoxarifado de materia prima'),('9100',3,'Producao'),('9110',4,'Producao'),('9111A',5,'Preparacao de Massa'),('9111B',5,'Maquina Continua'),('9111C',5,'Coating'),('9112A',6,'Preparacao de Massa'),('9112B',6,'Maquina Continua'),('9112C',6,'Coating'),('9113A',7,'Preparacao de Massa'),('9113B',7,'Maquina Continua'),('9113C',7,'Coating'),('9113D',7,'Size Press'),('9114A',8,'Preparacao de Massa'),('9114B',8,'Maquina Continua'),('9114C',8,'Coating'),('9114D',8,'Size Press');
+INSERT INTO `Setor` VALUES ('0001',1,'Presidencia / Assessoria'),('0010',1,'Assessoria Judiciaria'),('1110',1,'Departamento Financeiro'),('2210',1,'Custos e Orcamentos'),('3100',1,'Contabilidade geral'),('3120',1,'Faturamento'),('4100',1,'C.P.D'),('5100',1,'Departamento de Recursos Humanos / Administracao Pessoal'),('5120',1,'Servicos ao Pessoal'),('5130',1,'Treinamento'),('5150',1,'Seguranca / Portaria'),('5160',1,'Servico de segurana e medias de tranposte'),('6100',2,'Departamento Comercial / Administracao de Vendas'),('6110',2,'Vendedores e Representantes'),('6200',2,'Frete s/ Vendas'),('7100',1,'Suprimentos / Compras'),('7120',3,'Almoxarifado Geral'),('7130',1,'Fazenda'),('7200',3,'Compras Aparas'),('7220',3,'Almoxarifado de materia prima'),('9100',3,'Producao'),('9110',4,'Producao'),('9111A',5,'Preparacao de Massa'),('9111B',5,'Maquina Continua'),('9111C',5,'Coating'),('9112A',6,'Preparacao de Massa'),('9112B',6,'Maquina Continua'),('9112C',6,'Coating'),('9113A',7,'Preparacao de Massa'),('9113B',7,'Maquina Continua'),('9113C',7,'Coating'),('9113D',7,'Size Press'),('9114A',8,'Preparacao de Massa'),('9114B',8,'Maquina Continua'),('9114C',8,'Coating'),('9114D',8,'Size Press');
 /*!40000 ALTER TABLE `Setor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -391,4 +486,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-11-12 11:03:07
+-- Dump completed on 2018-11-28  7:13:41

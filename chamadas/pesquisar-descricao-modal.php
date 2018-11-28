@@ -12,7 +12,7 @@
 					<div class="form-group">
 						<table class="table table-borderless tabela-registro">
 							<tr>
-								<td><label class="col-form-label">Descricao: </label></td>
+								<td><label class="col-form-label">Descricao do produto: </label></td>
 								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="descricao" name="descricao" maxlength="100" placeholder="EX: Pesquisar por produtos pelas descricoes..." autocomplete="off">		
 							</tr>
 						</table>	

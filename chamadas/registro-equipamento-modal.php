@@ -59,7 +59,7 @@
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
 										?>
-										<option value="<?=$chamada['Centro_custo']?>"><?=$chamada['Setor'];?></option>
+										<option value="<?=$chamada['Centro_custo']?>"><?=$chamada['Centro_custo'] . " - " . $chamada['Setor'];?></option>
 										<?php
 										}
 										?>

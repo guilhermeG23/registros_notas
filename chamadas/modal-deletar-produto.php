@@ -10,7 +10,11 @@
 				<div class="container regular-altura">
 					<div class="form-group">
 						<input type="hidden" id="alterar" name="deletar_produto" value="<?=$chamada["ID"];?>" required>
+						<input type="hidden" id="nota" name="nota" value="<?=$alterar;?>" required>
 						<p>Tem certeza que quer deletar este  equipamento?</p>
+						<p>Modelo: <?=$chamada["Modelo"];?></p>
+						<p>Marca: <?=$chamada["Marca"];?></p>
+						<p>Descricao: <?=$chamada["Descricao"];?></p>
 					</div>
 				</div>
 			</div>

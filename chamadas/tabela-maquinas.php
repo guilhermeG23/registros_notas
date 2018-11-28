@@ -1,4 +1,6 @@
 <?php
+session_start();
+session_destroy();
 $existe = mysqli_query($conexao_banco, $query);
 $quatidade = mysqli_num_Rows($existe);
 if($quatidade > 0) {
@@ -8,7 +10,6 @@ if($quatidade > 0) {
 	<h1 class="display-4 titulo-h1">Resultados da pesquisa...</h1>
 <?php
 	}
-
 ?>
 	<table class="table tabela-visita table-bordered">
 		<thead class="thead-light tabela-visita-head">
@@ -71,13 +72,13 @@ if($quatidade > 0) {
 			<th class="tabela-visita-coluna" name="altN">
 				<form action="alterar.php" method="POST">
 					<input type="hidden" value="<?=$chamada["Nota"];?>" name="alterar" id="alterar">
-					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
+					<button type="submit" class="btn btn-warning btn-tabela-dng">Nota</button>
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="altP">
 				<form action="alterar_produtos.php" method="POST">
 					<input type="hidden" value="<?=$chamada["Nota"];?>" name="alterar" id="alterar">
-					<button type="submit" class="btn btn-warning btn-tabela-dng">Alterar</button>
+					<button type="submit" class="btn btn-warning btn-tabela-dng">Item</button>
 				</form>
 			</th>
 			<th class="tabela-visita-coluna" name="del">
@@ -92,8 +93,6 @@ if($quatidade > 0) {
 	</table>
 <?php
 } else {
-?>
-	<h1>Nada Registrado</h1>
-<?php
+	include('temporizador_retorno.html');
 }
 ?>

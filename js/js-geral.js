@@ -5,6 +5,11 @@ function isNumber(n) {
 	    return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
+//Temporizador
+function temporizador() {
+}
+
+
 //Funcao de alerta sobre o preenchimento dos campos
 function alerta() {
 	

@@ -34,14 +34,18 @@ if($valor > 0) {
 						<th><?=modelo_img($chamada["Modelo"]);?><?=$chamada["Modelo"];?></th>
 						<th><?=$chamada["Marca"];?></th>
 						<th><?=$chamada["Descricao"];?></th>
-						<th><?=tratamento_chave_soft($chamada["Chave"]);?></th>
+						<th class="upper_tabela"><?=tratamento_chave_soft($chamada["Chave"]);?></th>
 					</tr>
 				<?php
-	}
+			}
+?>
+</tbody>	
+</table>	
+<?php
+} else {
+	include('temporizador_retorno.html');
 }
-?>	
-					</tbody>	
-				</table>	
+?>
 			</div>
 		</div>
 	</div>

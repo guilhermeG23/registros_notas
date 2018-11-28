@@ -1,5 +1,13 @@
 <?php
-$alterar = $_POST['alterar'];
+#session
+session_start();
+if(isset($_SESSION["nota_atual"])) {
+	$alterar = $_SESSION["nota_atual"];
+} else {
+	$alterar = $_POST["alterar"];
+}	
+
+$_SESSION["nota_atual"] = $alterar;
 
 $query_nota = "select * from vw_preencher_tabela where Nota = '{$alterar}' group by Nota limit 1;";
 $query = "select * from vw_preencher_produto where Nota = '{$alterar}';";
@@ -47,7 +55,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 						<th><?=modelo_img($chamada["Modelo"]);?><?=$chamada["Modelo"];?></th>
 						<th><?=$chamada["Marca"];?></th>
 						<th><?=$chamada["Descricao"];?></th>
-						<th><?=tratamento_chave_soft($chamada["Chave"]);?></th>
+						<th class="upper_tabela"><?=tratamento_chave_soft($chamada["Chave"]);?></th>
 						<th>
 							<form action="alterar_lista_produtos.php" method="POST">
 								<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["ID"];?>" required>
@@ -71,7 +79,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 				</table>	
 			</div>
 		<div class="modal-footer">
-			<a href="javascript:history.back(1)" class="btn btn-danger">Retornar</a>
+			<a href="view.php" class="btn btn-danger">Retornar ao view</a>
 			<form action="adicionar_lista_produtos.php" method="POST" style="margin-right: 5px;">
 				<input type="hidden" id="adicionar" name="adicionar" value="<?=$alterar;?>" required>
 				<button type="submit" class="btn btn-warning">Adicionar Produtos</button>

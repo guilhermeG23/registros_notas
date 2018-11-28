@@ -6,7 +6,11 @@ function limpar_entrada_numero($valor) {
 
 #arrumando entrada serial cadastrar
 function tratamento_uppercase($serial) {
-	return strtoupper(preg_replace('/[^A-Za-z0-9]\s/', '', $serial));
+	if(isset($serial)) {
+		return strtoupper(preg_replace('/[^A-Za-z0-9]\s/', '', $serial));
+	}else{
+		return null;
+	}
 }
 
 #tratamento data pesquisa

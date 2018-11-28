@@ -230,6 +230,10 @@ button:focus {
 .tabela-visita-head th {
 	font-weight: bold;
 }
+/*Upper tabela*/
+.upper_tabela {
+	text-transform: uppercase;
+}
 /*Ajustando o botao de sair da tabela*/
 .btn-tabela-dng {
 	width: 100%;
@@ -240,7 +244,7 @@ button:focus {
 		font-size: 16px;
 	}
 	.tabela-visita th {
-		padding: 1rem;
+		padding: 0.5rem;
 	}
 	.tabela-visita-head th {
 		padding: 0.5rem;
@@ -251,7 +255,7 @@ button:focus {
 		font-size: 14px;
 	}
 	.tabela-visita th {
-		padding: 1rem;
+		padding: 0.5rem;
 	}
 	.tabela-visita-head th {
 		padding: 0.5rem;
@@ -270,7 +274,7 @@ button:focus {
 		font-size: 12px;
 	}
 	.tabela-visita th {
-		padding: 1rem;
+		padding: 0.5rem;
 	}
 	.tabela-visita-head th {
 		padding: 0.5rem;

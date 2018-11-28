@@ -33,6 +33,10 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 	alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $funcionario);
 }
 
+#Session
+session_start();
+$_SESSION["nota_atual"] = $nota;
+
 #redirecionar e matar a pagina
-header("Location: index.php");
+header("Location: view.php");
 die();

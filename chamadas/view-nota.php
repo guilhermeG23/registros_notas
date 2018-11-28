@@ -1,6 +1,15 @@
 <div class="jumbotron bg-white text-esquerda borda-jumbo">
 <?php
-$nota = $_POST["visualizar"];
+#carregar session
+session_start();
+if(isset($_SESSION["nota_atual"])) {
+	$nota = $_SESSION["nota_atual"];
+} else {
+	$nota = $_POST["visualizar"];
+}	
+$_SESSION["nota_atual"] = $nota;
+
+#Comecar a carregar a pagina
 $query = "select Nota, Chave, Data, CNPJ, Empresa, Setor, Relacao_Setor.Relacao as 'RD_Nome', Funcionario from vw_tabela_produtos inner join Relacao_Setor on vw_tabela_produtos.RD = Relacao_Setor.ID_Relacao where Nota = '{$nota}';";
 $registros = mysqli_query($conexao_banco, $query);
 while($chamada=mysqli_fetch_array($registros)) {
@@ -76,6 +85,6 @@ while($chamada=mysqli_fetch_array($registros)) {
 	</tbody>
 </table>
 <form action="index.php" method="POST" style="text-align: right;">
-	<button type="submit" class="btn btn-danger btn-alterar-nota">Retornar</button>
+	<button type="submit" class="btn btn-danger btn-alterar-nota">Retornar a tabela principal</button>
 </form>	
 </div>

@@ -45,8 +45,8 @@
 								<td colspan="6"><hr></td>
 							</tr>	
 							<tr>
-								<td><label class="col-form-label">Descricao: </label></td>
-								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="descricao" name="descricao" maxlength="100" placeholder="Procura pelas notas do produto..." autocomplete="off">		
+								<td><label class="col-form-label">Produtos descritos na nota: </label></td>
+								<td><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="descricao" name="descricao" maxlength="100" placeholder="Procura pela descricao dos produtos da nota..." autocomplete="off">		
 							</tr>
 						</table>	
 					</div>

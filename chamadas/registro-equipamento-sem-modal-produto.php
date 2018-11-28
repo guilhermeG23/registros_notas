@@ -9,6 +9,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel">Alterar nota: <?=tratamento_nota($preencher["Nota"]);?></h5>
+				<input type="hidden" class="form-control" onkeyup="limitarInput(this,100)" value="<?=$preencher["Nota"];?>" id="Nota" name="Nota" maxlength="100" autocomplete="off" required>
 			</div>
 			<div class="modal-body">
 				<div class="container regular-altura">

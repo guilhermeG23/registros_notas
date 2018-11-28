@@ -23,7 +23,11 @@ $setor = limpar_entrada_numero($_POST["setor"]);
 #Usando funcao ja existente para resolver o problema de cadastro do produto
 cadastrar_produto_nota($conexao_banco, $nota, $equipamento, $marca, $descricao, $serial, $rd, $sd, $relacao, $setor, $funcionario);
 
+#Session
+session_start();
+$_SESSION["nota_atual"] = $nota;
+
 #redirecionar e matar a pagina
-header("Location: index.php");
+header("Location: alterar_produtos.php");
 #mata a pagina
 die();
