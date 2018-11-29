@@ -16,7 +16,7 @@
 								<td><select class="form-control" name="modelo" id="modelo"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Modelos";
+									$query = "select * from Modelos order by ID_Modelo asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>
@@ -31,7 +31,7 @@
 								<td><select class="form-control" name="marca" id="marca"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Marcas";
+									$query = "select * from Marcas order by Marca asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>

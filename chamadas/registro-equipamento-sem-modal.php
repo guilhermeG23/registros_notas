@@ -41,7 +41,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
 								<option value="<?=$preencher['RD'];?>"><?=$preencher['RelacaoD'];?></option>
 										<?php
-										$query = "select * from Relacao_Setor";
+										$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
 										?>
@@ -56,7 +56,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="setor" name="setor" required>
 								<option value="<?=$preencher["Centro_de_Custo"];?>"><?=$preencher["Setor"];?></option>
 										<?php
-										$query = "select * from Setor";
+										$query = "select * from Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
 										?>

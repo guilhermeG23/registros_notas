@@ -16,7 +16,7 @@
 								<td><select class="form-control" name="relacao_destino" id="relacao_destino"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Relacao_Setor";
+									$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>
@@ -31,7 +31,7 @@
 								<td><select class="form-control" name="setor_destino" id="setor_destino"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Setor";
+									$query = "select * from Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>
@@ -49,7 +49,7 @@
 								<td><select class="form-control" name="relacao_atual" id="relacao_atual"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Relacao_Setor";
+									$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>
@@ -64,7 +64,7 @@
 								<td><select class="form-control" name="setor_atual" id="setor_atual"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Setor";
+									$query = "select * from Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>

@@ -18,7 +18,7 @@ $descricao = tratamento_entrada_palavra($_POST["descricao"]);
 $marca = limpar_entrada_numero($_POST["marca"]);	
 $serial = tratamento_uppercase($_POST["serial"]);
 $relacao = limpar_entrada_numero($_POST["relacao"]);
-$setor = limpar_entrada_numero($_POST["setor"]);
+$setor = limpar_entrada_numero($_POST["local"]);
 
 #Usando funcao ja existente para resolver o problema de cadastro do produto
 cadastrar_produto_nota($conexao_banco, $nota, $equipamento, $marca, $descricao, $serial, $rd, $sd, $relacao, $setor, $funcionario);

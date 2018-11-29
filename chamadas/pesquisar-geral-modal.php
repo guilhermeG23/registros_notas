@@ -20,7 +20,7 @@
 								<td><select class="form-control" name="empresa_emite" id="empresa_emite"> 
 									<option value="" select>...</option>
 									<?php
-									$query = "select * from Empresa_Nota";
+									$query = "select * from Empresa_Nota order by Empresa asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
 									?>

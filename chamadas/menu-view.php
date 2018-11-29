@@ -16,7 +16,7 @@
 			</li>
 			<?php
 			if(!isset($query)) {
-				$query = "select Nota_Fiscal from Nota_Fiscal;";
+				$query = "select Nota_Fiscal from Nota_Fiscal limit 1;";
 			}
 			$contador = mysqli_query($conexao_banco, $query);
 			$contador = mysqli_num_rows($contador);

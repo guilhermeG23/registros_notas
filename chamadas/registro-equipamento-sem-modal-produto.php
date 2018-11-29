@@ -24,7 +24,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="equipamento" name="equipamento" autocomplete="off" required>
 									<option value="<?=$preencher["ID_Modelo"];?>" selected="seleted"><?=$preencher["Modelo"]?></option>
 									<?php
-									$query = "select * from Modelos";
+									$query = "select * from Modelos order by ID_Modelo asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
 									?>
@@ -39,7 +39,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="marca" name="marca" autocomplete="off" required>
 								<option value="<?=$preencher["ID_Marca"]?>" selected="selected"><?=$preencher["Marca"];?></option>
 									<?php
-									$query = "select * from Marcas";
+									$query = "select * from Marcasi order by Marca asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
 									?>
@@ -62,7 +62,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
 								<option value="<?=$preencher['RA'];?>"><?=$preencher['RelacaoAtual'];?></option>
 										<?php
-										$query = "select * from Relacao_Setor";
+										$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
 										?>
@@ -77,7 +77,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="setor" name="setor" required>
 								<option value="<?=$preencher["SA"];?>"><?=$preencher["Setor"];?></option>
 										<?php
-										$query = "select * from Setor";
+										$query = "select * from Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
 										?>
