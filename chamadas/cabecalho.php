@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="UTF-8">
 <head>
+	<!--Cabecalho geral das paginas-->
 	<title>Computadores Ramenzoni</title>
 	<meta charset="utf-8">
 	<meta http-equiv="Expires" content="-1">

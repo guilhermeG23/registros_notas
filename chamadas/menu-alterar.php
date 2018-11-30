@@ -7,25 +7,28 @@
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
 			<?php
+			#Confirma query para mostrar o menu
 			if(!isset($query)) {
 				$query = "select Nota_Fiscal from Nota_Fiscal limit 1;";
 			}
+			#Usando a query para iniciar o contador
 			$contador = mysqli_query($conexao_banco, $query);
 			$contador = mysqli_num_rows($contador);
 			if($contador > 0) {
 			?>
-			<li class="nav-item active">
-				<div class="dropdown">
-					<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/lupa.png"></button>
-					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_geral"><img class="min-imagem-menu" src="../imagens/lupa.png">Pesquisa</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_por"><img class="min-imagem-menu" src="../imagens/lupa.png">Modelo</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_por_descricao"><img class="min-imagem-menu" src="../imagens/lupa.png">Descricao</button>
-						<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_setor"><img class="min-imagem-menu" src="../imagens/lupa.png">Setor</button>
+				<li class="nav-item active">
+					<div class="dropdown">
+						<button class="btn btn-background-arrumar dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><img class="min-imagem-menu" src="../imagens/lupa.png"></button>
+						<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+							<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_geral"><img class="min-imagem-menu" src="../imagens/lupa.png">Pesquisa</button>
+							<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_por"><img class="min-imagem-menu" src="../imagens/lupa.png">Modelo</button>
+							<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_por_descricao"><img class="min-imagem-menu" src="../imagens/lupa.png">Descricao</button>
+							<button type="button" class="dropdown-item" data-toggle="modal" data-target="#pesquisar_setor"><img class="min-imagem-menu" src="../imagens/lupa.png">Setor</button>
+						</div>
 					</div>
-				</div>
-			</li>
+				</li>
 			<?php
+			#Fim do contador
 			}
 			?>
 			<li class="nav-item active">

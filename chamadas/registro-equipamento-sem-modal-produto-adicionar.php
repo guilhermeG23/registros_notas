@@ -1,6 +1,9 @@
 <?php
+#Entrada com post
 $adicionar = $_POST['adicionar'];
+#Query para analisar a entrada
 $query_nota = "select * from Produto where ID_Nota = '{$adicionar}' limit 1;";
+#Executando o query com o while e carregando as informacoes
 $pesquisar = mysqli_query($conexao_banco, $query_nota);
 while($preencher=mysqli_fetch_array($pesquisar)) {
 ?>
@@ -13,7 +16,6 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 			<div class="modal-body">
 				<div class="container regular-altura">
 					<div class="form-group">
-	
 						<!--Entrada hiddens-->
 						<input type="hidden" id="nota" name="nota" value="<?=$preencher['ID_Nota'];?>">	
 						<input type="hidden" id="rd" name="rd" value="<?=$preencher['Relacao_Destino'];?>">	
@@ -25,6 +27,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="equipamento" name="equipamento" autocomplete="off" required>
 									<option value="" selected="seleted">...</option>
 									<?php
+									#Carregar modelos no select
 									$query = "select * from Modelos order by ID_Modelo asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
@@ -40,6 +43,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="marca" name="marca" autocomplete="off" required>
 									<option value="" selected="seleted">...</option>
 									<?php
+									#Carregar Marcas no select
 									$query = "select * from Marcas order by Marca asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
@@ -63,6 +67,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
 										<option value="" selected="seleted">...</option>
 										<?php
+										#Carregando relacao dos setores no select
 										$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
@@ -78,6 +83,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="local" name="local" required>
 										<option value="" selected="seleted">...</option>
 										<?php
+										#Carregando setores no select 
 										$query = "select * from Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {

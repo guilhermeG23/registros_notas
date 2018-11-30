@@ -6,7 +6,8 @@ if(isset($_SESSION["nota_atual"])) {
 	$nota = $_SESSION["nota_atual"];
 } else {
 	$nota = $_POST["visualizar"];
-}	
+}
+#atribuir valor a uma sessao
 $_SESSION["nota_atual"] = $nota;
 
 #Comecar a carregar a pagina

@@ -29,6 +29,7 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		cadastrar_cnpj($conexao_banco, $valor_cnpj, $empresa);
 	}
 
+	#Funcoes de tratamento
 	alterar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj);
 	alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $funcionario);
 }

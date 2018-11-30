@@ -1,3 +1,4 @@
+<!--Pesquisando por modelo-->
 <div class="modal fade bd-example-modal-lg" id="pesquisar_por" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -16,6 +17,7 @@
 								<td><select class="form-control" name="modelo" id="modelo"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando modelos
 									$query = "select * from Modelos order by ID_Modelo asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
@@ -31,6 +33,7 @@
 								<td><select class="form-control" name="marca" id="marca"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando marcas
 									$query = "select * from Marcas order by Marca asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {

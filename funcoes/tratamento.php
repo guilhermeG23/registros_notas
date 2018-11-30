@@ -20,12 +20,12 @@ function tratamento_entrada_data($data) {
 
 #alf e num
 function tratamento_entrada_palavra($pesquisa) {
-	return preg_replace('/[^A-Za-z0-9]\s/', '', $pesquisa);
+	return preg_replace('/[^A-Za-z0-9á-úÁ-Ú]\s/', '', $pesquisa);
 }
 
 #tratamento para caracteres alf
 function tratamento_nome($pesquisa) {
-	return ucfirst(preg_replace('/[^A-Za-z]\s/', '', $pesquisa));
+	return ucfirst(preg_replace('/[^A-Za-zá-úÁ-Ú]\s/', '', $pesquisa));
 }
 
 #tratamento da data tabela

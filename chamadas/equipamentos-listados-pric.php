@@ -1,9 +1,9 @@
 <?php
+#Entrada e pesquisa da informacao
 $descricao = $_POST['descricao'];
-
 $query = "select * from vw_tabela_view inner join Relacao_Setor on vw_tabela_view.RA = Relacao_Setor.ID_Relacao where Descricao like '%{$descricao}%';";
-
 $valor = mysqli_num_rows(mysqli_query($conexao_banco, $query));
+#Decisao
 if($valor > 0) {
 ?>
 <h1 class="display-4 titulo-h1">Resultados da pesquisa...</h1>
@@ -24,6 +24,7 @@ if($valor > 0) {
 				</thead>
 				<tbody>
 <?php
+				#While para preenher a tabela
 				$registros = mysqli_query($conexao_banco, $query);
 				while($chamada=mysqli_fetch_array($registros)) {
 ?>
@@ -43,6 +44,7 @@ if($valor > 0) {
 </table>	
 <?php
 } else {
+	#Temporizador caso nao tenha valor na pesquisa
 	include('temporizador_retorno.html');
 }
 ?>

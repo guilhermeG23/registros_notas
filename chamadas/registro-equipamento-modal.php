@@ -1,3 +1,4 @@
+<!--Entrada de registros de notas em modal-->
 <form action="cadastrar.php" method="POST" enctype="multipart/form-data" onSubmit="return alerta();">
 <div class="modal fade bd-example-modal-lg" id="registrar_computador" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
@@ -40,6 +41,7 @@
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" autocomplete="off" required>
 										<option value="" selected="selected">...</option>
 										<?php
+										#Carregando relacao de setores no select
 										$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
@@ -55,6 +57,7 @@
 								<td colspan="6"><select class="form-control" id="setor" name="setor" autocomplete="off" required>
 										<option value="" selected="selected">...</option>
 										<?php
+										#Carregando setores no select
 										$query = "select * from Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
@@ -72,6 +75,7 @@
 							<tr>
 								<td><label class="col-form-label">Campos para registro: </label></td>
 								<td colspan="5" class="alinhar-direita">
+									<!--Botoes com js para criar e deletar campos-->
 									<button type="button" class="btn" style="cursor: pointer;" onclick="duplicarCampos();">Add</button>
 									<button type="button" class="btn" style="cursor: pointer;" onclick="removerCampos();">Remove</button>
 									<button type="button" class="btn" style="cursor: pointer;" onclick="allremoverCampos();">Remove all clone</button>
@@ -91,6 +95,7 @@
 								<td colspan="1"><select class="form-control" id="Equipamento0" name="Equipamento0" autocomplete="off" required>
 									<option value="" selected="selected">...</option>
 									<?php
+									#Carregar modelos no select
 									$query = "select * from Modelos order by ID_Modelo asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
@@ -103,6 +108,7 @@
 								<td colspan="1"><select class="form-control" id="Marca0" name="Marca0" autocomplete="off" required>
 									<option value="" selected="seleted">...</option>
 									<?php
+									#Carregar marcas no select
 									$query = "select * from Marcas order by Marca asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
@@ -115,20 +121,22 @@
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 100)" value="" id="Descricao0" name="Descricao0" maxlength="100" placeholder="Ex: descricao" autocomplete="off" required></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 54)" value="" id="Serial0" name="Serial0" maxlength="54" placeholder="Ex: Serial" autocomplete="off"></td>
 								<td colspan="1"><select class="form-control" id="relacaoAtual0" name="relacaoAtual0" autocomplete="off" required>
-										<option value="" selected="selected">...</option>
-										<?php
-										$query = "select * from Relacao_Setor";
-										$setores = mysqli_query($conexao_banco, $query);
-										while($chamada = mysqli_fetch_array($setores)) {
-										?>
-										<option value="<?=$chamada['ID_Relacao']?>"><?=$chamada['Relacao'];?></option>
-										<?php
-										}
-										?>
+									<option value="" selected="selected">...</option>
+									<?php
+									#Carregar relacao de setores no select
+									$query = "select * from Relacao_Setor";
+									$setores = mysqli_query($conexao_banco, $query);
+									while($chamada = mysqli_fetch_array($setores)) {
+									?>
+									<option value="<?=$chamada['ID_Relacao']?>"><?=$chamada['Relacao'];?></option>
+									<?php
+									}
+									?>
 								</select></td>
 								<td colspan="1"><select class="form-control" id="Localatual0" name="Localatual0" autocomplete="off" required>
 									<option value="" selected="selected">...</option>
 									<?php
+									#Carregar setores no select
 									$query = "select * from Setor order by ID_Relacao asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
@@ -143,55 +151,59 @@
 						<table style="display: none;">
 							<tr id="clonar">
 								<td colspan="1"><select class="form-control" id="Equipamento" name="Equipamento">
-								<option value="" selected="selected" autocomplete="off">...</option>
-								<?php
-								$query = "select * from Modelos order by ID_Modelo asc;";
-								$setores = mysqli_query($conexao_banco, $query);
-								while($chamada = mysqli_fetch_array($setores)) {
-								?>
-								<option value="<?=$chamada['ID_Modelo']?>"><?=$chamada['Modelo'];?></option>
-								<?php
-								}
-								?>
-								</select></td>	
+									<option value="" selected="selected" autocomplete="off">...</option>
+									<?php
+									#Carregar modelos no select
+									$query = "select * from Modelos order by ID_Modelo asc;";
+									$setores = mysqli_query($conexao_banco, $query);
+									while($chamada = mysqli_fetch_array($setores)) {
+									?>
+									<option value="<?=$chamada['ID_Modelo']?>"><?=$chamada['Modelo'];?></option>
+									<?php
+									}
+									?>
+									</select></td>	
 								<td colspan="1"><select class="form-control" id="Marca" name="Marca" autocomplete="off">
-								<option value="" selected="selected">...</option>
-								<?php
-								$query = "select * from Marcas order by Marca asc;";
-								$setores = mysqli_query($conexao_banco, $query);
-								while($chamada = mysqli_fetch_array($setores)) {
-								?>
-								<option value="<?=$chamada['ID_Marca']?>"><?=$chamada['Marca'];?></option>
-								<?php
-								}
-								?>
-								</select></td>
+									<option value="" selected="selected">...</option>
+									<?php
+									#Carregar marcas no select
+									$query = "select * from Marcas order by Marca asc;";
+									$setores = mysqli_query($conexao_banco, $query);
+									while($chamada = mysqli_fetch_array($setores)) {
+									?>
+									<option value="<?=$chamada['ID_Marca']?>"><?=$chamada['Marca'];?></option>
+									<?php
+									}
+									?>
+									</select></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 100)" value="" id="Descricao" name="Descricao" maxlength="100" placeholder="Ex: descricao" autocomplete="off"></td>
 								<td colspan="1"><input type="text" class="form-control" onkeyup="limitarInput(this, 54)" value="" id="Serial" name="Serial" maxlength="54" placeholder="Ex: Serial" autocomplete="off"></td>
 								<td colspan="1"><select class="form-control" id="relacaoAtual" name="relacaoAtual" autocomplete="off">
-								<option value="" selected="selected">...</option>
-								<?php
-								$query = "select * from Relacao_Setor order by ID_Relacao asc;";
-								$setores = mysqli_query($conexao_banco, $query);
-								while($chamada = mysqli_fetch_array($setores)) {
-								?>
-								<option value="<?=$chamada['ID_Relacao']?>"><?=$chamada['Relacao'];?></option>
-								<?php
-								}
-								?>
-								</select></td>
+									<option value="" selected="selected">...</option>
+									<?php
+									#carregar a relacao de setores no select
+									$query = "select * from Relacao_Setor order by ID_Relacao asc;";
+									$setores = mysqli_query($conexao_banco, $query);
+									while($chamada = mysqli_fetch_array($setores)) {
+									?>
+									<option value="<?=$chamada['ID_Relacao']?>"><?=$chamada['Relacao'];?></option>
+									<?php
+									}
+									?>
+									</select></td>
 								<td colspan="1"><select class="form-control" id="Localatual" name="Localatual" autocomplete="off">
-								<option value="" selected="selected">...</option>
-								<?php
-								$query = "select * from Setor order by ID_Relacao asc;";
-								$setores = mysqli_query($conexao_banco, $query);
-								while($chamada = mysqli_fetch_array($setores)) {
-								?>
-								<option value="<?=$chamada['Centro_custo']?>"><?=$chamada['Centro_custo'] . " - " . $chamada['Setor'];?></option>
-								<?php
-								}
-								?>
-								</select></td>
+									<option value="" selected="selected">...</option>
+									<?php
+									#Carregar o setor no select
+									$query = "select * from Setor order by ID_Relacao asc;";
+									$setores = mysqli_query($conexao_banco, $query);
+									while($chamada = mysqli_fetch_array($setores)) {
+									?>
+									<option value="<?=$chamada['Centro_custo']?>"><?=$chamada['Centro_custo'] . " - " . $chamada['Setor'];?></option>
+									<?php
+									}
+									?>
+									</select></td>
 							</tr>
 						</table>
 					</div>

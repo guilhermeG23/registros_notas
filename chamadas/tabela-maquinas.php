@@ -1,8 +1,12 @@
 <?php
+#Iniciando a sessao para poder destruir qualquer session que esteja memoria, isso facilita a movimentacao entre as notas
 session_start();
 session_destroy();
+#Executando a query pos tratamento de entrada
 $existe = mysqli_query($conexao_banco, $query);
+#Contador
 $quatidade = mysqli_num_Rows($existe);
+#Decisao de pesquisa
 if($quatidade > 0) {
 
 	if($titulo_pesquisa) {
@@ -33,15 +37,18 @@ if($quatidade > 0) {
 		</thead>
 		<tbody>
 <?php
+		#Zerando a query
 		mysqli_data_seek($query, 0);
+		#Executando novamente a query
 		$registros = mysqli_query($conexao_banco, $query);
+		#Executando o while para os registros
 		while($chamada=mysqli_fetch_array($registros)) {
 ?>
 		<tr>
 			<th><?=tratamento_nota($chamada["Nota"]);?></th>
 			<th name="sumir-campo-tabela"><?=tratamento_min_chave($chamada["Chave"]);?></th>
 			<th class="tabela-visita-coluna" name="key"><?=tratamento_chave($chamada["Chave"]);?></th>
-			<th class="tabela-visita-coluna" name="cnpj"><?=tratamento_cnpj($chamada["CNPJ"]);?></th>
+			<th class="tabela-visita-coluna" name="cnpj_empresa"><?=tratamento_cnpj($chamada["CNPJ"]);?></th>
 			<th><?=$chamada["Empresa"];?></th>
 			<th><?=tratamento_data($chamada["Data"]);?></th>
 			<th class="tabela-visita-coluna" name="relacao"><?=$chamada["Relacao"];?></th>
@@ -50,6 +57,7 @@ if($quatidade > 0) {
 			<th>
 			<?php
 				//<a class="btn btn-primary btn-tabela-dng" href="data:application/pdf;base64,<?=base64_encode($chamada["PDF"]);?/>" target="_blank">Nota</a>
+				#Select para carregar as imagens do modelos
 				$produtos = "select Modelos.Modelo as 'Modelo' from Produto inner join Modelos on Produto.ID_Ex_Modelo = Modelos.ID_Modelo where Produto.ID_Nota = '{$chamada["Nota"]}';";
 				$produtos = mysqli_query($conexao_banco, $produtos);
 				while($produto=mysqli_fetch_array($produtos)) {
@@ -86,6 +94,7 @@ if($quatidade > 0) {
 			</th>
 		</tr>
 <?php
+		#Incluir modal para deletar a nota
 		include('modal-deletar-nota.php');
 		}
 ?>
@@ -93,6 +102,7 @@ if($quatidade > 0) {
 	</table>
 <?php
 } else {
+	#Incluir temporizador para caso a pagina nao tenha nenhum resultado
 	include('temporizador_retorno.html');
 }
 ?>

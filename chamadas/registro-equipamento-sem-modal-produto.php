@@ -1,7 +1,11 @@
 <?php
+#Entrada do valor
 $alterar = $_POST['alterar'];
+#Query para pesquisa
 $query_nota = "select * from vw_preencher_produto where ID = '{$alterar}';";
+#Executando a query
 $pesquisar = mysqli_query($conexao_banco, $query_nota);
+#While para preencher os campos
 while($preencher=mysqli_fetch_array($pesquisar)) {
 ?>
 <form action="cadastrar_alteracao_produto.php" method="POST" enctype="multipart/form-data" onSubmit="return alerta();">
@@ -24,6 +28,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="equipamento" name="equipamento" autocomplete="off" required>
 									<option value="<?=$preencher["ID_Modelo"];?>" selected="seleted"><?=$preencher["Modelo"]?></option>
 									<?php
+									#Carregando o select de modelos
 									$query = "select * from Modelos order by ID_Modelo asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
@@ -39,7 +44,8 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="marca" name="marca" autocomplete="off" required>
 								<option value="<?=$preencher["ID_Marca"]?>" selected="selected"><?=$preencher["Marca"];?></option>
 									<?php
-									$query = "select * from Marcasi order by Marca asc;";
+									#Carregando o select de marcas
+									$query = "select * from Marcas order by Marca asc;";
 									$setores = mysqli_query($conexao_banco, $query);
 									while($chamada = mysqli_fetch_array($setores)) {
 									?>
@@ -62,6 +68,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
 								<option value="<?=$preencher['RA'];?>"><?=$preencher['RelacaoAtual'];?></option>
 										<?php
+										#Carregando o select de relacao de setores
 										$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
@@ -77,6 +84,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="setor" name="setor" required>
 								<option value="<?=$preencher["SA"];?>"><?=$preencher["Setor"];?></option>
 										<?php
+										#Carregando o select de setores
 										$query = "select * from Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {

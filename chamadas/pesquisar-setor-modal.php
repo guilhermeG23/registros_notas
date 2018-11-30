@@ -1,3 +1,4 @@
+<!--Pesquisa por local-->
 <div class="modal fade bd-example-modal-lg" id="pesquisar_setor" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -16,6 +17,7 @@
 								<td><select class="form-control" name="relacao_destino" id="relacao_destino"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando relacao de setores
 									$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
@@ -31,6 +33,7 @@
 								<td><select class="form-control" name="setor_destino" id="setor_destino"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando setores
 									$query = "select * from Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
@@ -49,6 +52,7 @@
 								<td><select class="form-control" name="relacao_atual" id="relacao_atual"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando relacao de setores
 									$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {
@@ -64,6 +68,7 @@
 								<td><select class="form-control" name="setor_atual" id="setor_atual"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando setores
 									$query = "select * from Setor order by ID_Relacao asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {

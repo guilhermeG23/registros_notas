@@ -1,3 +1,4 @@
+<!--Modal de pesquisa geral-->
 <div class="modal fade bd-example-modal-lg" id="pesquisar_geral" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-lg" role="document">
 		<div class="modal-content">
@@ -20,6 +21,7 @@
 								<td><select class="form-control" name="empresa_emite" id="empresa_emite"> 
 									<option value="" select>...</option>
 									<?php
+									#Carregando valores ao select
 									$query = "select * from Empresa_Nota order by Empresa asc;";
 									$resultado = mysqli_query($conexao_banco, $query);
 									while($chamada=mysqli_fetch_array($resultado)) {

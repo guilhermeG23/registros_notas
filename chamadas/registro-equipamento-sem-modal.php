@@ -1,8 +1,11 @@
 <?php
-#Retorno por session
+#Entrada para pesquisa
 $alterar = $_POST['alterar'];
+#Query para select
 $query_nota = "select * from vw_preencher_tabela where Nota = '{$alterar}' group by Nota;";
+#Executando a query
 $pesquisar = mysqli_query($conexao_banco, $query_nota);
+#While para carregar as informacoes 
 while($preencher=mysqli_fetch_array($pesquisar)) {
 ?>
 <form action="cadastrar_alteracao.php" method="POST" enctype="multipart/form-data" onSubmit="return alerta();">
@@ -41,6 +44,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
 								<option value="<?=$preencher['RD'];?>"><?=$preencher['RelacaoD'];?></option>
 										<?php
+										#Carregar o select de relacao de setores
 										$query = "select * from Relacao_Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
@@ -56,6 +60,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="6"><select class="form-control" id="setor" name="setor" required>
 								<option value="<?=$preencher["Centro_de_Custo"];?>"><?=$preencher["Setor"];?></option>
 										<?php
+										#Carregar o select de setores
 										$query = "select * from Setor order by ID_Relacao asc;";
 										$setores = mysqli_query($conexao_banco, $query);
 										while($chamada = mysqli_fetch_array($setores)) {
