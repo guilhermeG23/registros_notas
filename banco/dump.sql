@@ -107,7 +107,7 @@ CREATE TABLE `Marcas` (
   `ID_Marca` int(11) NOT NULL AUTO_INCREMENT,
   `Marca` varchar(100) NOT NULL,
   PRIMARY KEY (`ID_Marca`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -116,7 +116,7 @@ CREATE TABLE `Marcas` (
 
 LOCK TABLES `Marcas` WRITE;
 /*!40000 ALTER TABLE `Marcas` DISABLE KEYS */;
-INSERT INTO `Marcas` VALUES (1,'Lenovo'),(2,'Dell'),(3,'Microsoft');
+INSERT INTO `Marcas` VALUES (1,'Lenovo'),(2,'Dell');
 /*!40000 ALTER TABLE `Marcas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -226,7 +226,7 @@ CREATE TABLE `Produto` (
   CONSTRAINT `Produto_ibfk_5` FOREIGN KEY (`Relacao_Destino`) REFERENCES `Relacao_Setor` (`ID_Relacao`),
   CONSTRAINT `Produto_ibfk_6` FOREIGN KEY (`Setor_Atual`) REFERENCES `Setor` (`Centro_custo`),
   CONSTRAINT `Produto_ibfk_7` FOREIGN KEY (`Relacao_Atual`) REFERENCES `Relacao_Setor` (`ID_Relacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -486,4 +486,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-12-04 10:35:33
+-- Dump completed on 2018-11-28  7:13:41

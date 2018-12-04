@@ -103,6 +103,12 @@ if($quatidade > 0) {
 <?php
 } else {
 	#Incluir temporizador para caso a pagina nao tenha nenhum resultado
-	include('temporizador_retorno.html');
+	if($titulo_pesquisa == true) {
+		include('temporizador_retorno.html');
+	} else {
+?>	
+	<h1 class="display-4 titulo-h1">Nada Registrado</h2>
+<?php
+	}
 }
 ?>
