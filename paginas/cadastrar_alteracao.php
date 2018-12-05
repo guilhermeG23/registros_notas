@@ -29,7 +29,15 @@ if(confirma_nota($nota) && confirma_nota_chave($chave)) {
 		cadastrar_cnpj($conexao_banco, $valor_cnpj, $empresa);
 	}
 
+	#Funcao para alterar o pdf da nota quando precisar e opcional esta funcao
+	if(isset($_FILES["arq"]["size"]) && $_FILES["arq"]["size"] > 0 && isset($_FILES["arq"]["tmp_name"]) && isset($_FILES["arq"]["name"])) {
+		$arquivo = registro_pdf($_FILES["arq"]["size"], $_FILES["arq"]["tmp_name"]);
+		$nome = registro_pdf($_FILES["arq"]["name"]);
+		alterar_pdf_nota($conexao_banco, $nota, $nome, $arquivo);
+	}
+
 	#Funcoes de tratamento
+	#Cadastrando alteracoes
 	alterar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj);
 	alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $funcionario);
 }

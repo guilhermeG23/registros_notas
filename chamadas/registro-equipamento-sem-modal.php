@@ -40,6 +40,10 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="<?=$preencher['Empresa'];?>" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required readonly>		
 							</tr>
 							<tr>
+								<td><label class="col-form-label">PDF da nota(Nao obrigatorio): </label></td>
+								<td colspan="2"><input type="file" accept="application/pdf" class="btn" value="" id="arq" name="arq" autocomplete="off"></td>
+							</tr>
+							<tr>
 								<td><label class="col-form-label">Relacao: </label></td>
 								<td colspan="6"><select class="form-control" id="relacao" name="relacao" required>
 								<option value="<?=$preencher['RD'];?>"><?=$preencher['RelacaoD'];?></option>

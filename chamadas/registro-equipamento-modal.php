@@ -33,7 +33,7 @@
 								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required>		
 							</tr>
 							<tr>
-								<td><label class="col-form-label">Arquivo: </label></td>
+								<td><label class="col-form-label">PDF da nota: </label></td>
 								<td colspan="6"><input type="file" accept="application/pdf" class="btn" id="arq" name="arq" autocomplete="off" required></td>
 							</tr>
 							<tr>

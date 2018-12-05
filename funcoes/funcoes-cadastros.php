@@ -24,6 +24,12 @@ function cadastrar_cnpj($conexao_banco, $cnpj, $empresa) {
 	return null;
 }
 
+//Alterar pdf nota fiscal
+function alterar_pdf_nota($conexao_banco, $nota, $nome, $arquivo) {
+	$query = "update Nota_Fiscal set Nota_PDF = '{$arquivo}', Nota_Nome = '{$nome}' where Nota_Fiscal = '{$nota}';";
+	mysqli_query($conexao_banco, $query);
+	return null;
+}
 
 //alterar a nota fiscal
 function alterar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj) {
