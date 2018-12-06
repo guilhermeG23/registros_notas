@@ -12,22 +12,9 @@ $chave = limpar_entrada_numero($_POST["chave"]);
 
 #decisao
 if(confirma_nota($nota) && confirma_nota_chave($chave)) {
-	
-	#Seguranca javascript caso nao rodar
-	$contador = limpar_entrada_numero($_POST["contador"]);
-	
-	#tratamento para atribuir valores as variaveis
-	$data = tratamento_entrada_data(limpar_entrada_numero($_POST["data_entrada"]));
-	$funcionario = tratamento_entrada_palavra($_POST["funcionario"]);
-	$relacao = limpar_entrada_numero($_POST["relacao"]);
-	$valor_cnpj = limpar_entrada_numero($_POST["cnpj"]);
-	$empresa = tratamento_entrada_palavra($_POST["empresa"]);
-	$setor = tratamento_uppercase($_POST["setor"]);
 
-	#cadastrar empresa caso ela nao exista
-	if(confirma_cnpj($conexao_banco, $valor_cnpj)) {
-		cadastrar_cnpj($conexao_banco, $valor_cnpj, $empresa);
-	}
+	#Valores padroes de entrada ou alteracao da nota
+	include("../chamadas/valores-nota.php");	
 
 	#Cadastrar nota caso ela nao exista
 	if(confirma_existe_nota($conexao_banco, $nota)) {

@@ -132,7 +132,16 @@ appearance: textfield;
 /*Escondendo o menu de mais opcoes*/
 .mais_opcoes {
 	display: none;
-} 
+}
+/*Sumir com o campo da tabela*/
+.check_sumir {
+	display: none;
+	text-align: right;
+}
+/*Espaco pequeno*/
+.espaco-pequeno {
+	margin-left: 10px;
+}
 /*ajuste no jumbo*/
 .alinhamento-centro {
 	text-align: center;

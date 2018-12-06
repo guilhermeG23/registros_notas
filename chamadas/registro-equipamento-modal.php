@@ -32,6 +32,9 @@
 								<td><label class="col-form-label">Empresa: </label></td>
 								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required>		
 							</tr>
+							<tr id="check_sumir" class="check_sumir">
+								<td colspan="2"><label class="col-form-label">Alterar nome da empresa?</label><input type="checkbox" class="espaco-pequeno" id="alterarEmpresa" name="alterarEmpresa" onclick="editarEmpresa(this)"></td>		
+							</tr>
 							<tr>
 								<td><label class="col-form-label">PDF da nota: </label></td>
 								<td colspan="6"><input type="file" accept="application/pdf" class="btn" id="arq" name="arq" autocomplete="off" required></td>

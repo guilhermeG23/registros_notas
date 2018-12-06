@@ -5,11 +5,6 @@ function isNumber(n) {
 	    return !isNaN(parseFloat(n)) && isFinite(n);
 }
 
-//Temporizador
-function temporizador() {
-}
-
-
 //Funcao de alerta sobre o preenchimento dos campos
 function alerta() {
 	
@@ -204,4 +199,15 @@ $(document).ready(function () {
 function limitarInput(obj, quanto) {
 	obj.value = obj.value.substring(0,quanto);
 	return obj;
+}
+
+//Habilitar campo para editar
+//Aqui confirma se posso editar a empresa
+function editarEmpresa(valor) {
+	var empresa = document.getElementById("empresa");
+	if(document.getElementById("alterarEmpresa").checked) {
+		empresa.removeAttribute('readonly');
+	} else {
+		empresa.setAttribute('readonly', 'yes');
+	}
 }

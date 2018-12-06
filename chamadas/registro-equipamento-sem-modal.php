@@ -18,7 +18,7 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 				<div class="container regular-altura">
 					<div class="form-group">
 						<input type="hidden" class="form-control" value="" id="contador" name="contador" maxlength="100" placeholder="" autocomplete="off"></td>
-						<table class="table">			
+						<table class="table">
 							<tr>
 								<td><label class="col-form-label">N.Nota: </label></td>
 								<td colspan="6"><input type="text" class="form-control" onkeyup="limitarInput(this,11)"  value="<?=tratamento_nota($preencher['Nota']);?>" id="nota" name="nota" maxlength="11" placeholder="EX: N Nota" autocomplete="off" required readonly></td>
@@ -38,6 +38,9 @@ while($preencher=mysqli_fetch_array($pesquisar)) {
 							<tr>
 								<td><label class="col-form-label">Empresa: </label></td>
 								<td colspan="2"><input type="text" class="form-control" onkeyup="limitarInput(this,100)" value="<?=$preencher['Empresa'];?>" id="empresa" name="empresa" maxlength="100" placeholder="EX: Empresa da nota" autocomplete="off" required readonly>		
+							</tr>
+							<tr id="check_sumir" style="text-align: right;">
+								<td colspan="2"><label class="col-form-label">Alterar nome da empresa?</label><input type="checkbox" class="espaco-pequeno" id="alterarEmpresa" name="alterarEmpresa" onclick="editarEmpresa(this)"></td>		
 							</tr>
 							<tr>
 								<td><label class="col-form-label">PDF da nota(Nao obrigatorio): </label></td>

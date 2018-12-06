@@ -38,6 +38,13 @@ function alterar_nota($conexao_banco, $nota, $chave, $data, $valor_cnpj) {
 	return null;
 }
 
+//Atualizar cnpj
+function atualizar_cnpj($conexao_banco, $valor_cnpj, $empresa) {
+	$query = "update Empresa_Nota set Empresa = '{$empresa}' where CNPJ = '{$valor_cnpj}';";
+	mysqli_query($conexao_banco, $query);
+	return null;
+}
+
 //Alterar produto do funcionario
 function alterar_funcionario_produto($conexao_banco, $nota, $relacao, $setor, $funcionario) {
 	$query = "update Produto set Relacao_Destino = '{$relacao}', Setor_Destino = '{$setor}', Funcionario = '{$funcionario}' where ID_Nota = '{$nota}';";
