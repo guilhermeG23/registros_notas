@@ -3,8 +3,8 @@
 #Tratamento com views e a forma de deixar a entrada de dados mais rapido na tabela
 $variavel_query = "select ID_Produto, Nota, Data, Chave, CNPJ, Empresa, Setor, vw_tabela_produtos.Modelo, vw_tabela_produtos.Marca, Relacao, RD, SD, Funcionario from vw_tabela_produtos";
 if (isset($_POST['pesquisar']) && strlen($_POST['pesquisar']) > 0) {
-	$variavel = limpar_entrada_numero(tratamento_caractere($_POST['pesquisar']));
-	$query = $variavel_query . " where Nota like '%{$variavel}%' or CNPJ like '%{$variavel}%' or Chave like '%{$variavel}%' or Funcionario like '%{$variavel}%' order by ID_Produto desc;";
+	$variavel = tratamento_entrada_palavra(tratamento_caractere($_POST['pesquisar']));
+	$query = $variavel_query . " where Nota like '%{$variavel}%' or CNPJ like '%{$variavel}%' or Chave like '%{$variavel}%' or Empresa like '%{$variavel}%' or Funcionario like '%{$variavel}%' order by ID_Produto desc;";
 	$titulo_pesquisa = true;
 } elseif (isset($_POST['empresa_emite']) && strlen($_POST['empresa_emite']) > 0) {
 	$variavel = limpar_entrada_numero(tratamento_caractere($_POST['empresa_emite']));
