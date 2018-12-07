@@ -167,9 +167,6 @@ appearance: textfield;
 	.left-div {
 		display: grid;
 	}
-	.btn-alterar-nota {
-		width: 100%;	
-	}
 }
 /*Arruma jumbotron*/
 .text-esquerda {
@@ -308,7 +305,7 @@ button:focus {
 }
 @media screen and (max-width: 600px) {
 	.btn-tabela-dng, .tabela-visita th {
-		font-size: 8px;
+		font-size: 12px;
 	}
 	.tabela-visita th {
 		padding: 0.5rem;
@@ -322,11 +319,11 @@ button:focus {
 	.min-imagem-menu-tabela {
 		width: 16px;
 		margin-right: 10px;
-	}
+	}	
 }
 @media screen and (max-width: 480px) {
 	.btn-tabela-dng, .tabela-visita th {
-		font-size: 8px;
+		font-size: 12px;
 	}
 	.tabela-visita th {
 		padding: 0.2rem;
@@ -337,6 +334,33 @@ button:focus {
 		padding: 0.4rem;
 	}
 }
+
+/*Arrumando tamanho dos botoes*/
+@media screen and (max-width: 1200px) {
+	.btn-margin-bottom {
+		padding: 4px;
+		font-size: 12px;
+	}
+}
+@media screen and (max-width: 820px) {
+	.btn-margin-bottom {
+		padding: 2px;
+		font-size: 8px;
+	}
+}
+@media screen and (max-width: 480px) {
+	.btn-margin-bottom {
+		padding: 6px;
+		font-size: 18px;
+		width: 100%;
+	}
+	/*Ajuste de botao da tabela  de produtos registrados na nota*/
+	.btn-tabela-dng {
+		padding: 2px;
+		font-size: 12px;
+	}
+}
+
 /*Arrumando a borda do jumbotron*/
 .borda-jumbo {
 	border: 1px solid gray;

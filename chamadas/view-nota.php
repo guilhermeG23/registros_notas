@@ -32,18 +32,21 @@ while($chamada=mysqli_fetch_array($registros)) {
 		<tr><th><div class="left-div">
 			<form action="alterar.php" method="POST" style="margin-right: 5px;">
 				<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
-				<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota">Alterar Nota</button>
+				<button type="submit" class="btn btn-warning btn-margin-bottom">Alterar Nota</button>
 			</form>	
 			<form action="alterar_produtos.php" method="POST" style="margin-right: 5px;">
 				<input type="hidden" id="alterar" name="alterar" value="<?=$chamada["Nota"];?>" required>
-				<button type="submit" class="btn btn-warning btn-margin-bottom btn-alterar-nota">Alterar Produtos</button>
+				<button type="submit" class="btn btn-warning btn-margin-bottom">Alterar Produtos</button>
 			</form>
 			<form action="view_pdf.php" method="POST" target="_blank" style="margin-right: 5px;">
 				<input type="hidden" name="view" id="view" value="<?=$chamada["Nota"];?>" required>
-				<button type="submit" class="btn btn-primary btn-margin-bottom btn-alterar-nota">Visualizar Nota</button>
+				<button type="submit" class="btn btn-primary btn-margin-bottom">Visualizar Nota</button>
 			</form>
-			<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?=base64_encode($nota_pdf);?>" download>Download da Nota</a>
-			<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
+				<a class="btn btn-primary btn-margin-bottom" href="data:application/pdf;base64,<?=base64_encode($nota_pdf);?>" download>Download da Nota</a>
+				<button type="button" class="btn btn-danger btn-margin-bottom" data-toggle="modal" data-target="#modal<?=$chamada["Nota"];?>">Deletar a Nota</button>
+			<form action="index.php" style="margin-left: 5px;">
+				<button type="submit" class="btn btn-danger btn-margin-bottom">Retornar a tabela principal</button>
+			</form>	
 			</div>
 		</th></tr>
 	</table>
@@ -85,7 +88,4 @@ while($chamada=mysqli_fetch_array($registros)) {
 ?>
 	</tbody>
 </table>
-<form action="index.php" method="POST" style="text-align: right;">
-	<button type="submit" class="btn btn-danger btn-alterar-nota">Retornar a tabela principal</button>
-</form>	
 </div>
