@@ -1,6 +1,5 @@
 <?php
-//Conexao com o banco
-$conexao_banco = mysqli_connect('eowyn', 'funcionario', 'rr', 'funcionarios');
-//Ajustando o alfabeto de saida
+//COnexao banco de teste
+$conexao_banco = mysqli_connect("localhost", "maquinas", "rr", "Maquinas_Ramenzoni");
+//Setando caracter no banco de dados
 mysqli_set_charset($conexao_banco, 'utf8');
-?>

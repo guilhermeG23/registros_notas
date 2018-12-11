@@ -1,4 +1,4 @@
 <?php
-//Mandando para o index da aplicacao
+#redirecionar a pagina
 header("Location: ../paginas/");
 die();
