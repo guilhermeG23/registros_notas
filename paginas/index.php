@@ -1,20 +1,11 @@
 <?php
-#incluir banco
-include ('../banco/banco.php');
-#incluir tratamentos
-include ('../funcoes/tratamento.php');
-#incluindo conteudo da pagina
-include ('../chamadas/entrada-pesquisa-tabela.php');
-include ('../chamadas/cabecalho.php');
-include ('../chamadas/menu.php');
-include ('../chamadas/registro-equipamento-modal.php');
-include ('../chamadas/pesquisar-geral-modal.php');
-include ('../chamadas/pesquisar-modelo-modal.php');
-include ('../chamadas/pesquisar-descricao-modal.php');
-include ('../chamadas/pesquisar-setor-modal.php');
-include ('../chamadas/ajuda.php');
-include ('../chamadas/pagina-corpo.php');
-include ('../chamadas/entrada-pesquisa-tabela.php');
-include ('../chamadas/tabela-maquinas.php');
-include ('../chamadas/pagina-fim-corpo.php');
-include ('../chamadas/java-script-ex.php');
+//Chamada do banco
+include("../banco/banco.php");
+//Funcoes da pagina
+include("../funcoes/funcoes-gerais.php");
+//Query para carregar a folha index
+//Corpo da pagina e sua estrutura
+include("../chamadas/cabecalho-pagina.php");
+include("../chamadas/menu.php");
+include("../chamadas/pesquisa.php");
+include("../chamadas/chamada-mostrar-funcionarios.php");

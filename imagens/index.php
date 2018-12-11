@@ -1,4 +1,3 @@
 <?php
-#redirecionar a pagina
-header("Location: ../paginas/");
+header("Location: ../");
 die();

@@ -1,4 +1,4 @@
 <?php
-#redirecionar a pagina
+//Mandando para o paginas/index.php 
 header("Location: paginas/");
 die();
